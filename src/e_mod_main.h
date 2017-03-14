@@ -65,7 +65,7 @@ struct _Config_Item
 {
    /* unique id for every running gadget, this is managed by gadcon */
    const char *id;
-
+   const char *header_text, *area_text; 
    /* actual config properties independently for every running gadget. */
    int switch2;
 };
@@ -90,7 +90,7 @@ EAPI int e_modapi_shutdown(E_Module *m);
 EAPI int e_modapi_save(E_Module *m);
 
 /* Function for calling the module's Configuration Dialog */
-E_Config_Dialog *e_int_config_sticky_notes_module(E_Container *con, const char *params);
+E_Config_Dialog *e_int_config_sticky_notes_module(Config_Item * ci);
 
 extern Config *sticky_notes_conf;
 

@@ -33,7 +33,7 @@ struct _Instance
    E_Menu *menu;
 
    /* Config_Item structure. Every gadget should have one :) */
-   Config_Item *conf_item;
+   Config_Item *ci;
 };
 
 /* Local Variables */
@@ -78,8 +78,8 @@ e_modapi_init(E_Module *m)
    e_configure_registry_category_add("advanced", 80, D_("Advanced"), 
                                      NULL, "preferences-advanced");
    /* add right-side item */
-   e_configure_registry_item_add("advanced/sticky_notes", 110, D_("Sticky_notes"), 
-                                 NULL, buf, e_int_config_sticky_notes_module);
+   //~ e_configure_registry_item_add("advanced/sticky_notes", 110, D_("Sticky_notes"), 
+                                 //~ NULL, buf, e_int_config_sticky_notes_module);
 
    /* Define EET Data Storage for the config file */
    conf_item_edd = E_CONFIG_DD_NEW("Config_Item", Config_Item);
@@ -89,6 +89,8 @@ e_modapi_init(E_Module *m)
    #define D conf_item_edd
    E_CONFIG_VAL(D, T, id, STR);
    E_CONFIG_VAL(D, T, switch2, INT);
+   E_CONFIG_VAL(D, T, header_text, STR);
+   E_CONFIG_VAL(D, T, area_text, STR);
 
    conf_edd = E_CONFIG_DD_NEW("Config", Config);
    #undef T
@@ -179,29 +181,9 @@ e_modapi_shutdown(E_Module *m)
    sticky_notes_conf->module = NULL;
    e_gadcon_provider_unregister(&_gc_class);
 
-   /* Cleanup our item list */
-   while (sticky_notes_conf->conf_items) 
-     {
-        Config_Item *ci = NULL;
-
-        /* Grab an item from the list */
-        ci = sticky_notes_conf->conf_items->data;
-
-        /* remove it */
-        sticky_notes_conf->conf_items = 
-          eina_list_remove_list(sticky_notes_conf->conf_items, 
-                                sticky_notes_conf->conf_items);
-
-        /* cleanup stringshares */
-        if (ci->id) eina_stringshare_del(ci->id);
-
-        /* keep the planet green */
-        E_FREE(ci);
-     }
-
-   /* Cleanup the main config structure */
-   E_FREE(sticky_notes_conf);
-
+   /* This is called when module is unloaded */
+   _sticky_notes_conf_free(); 
+   
    /* Clean EET */
    E_CONFIG_DD_FREE(conf_item_edd);
    E_CONFIG_DD_FREE(conf_edd);
@@ -233,7 +215,7 @@ _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style)
 
    /* New visual instance, any config ? */
    inst = E_NEW(Instance, 1);
-   inst->conf_item = _sticky_notes_conf_item_get(id);
+   inst->ci = _sticky_notes_conf_item_get(id);
 
    /* create on-screen object */
    inst->o_sticky_notes = edje_object_add(gc->evas);
@@ -333,8 +315,10 @@ _sticky_notes_conf_new(void)
 {
    Config_Item *ci = NULL;
    char buf[128];
-
+   
    sticky_notes_conf = E_NEW(Config, 1);
+   ci = E_NEW(Config_Item, 1);
+   
    sticky_notes_conf->version = (MOD_CONFIG_FILE_EPOCH << 16);
 
 #define IFMODCFG(v) if ((sticky_notes_conf->version & 0xffff) < v) {
@@ -343,6 +327,9 @@ _sticky_notes_conf_new(void)
    /* setup defaults */
    IFMODCFG(0x008d);
    sticky_notes_conf->switch1 = 1;
+   ci->switch2 = 1;
+   ci->header_text = eina_stringshare_add("Sticky note");
+   ci->area_text = eina_stringshare_add("In this place you can add your text by right click and settings");
    _sticky_notes_conf_item_get(NULL);
    IFMODCFGEND;
 
@@ -364,16 +351,20 @@ _sticky_notes_conf_free(void)
    while (sticky_notes_conf->conf_items) 
      {
         Config_Item *ci = NULL;
-
+        
+        /* Grab an item from the list */
         ci = sticky_notes_conf->conf_items->data;
+        /* remove it */
         sticky_notes_conf->conf_items = 
           eina_list_remove_list(sticky_notes_conf->conf_items, 
                                 sticky_notes_conf->conf_items);
-        /* EPA */
+
+        /* cleanup stringshares */
         if (ci->id) eina_stringshare_del(ci->id);
+        if (ci->header_text) eina_stringshare_del(ci->header_text);
+        if (ci->area_text) eina_stringshare_del(ci->area_text);
         E_FREE(ci);
      }
-
    E_FREE(sticky_notes_conf);
 }
 
@@ -396,7 +387,10 @@ _sticky_notes_conf_item_get(const char *id)
 
    ci = E_NEW(Config_Item, 1);
    ci->id = eina_stringshare_add(id);
-   ci->switch2 = 0;
+   ci->switch2 = 1;
+   ci->header_text = eina_stringshare_add("Sticky note");
+   ci->area_text = eina_stringshare_add("In this place you can add your text by right click and settings");
+
    sticky_notes_conf->conf_items = eina_list_append(sticky_notes_conf->conf_items, ci);
    return ci;
 }
@@ -425,7 +419,7 @@ _sticky_notes_cb_mouse_down(void *data, Evas *evas, Evas_Object *obj, void *even
         mi = e_menu_item_new(m);
         e_menu_item_label_set(mi, D_("Settings"));
         e_util_menu_item_theme_icon_set(mi, "preferences-system");
-        e_menu_item_callback_set(mi, _sticky_notes_cb_menu_configure, NULL);
+        e_menu_item_callback_set(mi, _sticky_notes_cb_menu_configure, inst);
 
         /* Each Gadget Client has a utility menu from the Container */
         m = e_gadcon_client_util_menu_items_append(inst->gcc, m, 0);
@@ -450,6 +444,7 @@ _sticky_notes_cb_menu_post(void *data, E_Menu *menu)
    Instance *inst = NULL;
 
    if (!(inst = data)) return;
+   
    if (!inst->menu) return;
    e_object_del(E_OBJECT(inst->menu));
    inst->menu = NULL;
@@ -459,7 +454,7 @@ _sticky_notes_cb_menu_post(void *data, E_Menu *menu)
 static void 
 _sticky_notes_cb_menu_configure(void *data, E_Menu *mn, E_Menu_Item *mi) 
 {
-   if (!sticky_notes_conf) return;
-   if (sticky_notes_conf->cfd) return;
-   e_int_config_sticky_notes_module(mn->zone->container, NULL);
+	Instance *inst = NULL;
+   if (!(inst = data)) return;
+   e_int_config_sticky_notes_module(inst->ci);
 }
