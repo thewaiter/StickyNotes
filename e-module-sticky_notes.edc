@@ -114,7 +114,7 @@ collections
             }
            }
             
-          part { name: "e.area.text";
+          part { name: "area_text";
             type: TEXTBLOCK;
             effect: SOFT_SHADOW;
             description { state: "default" 0.0;

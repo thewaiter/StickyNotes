@@ -90,8 +90,8 @@ EAPI int e_modapi_shutdown(E_Module *m);
 EAPI int e_modapi_save(E_Module *m);
 
 /* Function for calling the module's Configuration Dialog */
-E_Config_Dialog *e_int_config_sticky_notes_module(Config_Item * ci);
-
+void _config_sticky_notes_module(Config_Item * ci);
+void _sticky_notes_config_updated(Config_Item *ci);
 extern Config *sticky_notes_conf;
 
 #endif

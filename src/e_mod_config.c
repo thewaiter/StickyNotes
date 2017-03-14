@@ -22,8 +22,8 @@ static int _basic_apply(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata);
 /* External Functions */
 
 /* Function for calling our personal dialog menu */
-E_Config_Dialog *
-e_int_config_sticky_notes_module(Config_Item * ci) 
+void
+_config_sticky_notes_module(Config_Item * ci) 
 {
    E_Config_Dialog *cfd = NULL;
    E_Config_Dialog_View *v = NULL;
@@ -31,10 +31,11 @@ e_int_config_sticky_notes_module(Config_Item * ci)
    char buf[4096];
 
    /* is this config dialog already visible ? */
-   if (e_config_dialog_find("Sticky_notes", "advanced/sticky_notes")) return NULL;
+   if (e_config_dialog_find("Sticky_notes", "advanced/sticky_notes")) 
+     return;
 
    v = E_NEW(E_Config_Dialog_View, 1);
-   if (!v) return NULL;
+   if (!v) return;
 
    v->create_cfdata = _create_data;
    v->free_cfdata = _free_data;
@@ -50,7 +51,6 @@ e_int_config_sticky_notes_module(Config_Item * ci)
 
    e_dialog_resizable_set(cfd->dia, 1);
    sticky_notes_conf->cfd = cfd;
-   return cfd;
 }
 
 /* Local Functions */
@@ -120,21 +120,20 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    e_widget_framelist_object_append(of, ow);
    e_widget_list_object_append(o, of, 1, 1, 0.5);
 
-   
    return o;
 }
 
 static int 
 _basic_apply(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata) 
 {
-   Config_Item *ci;
+   Config_Item *ci = NULL;
    ci = cfd->data;
    ci->switch2 = cfdata->switch2;
    if (ci->header_text) eina_stringshare_del(ci->header_text);
    ci->header_text = eina_stringshare_add(cfdata->header_text);
    if (ci->area_text) eina_stringshare_del(ci->area_text);
    ci->area_text = eina_stringshare_add(cfdata->area_text);
-   
    e_config_save_queue();
+   _sticky_notes_config_updated(ci);
    return 1;
 }

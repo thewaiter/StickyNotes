@@ -16,6 +16,8 @@ static Config_Item *_sticky_notes_conf_item_get(const char *id);
 static void _sticky_notes_cb_mouse_down(void *data, Evas *evas, Evas_Object *obj, void *event);
 static void _sticky_notes_cb_menu_post(void *data, E_Menu *menu);
 static void _sticky_notes_cb_menu_configure(void *data, E_Menu *mn, E_Menu_Item *mi);
+static Eina_Bool _sticky_notes_cb_check(void *data);
+
 
 /* Local Structures */
 typedef struct _Instance Instance;
@@ -79,7 +81,7 @@ e_modapi_init(E_Module *m)
                                      NULL, "preferences-advanced");
    /* add right-side item */
    //~ e_configure_registry_item_add("advanced/sticky_notes", 110, D_("Sticky_notes"), 
-                                 //~ NULL, buf, e_int_config_sticky_notes_module);
+                                 //~ NULL, buf, _config_sticky_notes_module);
 
    /* Define EET Data Storage for the config file */
    conf_item_edd = E_CONFIG_DD_NEW("Config_Item", Config_Item);
@@ -234,7 +236,7 @@ _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style)
 
    /* add to list of running instances so we can cleanup later */
    instances = eina_list_append(instances, inst);
-
+   _sticky_notes_cb_check(inst);
    /* return the Gadget_Container Client */
    return inst->gcc;
 }
@@ -381,9 +383,36 @@ _sticky_notes_conf_timer(void *data)
 static Config_Item *
 _sticky_notes_conf_item_get(const char *id) 
 {
+    Eina_List *l;
    Config_Item *ci;
+   char buf[128];
 
-   GADCON_CLIENT_CONFIG_GET(Config_Item, sticky_notes_conf->conf_items, _gc_class, id);
+   if (!id)
+     {
+	int  num = 0;
+
+	/* Create id */
+	if (sticky_notes_conf->conf_items)
+	  {
+	     const char *p;
+
+	     ci = eina_list_last (sticky_notes_conf->conf_items)->data;
+	     p = strrchr (ci->id, '.');
+	     if (p) num = atoi (p + 1) + 1;
+	  }
+	snprintf (buf, sizeof (buf), "%s.%d", _gc_class.name, num);
+	id = buf;
+     }
+   else
+     {
+	for (l = sticky_notes_conf->conf_items; l; l = l->next)
+	  {
+	     if (!(ci = l->data)) continue;
+	     if (!strcmp (ci->id, id)) return ci;
+	  }
+     }
+
+   //GADCON_CLIENT_CONFIG_GET(Config_Item, sticky_notes_conf->conf_items, _gc_class, id);
 
    ci = E_NEW(Config_Item, 1);
    ci->id = eina_stringshare_add(id);
@@ -456,5 +485,86 @@ _sticky_notes_cb_menu_configure(void *data, E_Menu *mn, E_Menu_Item *mi)
 {
 	Instance *inst = NULL;
    if (!(inst = data)) return;
-   e_int_config_sticky_notes_module(inst->ci);
+   _config_sticky_notes_module(inst->ci);
 }
+
+void
+_sticky_notes_config_updated(Config_Item *ci)
+{
+   Eina_List *l;
+
+   if (!sticky_notes_conf) return;
+   for (l = instances; l; l = l->next)
+     {
+        Instance *inst;
+
+        inst = l->data;
+        //~ if (inst->ci != ci) continue;
+        //~ e_util_dialog_internal("1",inst->ci->area_text);
+        //~ if (!inst->ci->show_time)
+          //~ edje_object_signal_emit(inst->tclock, "time_hidden", "");
+        //~ else
+          //~ edje_object_signal_emit(inst->tclock, "time_visible", "");
+        //~ edje_object_message_signal_process(inst->tclock);
+//~ 
+        //~ if (!inst->ci->show_date)
+          //~ edje_object_signal_emit(inst->tclock, "date_hidden", "");
+        //~ else
+          //~ edje_object_signal_emit(inst->tclock, "date_visible", "");
+        //~ edje_object_message_signal_process(inst->tclock);
+
+        _sticky_notes_cb_check(inst);
+     }
+}
+
+static Eina_Bool
+_sticky_notes_cb_check(void *data)
+{
+   Instance *inst;
+   Eina_List *l;
+  
+        
+   for (l = instances; l; l = l->next) 
+     {
+	inst = l->data;
+	
+	//~ if (!inst->ci->show_time)
+	  //~ edje_object_signal_emit(inst->tclock, "time_hidden", "");
+	//~ else
+	  //~ edje_object_signal_emit(inst->tclock, "time_visible", "");
+	//~ edje_object_message_signal_process(inst->tclock);
+	//~ 
+	//~ if (!inst->ci->show_date)
+	  //~ edje_object_signal_emit(inst->tclock, "date_hidden", "");
+	//~ else
+	  //~ edje_object_signal_emit(inst->tclock, "date_visible", "");
+	//~ edje_object_message_signal_process(inst->tclock);
+
+	if (inst->ci->header_text)
+	  {
+            edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->header_text);
+	  }
+	  
+	  //~ e_util_dialog_internal("1",inst->ci->header_text);
+	  
+	  if (inst->ci->area_text)
+	  {
+             edje_object_part_text_set(inst->o_sticky_notes, "area_text", inst->ci->area_text);
+	  }
+	  
+	//~ if ((inst->ci->tip_format) && (inst->o_tip))
+	  //~ {
+             //~ strftime(buf, 1024, inst->ci->tip_format, local_time);
+	     //~ e_widget_label_text_set(inst->o_tip, buf);
+	  //~ }
+     }
+
+   //~ edje_object_text_class_set(inst->tclock, "module_large", "Sans:style=Mono", inst->ci->font_size_up);
+   //~ edje_object_text_class_set(inst->tclock, "module_small", "Sans:style=Mono", inst->ci->font_size_down);
+   //~ edje_object_color_class_set
+          //~ (inst->tclock, "module_label", inst->ci->color_r, inst->ci->color_g, inst->ci->color_b, 
+           //~ inst->ci->color_alpha, 0, 0, 0, 255, 0, 0, 0, 255);
+
+   return EINA_TRUE;
+}
+
