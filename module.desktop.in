@@ -1,21 +1,22 @@
 [Desktop Entry]
 Type=Link
 Name=StickyNotes
-Name[ru]=Скелет
+Name[ru]=
 Name[de]=Sticky_notesett
 Name[eo]=Sticky_noteseto
 Name[el]=Sticky_notes
 Icon=e-module-sticky_notes
-Comment=Not meant for users. Basis for building new ones.
-Comment[ru]=Не предназначен для пользователей. База для создания новых модулей.
-Comment[cs]=Není pro uživatele. Jen jako základ pro vytváøení nových modulù.
-Comment[de]=Nicht für Nutzer gedacht. Basis für neue Helfermodule.
-Comment[eo]=Ne celas uzantojn. Bazo pour krei novajn modulojn.
-Comment[es]=No indicado para usuarios. Bases para la construcción de nuevos módulos.
-Comment[gl]=Non indicado para usuarios. Bases para a creación de novos módulos.
-Comment[fr]=Pas orienté utilisateur. C'est une base pour construire de nouveaux modules.
-Comment[it]=Non inteso per gli utenti. Fornisce la base per costruire nuovi moduli.
-Comment[el]=Δεν προορίζετε για χρήστες.Είναι μια βάση δημιουργίας νέων ενοτήτων.
-Comment[pt]=Não é destinado a utilizadores. Bases para desenvolvimento de módulos.
+Comment=Sticky Notes module for the E/Moksha desktop
+Comment[ru]=
+Comment[cs]=
+Comment[sk]=
+Comment[de]=
+Comment[eo]=
+Comment[es]=
+Comment[gl]=
+Comment[fr]=
+Comment[it]=
+Comment[el]=
+Comment[pt]=
 #Several different types available here. NEED TO DOC THESE.
 X-Enlightenment-ModuleType=utils
