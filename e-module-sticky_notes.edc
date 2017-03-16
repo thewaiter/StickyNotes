@@ -1,8 +1,6 @@
 images 
 {
    image: "module_icon.png" COMP;
-   image: "module_icon_faded.png" COMP;
-   image: "module_icon_faded2.png" COMP;
    image: "header_bg.png" COMP;
 }
 
@@ -90,7 +88,7 @@ collections
 			   rel2.offset:     25  25;
                align: 0.0 0.0;
                color: 255 255 255 150;
-               image.normal: "module_icon_faded2.png";
+               image.normal: "module_icon.png";
             }
             description { state: "hilight" 0.0;
                inherit: "default" 0.0;
@@ -104,11 +102,15 @@ collections
             description { state: "default" 0.0;
                color: 255 255 255 255;
                color3: 0 0 0 60;
+               rel1.relative: 0.0 0.0;
+			   rel1.offset:     30   1;
+			   rel2.relative: 1.0 1.0;
+			   rel2.offset:     0  0;
                text {
                   font: "Sans:style=Bold";
                   size: 14;
                   text: "Sticky Note";
-                  align: 0.5 0.0;
+                  align: 0.0 0.0;
                   text_class: "module_large";
                }
             }

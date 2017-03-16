@@ -90,7 +90,7 @@ e_modapi_init(E_Module *m)
    #define T Config_Item
    #define D conf_item_edd
    E_CONFIG_VAL(D, T, id, STR);
-   E_CONFIG_VAL(D, T, switch2, INT);
+   E_CONFIG_VAL(D, T, header_switch, INT);
    E_CONFIG_VAL(D, T, header_text, STR);
    E_CONFIG_VAL(D, T, area_text, STR);
 
@@ -329,7 +329,7 @@ _sticky_notes_conf_new(void)
    /* setup defaults */
    IFMODCFG(0x008d);
    sticky_notes_conf->switch1 = 1;
-   ci->switch2 = 1;
+   ci->header_switch = 1;
    ci->header_text = eina_stringshare_add("Sticky note");
    ci->area_text = eina_stringshare_add("In this place you can add your text by right click and settings");
    _sticky_notes_conf_item_get(NULL);
@@ -416,7 +416,7 @@ _sticky_notes_conf_item_get(const char *id)
 
    ci = E_NEW(Config_Item, 1);
    ci->id = eina_stringshare_add(id);
-   ci->switch2 = 1;
+   ci->header_switch = 1;
    ci->header_text = eina_stringshare_add("Sticky note");
    ci->area_text = eina_stringshare_add("In this place you can add your text by right click and settings");
 
@@ -499,20 +499,6 @@ _sticky_notes_config_updated(Config_Item *ci)
         Instance *inst;
 
         inst = l->data;
-        //~ if (inst->ci != ci) continue;
-        //~ e_util_dialog_internal("1",inst->ci->area_text);
-        //~ if (!inst->ci->show_time)
-          //~ edje_object_signal_emit(inst->tclock, "time_hidden", "");
-        //~ else
-          //~ edje_object_signal_emit(inst->tclock, "time_visible", "");
-        //~ edje_object_message_signal_process(inst->tclock);
-//~ 
-        //~ if (!inst->ci->show_date)
-          //~ edje_object_signal_emit(inst->tclock, "date_hidden", "");
-        //~ else
-          //~ edje_object_signal_emit(inst->tclock, "date_visible", "");
-        //~ edje_object_message_signal_process(inst->tclock);
-
         _sticky_notes_cb_check(inst);
      }
 }
@@ -528,35 +514,13 @@ _sticky_notes_cb_check(void *data)
      {
 	inst = l->data;
 	
-	//~ if (!inst->ci->show_time)
-	  //~ edje_object_signal_emit(inst->tclock, "time_hidden", "");
-	//~ else
-	  //~ edje_object_signal_emit(inst->tclock, "time_visible", "");
-	//~ edje_object_message_signal_process(inst->tclock);
-	//~ 
-	//~ if (!inst->ci->show_date)
-	  //~ edje_object_signal_emit(inst->tclock, "date_hidden", "");
-	//~ else
-	  //~ edje_object_signal_emit(inst->tclock, "date_visible", "");
-	//~ edje_object_message_signal_process(inst->tclock);
+	if ((inst->ci->header_text) && (!inst->ci->header_switch))
+         edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->header_text);
+     else
+         edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->area_text);
 
-	if (inst->ci->header_text)
-	  {
-            edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->header_text);
-	  }
-	  
-	  //~ e_util_dialog_internal("1",inst->ci->header_text);
-	  
-	  if (inst->ci->area_text)
-	  {
+	if (inst->ci->area_text)
              edje_object_part_text_set(inst->o_sticky_notes, "area_text", inst->ci->area_text);
-	  }
-	  
-	//~ if ((inst->ci->tip_format) && (inst->o_tip))
-	  //~ {
-             //~ strftime(buf, 1024, inst->ci->tip_format, local_time);
-	     //~ e_widget_label_text_set(inst->o_tip, buf);
-	  //~ }
      }
 
    //~ edje_object_text_class_set(inst->tclock, "module_large", "Sans:style=Mono", inst->ci->font_size_up);
