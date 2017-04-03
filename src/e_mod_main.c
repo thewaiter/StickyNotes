@@ -17,9 +17,7 @@ static void _sticky_notes_cb_mouse_down(void *data, Evas *evas, Evas_Object *obj
 static void _sticky_notes_cb_menu_post(void *data, E_Menu *menu);
 static void _sticky_notes_cb_menu_configure(void *data, E_Menu *mn, E_Menu_Item *mi);
 static Eina_Bool _sticky_notes_cb_check(void *data);
-static void _on_text_change(void *data EINA_UNUSED, Evas_Object *obj, const char *part);
 void _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source);
-
 
 
 /* Local Structures */
@@ -530,32 +528,20 @@ _sticky_notes_cb_check(void *data)
      else
          edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->area_text);
 
-	if (inst->ci->area_text){
-		edje_object_text_change_cb_set(inst->o_sticky_notes, _on_text_change, NULL);
+	if (inst->ci->area_text)
         edje_object_part_text_set(inst->o_sticky_notes, "area_text", inst->ci->area_text);
         
- }
      }
     edje_object_text_class_set(inst->o_sticky_notes, "tb_plain", "Sans:style=Mono", sticky_notes_conf->font_size);
 
    return EINA_TRUE;
 }
 
-static void
-_on_text_change(void *data EINA_UNUSED, Evas_Object *obj, const char *part)
-{
-   printf("text: %s\n", edje_object_part_text_unescaped_get(obj, part));
-}
-
 void
 _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source)
 {
 	Instance *inst = NULL;
-	
-	//~ char output[50];
-
-    //~ snprintf(output, 50, "%f",sticky_notes_conf->font_size);
-    //~ e_util_dialog_internal("A",output);   
+	 
 	if (sticky_notes_conf->font_size<=16)
 	 sticky_notes_conf->font_size++;
 	else
