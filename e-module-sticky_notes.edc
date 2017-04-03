@@ -126,7 +126,11 @@ collections
             
           part { name: "area_text";
             type: TEXTBLOCK;
+            mouse_events: 1;
+            entry_mode: EDITABLE;
             effect: SOFT_SHADOW;
+            select_mode: DEFAULT;
+            cursor_mode: UNDER;
             description { state: "default" 0.0;
                color: 255 255 255 255;
                color3: 0 0 0 60;
@@ -135,8 +139,6 @@ collections
 			   rel2.relative: 1.0 1.0;
 			   rel2.offset:    -4  -2;
                text {
-                  font: "Sans:style=Bold";
-                  size: 12;
                   text: "Sticky Note example text; Trying to set some text in order to show how wrap word option works";
                   align: 0.0 0.0;
                   style: "text_style";
@@ -144,7 +146,8 @@ collections
             }
         
         }
-        }  
+        } 
+      
 	programs 
 	  {
 	     program { name: "header_mouse_in";
@@ -172,6 +175,11 @@ collections
             source: "bg";
             action: STATE_SET "default" 0.0;
             target: "bg";
+         }
+          program { name: "header_activated";
+            signal: "mouse,clicked,1";
+            source: "bg";
+            action: SIGNAL_EMIT "header,activated" "stickynotes";
          }
 	  }
 

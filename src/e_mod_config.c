@@ -10,6 +10,7 @@ struct _E_Config_Dialog_Data
 {
    int   header_switch;
    char *header_text, *area_text;
+   
 
  struct
    {
@@ -109,7 +110,7 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    ow = e_widget_entry_add(evas, &(cfdata->header_text), NULL, NULL, NULL);
    cfdata->ui.header_text = ow;
    e_widget_framelist_object_append (of, ow);
-   
+
    ow = e_widget_label_add (evas, D_("Note text"));
    e_widget_size_min_set(ow, 120, 25);
    e_widget_framelist_object_append(of, ow);

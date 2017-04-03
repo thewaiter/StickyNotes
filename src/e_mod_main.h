@@ -58,6 +58,7 @@ struct _Config
 
    /* actual config properties; Define your own. (globally per-module) */
    unsigned char switch1;
+   double font_size;
 };
 
 /* This struct used to hold config for individual items from above list */

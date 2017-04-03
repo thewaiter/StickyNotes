@@ -17,6 +17,9 @@ static void _sticky_notes_cb_mouse_down(void *data, Evas *evas, Evas_Object *obj
 static void _sticky_notes_cb_menu_post(void *data, E_Menu *menu);
 static void _sticky_notes_cb_menu_configure(void *data, E_Menu *mn, E_Menu_Item *mi);
 static Eina_Bool _sticky_notes_cb_check(void *data);
+static void _on_text_change(void *data EINA_UNUSED, Evas_Object *obj, const char *part);
+void _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source);
+
 
 
 /* Local Structures */
@@ -101,6 +104,7 @@ e_modapi_init(E_Module *m)
    #define D conf_edd
    E_CONFIG_VAL(D, T, version, INT);
    E_CONFIG_VAL(D, T, switch1, UCHAR); /* our var from header */
+   E_CONFIG_VAL(D, T, font_size, DOUBLE);
    E_CONFIG_LIST(D, T, conf_items, conf_item_edd); /* the list */
 
    /* Tell E to find any existing module data. First run ? */
@@ -159,6 +163,9 @@ e_modapi_init(E_Module *m)
    e_gadcon_provider_register(&_gc_class);
 
    /* Give E the module */
+   
+   
+ 
    return m;
 }
 
@@ -225,14 +232,14 @@ _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style)
    if (!e_theme_edje_object_set(inst->o_sticky_notes, "base/theme/modules/sticky_notes", 
                                 "modules/sticky_notes/main"))
      edje_object_file_set(inst->o_sticky_notes, buf, "modules/sticky_notes/main");
-
-   /* Start loading our module on screen via container */
    inst->gcc = e_gadcon_client_new(gc, name, id, style, inst->o_sticky_notes);
    inst->gcc->data = inst;
 
    /* hook a mouse down. we want/have a popup menu, right ? */
    evas_object_event_callback_add(inst->o_sticky_notes, EVAS_CALLBACK_MOUSE_DOWN, 
                                   _sticky_notes_cb_mouse_down, inst);
+   edje_object_signal_callback_add(inst->o_sticky_notes, "header,activated", "stickynotes",
+                                   _sticky_header_activated_cb, inst);
 
    /* add to list of running instances so we can cleanup later */
    instances = eina_list_append(instances, inst);
@@ -240,6 +247,7 @@ _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style)
    /* return the Gadget_Container Client */
    return inst->gcc;
 }
+
 
 /* Called when Gadget_Container says stop */
 static void 
@@ -282,6 +290,7 @@ _gc_label(const E_Gadcon_Client_Class *client_class)
 {
    return D_("StickyNotes");
 }
+
 
 /* so E can keep a unique instance per-container */
 static const char *
@@ -329,6 +338,8 @@ _sticky_notes_conf_new(void)
    /* setup defaults */
    IFMODCFG(0x008d);
    sticky_notes_conf->switch1 = 1;
+   sticky_notes_conf->font_size = 12;
+   
    ci->header_switch = 1;
    ci->header_text = eina_stringshare_add("Sticky note");
    ci->area_text = eina_stringshare_add("In this place you can add your text by right click and settings");
@@ -513,22 +524,44 @@ _sticky_notes_cb_check(void *data)
    for (l = instances; l; l = l->next) 
      {
 	inst = l->data;
-	
+
 	if ((inst->ci->header_text) && (!inst->ci->header_switch))
          edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->header_text);
      else
          edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->area_text);
 
-	if (inst->ci->area_text)
-             edje_object_part_text_set(inst->o_sticky_notes, "area_text", inst->ci->area_text);
+	if (inst->ci->area_text){
+		edje_object_text_change_cb_set(inst->o_sticky_notes, _on_text_change, NULL);
+        edje_object_part_text_set(inst->o_sticky_notes, "area_text", inst->ci->area_text);
+        
+ }
      }
-
-   //~ edje_object_text_class_set(inst->tclock, "module_large", "Sans:style=Mono", inst->ci->font_size_up);
-   //~ edje_object_text_class_set(inst->tclock, "module_small", "Sans:style=Mono", inst->ci->font_size_down);
-   //~ edje_object_color_class_set
-          //~ (inst->tclock, "module_label", inst->ci->color_r, inst->ci->color_g, inst->ci->color_b, 
-           //~ inst->ci->color_alpha, 0, 0, 0, 255, 0, 0, 0, 255);
+    edje_object_text_class_set(inst->o_sticky_notes, "tb_plain", "Sans:style=Mono", sticky_notes_conf->font_size);
 
    return EINA_TRUE;
 }
 
+static void
+_on_text_change(void *data EINA_UNUSED, Evas_Object *obj, const char *part)
+{
+   printf("text: %s\n", edje_object_part_text_unescaped_get(obj, part));
+}
+
+void
+_sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source)
+{
+	Instance *inst = NULL;
+	
+	//~ char output[50];
+
+    //~ snprintf(output, 50, "%f",sticky_notes_conf->font_size);
+    //~ e_util_dialog_internal("A",output);   
+	if (sticky_notes_conf->font_size<=16)
+	 sticky_notes_conf->font_size++;
+	else
+	 sticky_notes_conf->font_size = 8;
+	
+	if (!(inst=data)) return;
+    edje_object_text_class_set(inst->o_sticky_notes, "tb_plain", "Sans:style=Mono", sticky_notes_conf->font_size);
+    e_config_save_queue();
+}
