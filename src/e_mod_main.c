@@ -269,6 +269,9 @@ _gc_shutdown(E_Gadcon_Client *gcc)
         /* remove mouse down callback hook */
         evas_object_event_callback_del(inst->o_sticky_notes, EVAS_CALLBACK_MOUSE_DOWN, 
                                        _sticky_notes_cb_mouse_down);
+                                       
+        edje_object_signal_callback_del(inst->o_sticky_notes, "header,activated", "stickynotes",
+                                   _sticky_header_activated_cb);                               
         evas_object_del(inst->o_sticky_notes);
      }
    E_FREE(inst);
