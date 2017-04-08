@@ -343,7 +343,7 @@ _sticky_notes_conf_new(void)
    
    ci->header_switch = 1;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
-   ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop. Click on the header for the for size changing"));
+   ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop. Click on the header for the size changing"));
    _sticky_notes_conf_item_get(NULL);
    IFMODCFGEND;
 
@@ -430,7 +430,7 @@ _sticky_notes_conf_item_get(const char *id)
    ci->id = eina_stringshare_add(id);
    ci->header_switch = 1;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
-   ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop. Click on the header for the for size changing"));
+   ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop. Click on the header for the size changing"));
 
    sticky_notes_conf->conf_items = eina_list_append(sticky_notes_conf->conf_items, ci);
    return ci;
