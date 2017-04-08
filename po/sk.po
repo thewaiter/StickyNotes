@@ -1,6 +1,6 @@
 # Slovak translation for enlightenment
 # This file is distributed under the same license as the enlightenment package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+# Stefan Uram <the_waiter@centrum.sk>, 2017.
 #
 msgid ""
 msgstr ""
@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
 "POT-Creation-Date: 2017-04-08 17:19+0200\n"
 "PO-Revision-Date: 2009-06-09 18:14+0000\n"
-"Last-Translator: milboy <Unknown>\n"
+"Last-Translator: Stefan Uram <the_waiter@centrum.sk>\n"
 "Language-Team: Slovak <sk@li.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -17,27 +17,27 @@ msgstr ""
 
 #: src/e_mod_config.c:57
 msgid "StickyNotes Module"
-msgstr "Kostra modul"
+msgstr "Modul Poznámkový blok"
 
 #: src/e_mod_config.c:99 src/e_mod_main.c:461
 msgid "Settings"
-msgstr ""
+msgstr "Nastavenie"
 
 #: src/e_mod_config.c:102
 msgid " Note text in the header"
-msgstr ""
+msgstr " Text poznámky v záhlaví"
 
 #: src/e_mod_config.c:106
 msgid "Header text"
-msgstr ""
+msgstr "Text v záhlaví"
 
 #: src/e_mod_config.c:114
 msgid "Note text"
-msgstr ""
+msgstr "Text v poznámke"
 
 #: src/e_mod_main.c:81
 msgid "Advanced"
-msgstr ""
+msgstr "Rozšírené"
 
 #: src/e_mod_main.c:118
 msgid ""
@@ -73,18 +73,18 @@ msgstr ""
 
 #: src/e_mod_main.c:292
 msgid "StickyNotes"
-msgstr "Kostra"
+msgstr "Poznámkový blok"
 
 #: src/e_mod_main.c:345 src/e_mod_main.c:432
-#, fuzzy
 msgid "Sticky note"
-msgstr "Kostra"
+msgstr "Poznámkový blok"
 
 #: src/e_mod_main.c:346 src/e_mod_main.c:433
 msgid ""
 "Sticky Notes for the E/Moksha desktop. Click on the header for the for size "
 "changing"
-msgstr ""
+msgstr "Poznámkový blok pre desktop E/Moksha. Pre zmenu veľkosti fontu klikni "
+"na záhlavie"
 
 #: src/e_mod_main.c:389
 msgid "StickyNotes Configuration Updated"
