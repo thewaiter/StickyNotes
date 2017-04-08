@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sticky_notes\n"
 "Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
-"POT-Creation-Date: 2017-03-12 16:31+0100\n"
+"POT-Creation-Date: 2017-04-08 17:19+0200\n"
 "PO-Revision-Date: 2012-12-07 16:40-0000\n"
 "Last-Translator: Sérgio Marques <smarquespt@gmail.com>\n"
 "Language-Team: Portuguese\n"
@@ -18,27 +18,31 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-12-07 16:24+0000\n"
 "X-Generator: Poedit 1.5.4\n"
 
-#: src/e_mod_config.c:44
+#: src/e_mod_config.c:57
 msgid "StickyNotes Module"
 msgstr "Módulo StickyNotes"
 
-#: src/e_mod_config.c:84
-msgid "General"
-msgstr "Geral"
+#: src/e_mod_config.c:99 src/e_mod_main.c:461
+msgid "Settings"
+msgstr "Definições"
 
-#: src/e_mod_config.c:86
-msgid "Use Switch 1"
-msgstr "Utilizar \"switch\" 1"
+#: src/e_mod_config.c:102
+msgid " Note text in the header"
+msgstr ""
 
-#: src/e_mod_main.c:78
+#: src/e_mod_config.c:106
+msgid "Header text"
+msgstr ""
+
+#: src/e_mod_config.c:114
+msgid "Note text"
+msgstr ""
+
+#: src/e_mod_main.c:81
 msgid "Advanced"
 msgstr "Avançado"
 
-#: src/e_mod_main.c:81
-msgid "Sticky_notes"
-msgstr "Sticky_notes"
-
-#: src/e_mod_main.c:112
+#: src/e_mod_main.c:118
 msgid ""
 "StickyNotes Module Configuration data needed upgrading. Your old "
 "configuration<br> has been wiped and a new set of defaults initialized. "
@@ -56,7 +60,7 @@ msgstr ""
 "valores irá corrigir a configuração.<br> Mais tarde poderá configurar o "
 "módulo ao seu gosto. Desculpe qualquer inconveniente."
 
-#: src/e_mod_main.c:132
+#: src/e_mod_main.c:138
 msgid ""
 "Your StickyNotes Module configuration is NEWER than the module version. This "
 "is very<br>strange. This should not happen unless you downgraded<br>the "
@@ -71,14 +75,27 @@ msgstr ""
 "recente do módulo.<br>Isto é mau e por precaução, a sua configuração foi "
 "restaurada para as omissões.<br>Desculpe qualquer inconveniente.<br>"
 
-#: src/e_mod_main.c:299
+#: src/e_mod_main.c:292
 msgid "StickyNotes"
 msgstr "StickyNotes"
 
-#: src/e_mod_main.c:384
+#: src/e_mod_main.c:345 src/e_mod_main.c:432
+#, fuzzy
+msgid "Sticky note"
+msgstr "Sticky_notes"
+
+#: src/e_mod_main.c:346 src/e_mod_main.c:433
+msgid ""
+"Sticky Notes for the E/Moksha desktop. Click on the header for the for size "
+"changing"
+msgstr ""
+
+#: src/e_mod_main.c:389
 msgid "StickyNotes Configuration Updated"
 msgstr "A configuração foi atualizada"
 
-#: src/e_mod_main.c:426
-msgid "Settings"
-msgstr "Definições"
+#~ msgid "General"
+#~ msgstr "Geral"
+
+#~ msgid "Use Switch 1"
+#~ msgstr "Utilizar \"switch\" 1"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sticky_notes\n"
 "Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
-"POT-Creation-Date: 2017-03-12 16:31+0100\n"
+"POT-Creation-Date: 2017-04-08 17:19+0200\n"
 "PO-Revision-Date: 2011-02-22 07:37+0100\n"
 "Last-Translator: r1to <renato.rener@gmail.com>\n"
 "Language-Team: Slovenian <sl@li.org>\n"
@@ -19,27 +19,31 @@ msgstr ""
 "Plural-Forms:  nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
 "n%100==4 ? 2 : 3);\n"
 
-#: src/e_mod_config.c:44
+#: src/e_mod_config.c:57
 msgid "StickyNotes Module"
 msgstr "Modul Okostje"
 
-#: src/e_mod_config.c:84
-msgid "General"
-msgstr "Splošno"
+#: src/e_mod_config.c:99 src/e_mod_main.c:461
+msgid "Settings"
+msgstr "Nastavitve"
 
-#: src/e_mod_config.c:86
-msgid "Use Switch 1"
-msgstr "Uporabi stikalo 1"
+#: src/e_mod_config.c:102
+msgid " Note text in the header"
+msgstr ""
 
-#: src/e_mod_main.c:78
-msgid "Advanced"
+#: src/e_mod_config.c:106
+msgid "Header text"
+msgstr ""
+
+#: src/e_mod_config.c:114
+msgid "Note text"
 msgstr ""
 
 #: src/e_mod_main.c:81
-msgid "Sticky_notes"
-msgstr "Sticky_notes"
+msgid "Advanced"
+msgstr ""
 
-#: src/e_mod_main.c:112
+#: src/e_mod_main.c:118
 msgid ""
 "StickyNotes Module Configuration data needed upgrading. Your old "
 "configuration<br> has been wiped and a new set of defaults initialized. "
@@ -57,7 +61,7 @@ msgstr ""
 "lahko ponovno nastavite stvari po svoje<br>Opravičujemo·se·za·neprijetnosti."
 "<br>"
 
-#: src/e_mod_main.c:132
+#: src/e_mod_main.c:138
 msgid ""
 "Your StickyNotes Module configuration is NEWER than the module version. This "
 "is very<br>strange. This should not happen unless you downgraded<br>the "
@@ -72,14 +76,27 @@ msgstr ""
 "različica.·<br>To je slabo in<br>preventivno so bile naložene privzete "
 "nastavitve<br>Opravičujemo se za neprijetnosti.<br>"
 
-#: src/e_mod_main.c:299
+#: src/e_mod_main.c:292
 msgid "StickyNotes"
 msgstr "Okostje"
 
-#: src/e_mod_main.c:384
+#: src/e_mod_main.c:345 src/e_mod_main.c:432
+#, fuzzy
+msgid "Sticky note"
+msgstr "Sticky_notes"
+
+#: src/e_mod_main.c:346 src/e_mod_main.c:433
+msgid ""
+"Sticky Notes for the E/Moksha desktop. Click on the header for the for size "
+"changing"
+msgstr ""
+
+#: src/e_mod_main.c:389
 msgid "StickyNotes Configuration Updated"
 msgstr "Nastavitve Okostja Posodobljene"
 
-#: src/e_mod_main.c:426
-msgid "Settings"
-msgstr "Nastavitve"
+#~ msgid "General"
+#~ msgstr "Splošno"
+
+#~ msgid "Use Switch 1"
+#~ msgstr "Uporabi stikalo 1"
