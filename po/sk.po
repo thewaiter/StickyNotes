@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enlightenment\n"
 "Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
-"POT-Creation-Date: 2017-04-08 17:19+0200\n"
+"POT-Creation-Date: 2017-04-08 18:30+0200\n"
 "PO-Revision-Date: 2009-06-09 18:14+0000\n"
 "Last-Translator: Stefan Uram <the_waiter@centrum.sk>\n"
 "Language-Team: Slovak <sk@li.org>\n"
@@ -80,11 +80,13 @@ msgid "Sticky note"
 msgstr "Poznámkový blok"
 
 #: src/e_mod_main.c:346 src/e_mod_main.c:433
+#, fuzzy
 msgid ""
-"Sticky Notes for the E/Moksha desktop. Click on the header for the for size "
+"Sticky Notes for the E/Moksha desktop. Click on the header for the size "
 "changing"
-msgstr "Poznámkový blok pre desktop E/Moksha. Pre zmenu veľkosti fontu klikni "
-"na záhlavie"
+msgstr ""
+"Poznámkový blok pre desktop E/Moksha. Pre zmenu veľkosti fontu klikni na "
+"záhlavie"
 
 #: src/e_mod_main.c:389
 msgid "StickyNotes Configuration Updated"

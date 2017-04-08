@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sticky_notes.HEAD\n"
 "Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
-"POT-Creation-Date: 2017-04-08 17:19+0200\n"
+"POT-Creation-Date: 2017-04-08 18:30+0200\n"
 "PO-Revision-Date: 2011-02-06 10:53+0300\n"
 "Last-Translator: Korostil Daniel <ted.korostiled@gmail.com>\n"
 "Language-Team: translation@linux.org.ua\n"
@@ -85,7 +85,7 @@ msgstr "Скілет"
 
 #: src/e_mod_main.c:346 src/e_mod_main.c:433
 msgid ""
-"Sticky Notes for the E/Moksha desktop. Click on the header for the for size "
+"Sticky Notes for the E/Moksha desktop. Click on the header for the size "
 "changing"
 msgstr ""
 
