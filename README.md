@@ -10,7 +10,7 @@ Features:
 <br>
 
  - Word wrap
- [<img align="right" src="http://i.imgur.com/cu8pUGR.png">](http://i.imgur.com/cu8pUGR.png)
+ [<img align="right" src="http://i.imgur.com/JI4thaZ.png">](http://i.imgur.com/JI4thaZ.png)
  - Font size changing from 8px up to 16px (click on the header) - apply for all gadgets
  - Note text in the header (default)/custom header text
  - Nice transparent look
