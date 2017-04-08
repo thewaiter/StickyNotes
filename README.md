@@ -8,8 +8,9 @@ Take this project also to be my code excercise for better understanding edje lay
 
 Features:
 <br>
-[<img align="right" src="http://i.imgur.com/cu8pUGR.png">](http://i.imgur.com/cu8pUGR.png)
+
  - Word wrap
+ [<img align="right" src="http://i.imgur.com/cu8pUGR.png">](http://i.imgur.com/cu8pUGR.png)
  - Font size changing from 8px up to 16px (click on the header) - apply for all gadgets
  - Note text in the header (default)/custom header text
  - Nice transparent look
