@@ -282,7 +282,7 @@ static void
 _gc_orient(E_Gadcon_Client *gcc, E_Gadcon_Orient orient) 
 {
    e_gadcon_client_aspect_set(gcc, 16, 16);
-   e_gadcon_client_min_size_set(gcc, 16, 16);
+   e_gadcon_client_min_size_set(gcc, 200, 40);
 }
 
 /* Gadget/Module label, name for our module */
@@ -342,8 +342,8 @@ _sticky_notes_conf_new(void)
    sticky_notes_conf->font_size = 12;
    
    ci->header_switch = 1;
-   ci->header_text = eina_stringshare_add("Sticky note");
-   ci->area_text = eina_stringshare_add("In this place you can add your text by right click and settings");
+   ci->header_text = eina_stringshare_add(D_("Sticky note"));
+   ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop. Click on the header for the for size changing"));
    _sticky_notes_conf_item_get(NULL);
    IFMODCFGEND;
 
@@ -429,8 +429,8 @@ _sticky_notes_conf_item_get(const char *id)
    ci = E_NEW(Config_Item, 1);
    ci->id = eina_stringshare_add(id);
    ci->header_switch = 1;
-   ci->header_text = eina_stringshare_add("Sticky note");
-   ci->area_text = eina_stringshare_add("In this place you can add your text by right click and settings");
+   ci->header_text = eina_stringshare_add(D_("Sticky note"));
+   ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop. Click on the header for the for size changing"));
 
    sticky_notes_conf->conf_items = eina_list_append(sticky_notes_conf->conf_items, ci);
    return ci;
