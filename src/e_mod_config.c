@@ -115,35 +115,14 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    e_widget_size_min_set(ow, 120, 25);
    e_widget_framelist_object_append(of, ow);
    
-   //~ ow = elm_entry_add(of);
-   //~ elm_entry_entry_set(ow, "A short text.");
-   //~ elm_entry_scrollable_set(ow, EINA_TRUE);
-   //~ elm_entry_editable_set(ow, EINA_TRUE);
-   //~ elm_entry_cursor_begin_set(ow);
-   //~ evas_object_show(ow);
-
-   //~ e_widget_framelist_object_append(of, ow);
-
-   //~ box = elm_box_add(of);
-   //~ elm_win_resize_object_add(of, box);
-   //~ evas_object_size_hint_weight_set(box, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
-   //~ evas_object_show(box);
-//~ 
-   //~ ow = elm_entry_add(box);
    
-   //~ elm_entry_entry_set(ow, "A short text.");
-   //~ elm_object_text_set(ow, "A short text.");
-   //elm_entry_scrollable_set(ow, EINA_TRUE);
-   //~ elm_entry_editable_set(ow, EINA_TRUE);
-   //elm_entry_line_wrap_set(ow, _ent_cfg->wrap_type);
-   //elm_entry_cnp_mode_set(ow, ELM_CNP_MODE_PLAINTEXT);
-   //~ evas_object_size_hint_align_set(ow, EVAS_HINT_FILL, EVAS_HINT_FILL);
-   //~ evas_object_size_hint_weight_set(ow, EVAS_HINT_EXPAND, EVAS_HINT_EXPAND);
-   //elm_box_pack_end(bx, main_ec_ent->entry);
-   //~ evas_object_show(ow);
-
    ow = e_widget_entry_add(evas, &(cfdata->area_text), NULL, NULL, NULL);
    e_widget_framelist_object_append(of, ow);
+   
+   ow = e_widget_label_add (evas, D_("These HTML tags are allowed: <b> , <i>, <br>, <ps>, <tab>"));
+   e_widget_size_min_set(ow, 120, 25);
+   e_widget_framelist_object_append(of, ow);
+   
    e_widget_list_object_append(o, of, 1, 1, 0.5);
    _cb_check_changed(cfdata,NULL);
     e_dialog_resizable_set(cfd->dia, EINA_TRUE);
