@@ -12,7 +12,7 @@ Features:
  - Word wrap
  [<img align="right" src="http://i.imgur.com/xH9Pq2Q.png">](http://i.imgur.com/xH9Pq2Q.png)
  - Font size changing from 8px up to 16px (click on the header) - apply for all gadgets
- - Text HTML tag formating (<b>, <i>, <tab>, <ps>)
+ - Text HTML tag formating (bold, italic, tab, paragraphs)
  - Note text in the header (default)/custom header text
  - Nice transparent look
  - Light on system resources
