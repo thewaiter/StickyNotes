@@ -184,6 +184,7 @@ collections
 		  signal: "size_hidden";
 		  source: "";
 		  action: STATE_SET "hidden" 0.0;
+		  transition: LINEAR 1.5;
 		  target: "font_size";
 	       }
 	     program 
@@ -192,6 +193,7 @@ collections
 		  signal: "size_visible";
 		  source: "";
 		  action: STATE_SET "visible" 0.0;
+		  transition: SINUSOIDAL 0.4;
 		  target: "font_size";
 	       }
 	     program { name: "header_mouse_in";

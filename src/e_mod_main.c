@@ -1,6 +1,5 @@
 #include <e.h>
 #include "e_mod_main.h"
-#include <Ecore.h>
 
 /* Local Function Prototypes */
 static E_Gadcon_Client *_gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style);
@@ -19,7 +18,6 @@ static void _sticky_notes_cb_menu_post(void *data, E_Menu *menu);
 static void _sticky_notes_cb_menu_configure(void *data, E_Menu *mn, E_Menu_Item *mi);
 static Eina_Bool _sticky_notes_cb_check(void *data);
 void _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source);
-static Eina_Bool _sticky_cb_font_hidden(void *data);
 
 /* Local Structures */
 typedef struct _Instance Instance;
@@ -44,7 +42,6 @@ struct _Instance
 static Eina_List *instances = NULL;
 static E_Config_DD *conf_edd = NULL;
 static E_Config_DD *conf_item_edd = NULL;
-static Ecore_Timer *size_timer;
 
 Config *sticky_notes_conf = NULL;
 
@@ -549,7 +546,6 @@ _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, co
 {
 	Instance *inst = data;
 	char buf[256];
-	size_timer = NULL;
 	
 	if (sticky_notes_conf->font_size<16)
 	  sticky_notes_conf->font_size++;
@@ -568,15 +564,7 @@ _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, co
     edje_object_message_signal_process(inst->o_sticky_notes);
     edje_object_part_text_set(inst->o_sticky_notes, "font_size", buf);
     
-    size_timer = ecore_timer_add(1.0, _sticky_cb_font_hidden, inst);
+    edje_object_signal_emit(inst->o_sticky_notes, "size_hidden", "");
     e_config_save_queue();
 }
 
-static Eina_Bool 
-_sticky_cb_font_hidden(void *data)
-{
-	Instance *inst=data;
-	edje_object_signal_emit(inst->o_sticky_notes, "size_hidden", "");
-	ecore_timer_del(size_timer);
-	return ECORE_CALLBACK_CANCEL;
-}
