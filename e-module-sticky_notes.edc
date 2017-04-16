@@ -10,7 +10,7 @@ styles
    style
      {
         name: "text_style";
-        base: "font=Sans:style=Mono font_size=12 align=left text_class=tb_plain backing_color= color=#fff style=outline_soft_shadow shadow_color=#00000032 wrap=word";
+        base: "font=Sans:style=Mono font_size=12 align=auto text_class=tb_plain backing_color= color=#fff style=outline_soft_shadow shadow_color=#00000032 wrap=word";
         tag:  "br" "\n";
      }
 }
@@ -49,8 +49,7 @@ collections
 	       name: "base";
 	       type: RECT;
 	       effect: SOFT_SHADOW;
-	       mouse_events: 0;
-	       
+	       mouse_events: 1;
 	       description {
 		   state: "default" 0.0;
 		   color: 0 0 0 0;
@@ -103,6 +102,39 @@ collections
                color: 255 255 255 255;
             }
          }
+         
+         part { name: "font_size";
+            mouse_events: 0;
+            type: TEXT;
+            //effect: ;
+            description { state: "default" 0.0;
+               color: 255 255 255 255;
+               color3: 0 0 0 60;
+               rel1.relative: 0.0 0.0;
+			   rel1.offset:     7   6;
+			   rel2.relative: 1.0 1.0;
+			   rel2.offset:     0  0;
+               text {
+                  font: "Sans:style=normal";
+                  size: 9;
+                  text: "";
+                  align: 0.0 0.0;
+                  text_class: "module_large";
+               }
+            }
+            description 
+		    {
+		       state: "hidden" 0.0;
+		       inherit: "default" 0.0;
+		       visible: 0;
+		    }
+		    description 
+		    {
+		       state: "visible" 0.0;
+		       inherit: "default" 0.0;
+		       visible: 1;
+		    }		  
+           }
 	     part { name: "header_text";
             mouse_events: 0;
             type: TEXT;
@@ -127,10 +159,6 @@ collections
           part { name: "area_text";
             type: TEXTBLOCK;
             mouse_events: 1;
-            entry_mode: EDITABLE;
-            effect: SOFT_SHADOW;
-            select_mode: DEFAULT;
-            cursor_mode: UNDER;
             description { state: "default" 0.0;
                color: 255 255 255 255;
                color3: 0 0 0 60;
@@ -149,7 +177,23 @@ collections
         } 
       
 	programs 
-	  {
+	  {  
+		program
+		  {
+		  name: "p1";
+		  signal: "size_hidden";
+		  source: "";
+		  action: STATE_SET "hidden" 0.0;
+		  target: "font_size";
+	       }
+	     program 
+	       {
+		  name: "p2";
+		  signal: "size_visible";
+		  source: "";
+		  action: STATE_SET "visible" 0.0;
+		  target: "font_size";
+	       }
 	     program { name: "header_mouse_in";
             signal: "mouse,in";
             source: "bg";
