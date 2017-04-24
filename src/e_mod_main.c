@@ -1,5 +1,10 @@
 #include <e.h>
 #include "e_mod_main.h"
+#include <Evas.h>
+#include <Ecore.h>
+#include <Ecore_Evas.h>
+#include <Ecore_IMF.h>
+#include <Ecore_IMF_Evas.h>
 
 /* Local Function Prototypes */
 static E_Gadcon_Client *_gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style);
@@ -18,8 +23,11 @@ static void _sticky_notes_cb_menu_post(void *data, E_Menu *menu);
 static void _sticky_notes_cb_menu_configure(void *data, E_Menu *mn, E_Menu_Item *mi);
 static Eina_Bool _sticky_notes_cb_check(void *data);
 void _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source);
+const char* text_size(void *data);
+void _font_size_show(void *data, Eina_Bool save);
 
 /* Local Structures */
+
 typedef struct _Instance Instance;
 struct _Instance 
 {
@@ -39,9 +47,11 @@ struct _Instance
 };
 
 /* Local Variables */
+
 static Eina_List *instances = NULL;
 static E_Config_DD *conf_edd = NULL;
 static E_Config_DD *conf_item_edd = NULL;
+static Eina_Strbuf *eina_buf;
 
 Config *sticky_notes_conf = NULL;
 
@@ -94,6 +104,7 @@ e_modapi_init(E_Module *m)
    E_CONFIG_VAL(D, T, header_switch, INT);
    E_CONFIG_VAL(D, T, header_text, STR);
    E_CONFIG_VAL(D, T, area_text, STR);
+   E_CONFIG_VAL(D, T, font_size, DOUBLE);
 
    conf_edd = E_CONFIG_DD_NEW("Config", Config);
    #undef T
@@ -102,7 +113,6 @@ e_modapi_init(E_Module *m)
    #define D conf_edd
    E_CONFIG_VAL(D, T, version, INT);
    E_CONFIG_VAL(D, T, switch1, UCHAR); /* our var from header */
-   E_CONFIG_VAL(D, T, font_size, DOUBLE);
    E_CONFIG_LIST(D, T, conf_items, conf_item_edd); /* the list */
 
    /* Tell E to find any existing module data. First run ? */
@@ -339,8 +349,8 @@ _sticky_notes_conf_new(void)
    /* setup defaults */
    IFMODCFG(0x008d);
    sticky_notes_conf->switch1 = 1;
-   sticky_notes_conf->font_size = 12;
    
+   ci->font_size = 12;
    ci->header_switch = 1;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
    ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop. Click on the header for the size changing"));
@@ -429,6 +439,7 @@ _sticky_notes_conf_item_get(const char *id)
    ci = E_NEW(Config_Item, 1);
    ci->id = eina_stringshare_add(id);
    ci->header_switch = 1;
+   ci->font_size = 12;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
    ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop." 
                              "Click on the header for the size changing."));
@@ -521,23 +532,25 @@ _sticky_notes_cb_check(void *data)
 {
    Instance *inst;
    Eina_List *l;
-  
-        
+   char buf[64];
+           
    for (l = instances; l; l = l->next) 
      {
-	inst = l->data;
+		inst = l->data;
 
-	if ((inst->ci->header_text) && (!inst->ci->header_switch))
-         edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->header_text);
-     else
-         edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->area_text);
+		if ((inst->ci->header_text) && (!inst->ci->header_switch))
+			 edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->header_text);
+		else
+			 edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->area_text);
 
-	if (inst->ci->area_text)
-        edje_object_part_text_set(inst->o_sticky_notes, "area_text", inst->ci->area_text);
-        
+        if (inst->ci->area_text)
+			edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_size(inst));
+         
+        eina_strbuf_free(eina_buf);
      }
-    edje_object_text_class_set(inst->o_sticky_notes, "tb_plain", "Sans:style=Mono", sticky_notes_conf->font_size);
-
+     
+   _font_size_show(inst, EINA_FALSE);
+   
    return EINA_TRUE;
 }
 
@@ -545,26 +558,55 @@ void
 _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source)
 {
 	Instance *inst = data;
-	char buf[256];
+	char buf[64];
 	
-	if (sticky_notes_conf->font_size<16)
-	  sticky_notes_conf->font_size++;
+	if (inst->ci->font_size<16)
+	  inst->ci->font_size++;
 	else
-	  sticky_notes_conf->font_size = 8;
+	  inst->ci->font_size = 8;
 	 
 	if (!(inst=data)) return;
-    edje_object_text_class_set(inst->o_sticky_notes, "tb_plain", "Sans:style=Mono", sticky_notes_conf->font_size);
-    
-    if (sticky_notes_conf->font_size<10)
-      snprintf(buf, sizeof(buf), " %d",(int)sticky_notes_conf->font_size);
+	
+    if (inst->ci->area_text)
+			edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_size(inst));
+     
+     eina_strbuf_free(eina_buf);
+    _font_size_show(inst, EINA_TRUE);
+}
+
+void
+_font_size_show(void *data, Eina_Bool save)
+{
+	Instance *inst = data;
+    char buf[64];	
+	if (inst->ci->font_size<10)
+      snprintf(buf, sizeof(buf), " %d",(int)inst->ci->font_size);
     else
-      snprintf(buf, sizeof(buf), "%d",(int)sticky_notes_conf->font_size);
-        
+      snprintf(buf, sizeof(buf), "%d",(int)inst->ci->font_size);
+    
     edje_object_signal_emit(inst->o_sticky_notes, "size_visible", "");
     edje_object_message_signal_process(inst->o_sticky_notes);
     edje_object_part_text_set(inst->o_sticky_notes, "font_size", buf);
-    
     edje_object_signal_emit(inst->o_sticky_notes, "size_hidden", "");
+    
+    if (save) 
     e_config_save_queue();
+}
+
+const char *
+text_size(void *data)
+{
+	Instance *inst = data;
+	
+	const char *str;
+	char buf2[256];
+	
+	eina_buf = eina_strbuf_new();
+    eina_strbuf_append(eina_buf, inst->ci->area_text);
+    snprintf(buf2, sizeof(buf2), "<font_size= %d>",(int)inst->ci->font_size);
+    eina_strbuf_insert(eina_buf, buf2, 0);
+    str = eina_strbuf_string_get(eina_buf);
+    
+	return str;
 }
 

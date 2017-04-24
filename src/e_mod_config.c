@@ -10,6 +10,7 @@ struct _E_Config_Dialog_Data
 {
    int   header_switch;
    char *header_text, *area_text;
+   double font_size;
    
 
  struct

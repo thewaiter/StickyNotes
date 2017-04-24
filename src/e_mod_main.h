@@ -58,7 +58,7 @@ struct _Config
 
    /* actual config properties; Define your own. (globally per-module) */
    unsigned char switch1;
-   double font_size;
+   //double font_size;
 };
 
 /* This struct used to hold config for individual items from above list */
@@ -69,6 +69,7 @@ struct _Config_Item
    const char *header_text, *area_text; 
    /* actual config properties independently for every running gadget. */
    int header_switch;
+   double font_size;
 };
 
 /* Setup the E Module Version, Needed to check if module can run. */
