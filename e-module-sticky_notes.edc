@@ -10,7 +10,7 @@ styles
    style
      {
         name: "text_style";
-        base: "font=Sans:style=Mono font_size=12 align=auto text_class=tb_plain backing_color= color=#fff style=outline_soft_shadow shadow_color=#00000032 wrap=word";
+        base: "font=Courier:style=Mono font_size=12 align=left text_class=tb_plain backing_color= color=#fff style=outline_soft_shadow shadow_color=#00000032 wrap=word";
         tag:  "br" "\n";
      }
 }

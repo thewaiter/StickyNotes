@@ -9,7 +9,7 @@
 struct _E_Config_Dialog_Data 
 {
    int   header_switch;
-   char *header_text, *area_text;
+   char *header_text, *area_text, *command;
    double font_size;
    
 
@@ -88,6 +88,7 @@ _fill_data(Config_Item * ci, E_Config_Dialog_Data *cfdata)
     cfdata->header_switch = ci->header_switch;
     if (ci->header_text) cfdata->header_text = strdup(ci->header_text);
     if (ci->area_text) cfdata->area_text = strdup(ci->area_text);
+    if (ci->command) cfdata->command = strdup(ci->command);
 }
 
 static Evas_Object *
@@ -116,12 +117,18 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    e_widget_size_min_set(ow, 120, 25);
    e_widget_framelist_object_append(of, ow);
    
-   
    ow = e_widget_entry_add(evas, &(cfdata->area_text), NULL, NULL, NULL);
    e_widget_framelist_object_append(of, ow);
    
    ow = e_widget_label_add (evas, D_("These HTML tags are allowed: <b> , <i>, <br>, <ps>, <tab>"));
    e_widget_size_min_set(ow, 120, 25);
+   e_widget_framelist_object_append(of, ow);
+  
+   ow = e_widget_label_add (evas, D_("Command to run"));
+   e_widget_size_min_set(ow, 120, 25);
+   e_widget_framelist_object_append(of, ow);
+   
+   ow = e_widget_entry_add(evas, &(cfdata->command), NULL, NULL, NULL);
    e_widget_framelist_object_append(of, ow);
    
    e_widget_list_object_append(o, of, 1, 1, 0.5);
@@ -154,6 +161,8 @@ _basic_apply(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata)
    ci->header_text = eina_stringshare_add(cfdata->header_text);
    if (ci->area_text) eina_stringshare_del(ci->area_text);
    ci->area_text = eina_stringshare_add(cfdata->area_text);
+   if (ci->command) eina_stringshare_del(ci->command);
+   ci->command = eina_stringshare_add(cfdata->command);
    
    e_config_save_queue();
    _sticky_notes_config_updated(ci);

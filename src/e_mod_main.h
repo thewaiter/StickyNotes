@@ -66,7 +66,7 @@ struct _Config_Item
 {
    /* unique id for every running gadget, this is managed by gadcon */
    const char *id;
-   const char *header_text, *area_text; 
+   const char *header_text, *area_text, *command; 
    /* actual config properties independently for every running gadget. */
    int header_switch;
    double font_size;

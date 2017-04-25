@@ -23,8 +23,9 @@ static void _sticky_notes_cb_menu_post(void *data, E_Menu *menu);
 static void _sticky_notes_cb_menu_configure(void *data, E_Menu *mn, E_Menu_Item *mi);
 static Eina_Bool _sticky_notes_cb_check(void *data);
 void _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source);
-const char* text_size(void *data);
+const char* text_sized(void *data);
 void _font_size_show(void *data, Eina_Bool save);
+const char* show_command(void *data);
 
 /* Local Structures */
 
@@ -105,6 +106,7 @@ e_modapi_init(E_Module *m)
    E_CONFIG_VAL(D, T, header_text, STR);
    E_CONFIG_VAL(D, T, area_text, STR);
    E_CONFIG_VAL(D, T, font_size, DOUBLE);
+   E_CONFIG_VAL(D, T, command, STR);
 
    conf_edd = E_CONFIG_DD_NEW("Config", Config);
    #undef T
@@ -354,6 +356,7 @@ _sticky_notes_conf_new(void)
    ci->header_switch = 1;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
    ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop. Click on the header for the size changing"));
+   ci->command = eina_stringshare_add("calendar");
    _sticky_notes_conf_item_get(NULL);
    IFMODCFGEND;
 
@@ -387,6 +390,7 @@ _sticky_notes_conf_free(void)
         if (ci->id) eina_stringshare_del(ci->id);
         if (ci->header_text) eina_stringshare_del(ci->header_text);
         if (ci->area_text) eina_stringshare_del(ci->area_text);
+        if (ci->command) eina_stringshare_del(ci->command);
         E_FREE(ci);
      }
    E_FREE(sticky_notes_conf);
@@ -441,6 +445,7 @@ _sticky_notes_conf_item_get(const char *id)
    ci->header_switch = 1;
    ci->font_size = 12;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
+   ci->command = eina_stringshare_add("calendar");
    ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop." 
                              "Click on the header for the size changing."));
 
@@ -544,11 +549,16 @@ _sticky_notes_cb_check(void *data)
 			 edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->area_text);
 
         if (inst->ci->area_text)
-			edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_size(inst));
-         
-        eina_strbuf_free(eina_buf);
+			 edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
+
+        if (inst->ci->command[0]!='\0'){
+             edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command(inst));  
+             eina_strbuf_free(eina_buf);
+	     }
      }
      
+         //~ eina_strbuf_free(eina_buf);    
+
    _font_size_show(inst, EINA_FALSE);
    
    return EINA_TRUE;
@@ -558,7 +568,6 @@ void
 _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source)
 {
 	Instance *inst = data;
-	char buf[64];
 	
 	if (inst->ci->font_size<16)
 	  inst->ci->font_size++;
@@ -568,9 +577,12 @@ _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, co
 	if (!(inst=data)) return;
 	
     if (inst->ci->area_text)
-			edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_size(inst));
-     
-     eina_strbuf_free(eina_buf);
+    	edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
+    	
+    if (inst->ci->command[0]!='\0'){
+        edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command(inst));
+        eina_strbuf_free(eina_buf); 
+	}   
     _font_size_show(inst, EINA_TRUE);
 }
 
@@ -594,19 +606,42 @@ _font_size_show(void *data, Eina_Bool save)
 }
 
 const char *
-text_size(void *data)
+text_sized(void *data)
 {
 	Instance *inst = data;
-	
 	const char *str;
-	char buf2[256];
+	char buf[256];
 	
 	eina_buf = eina_strbuf_new();
     eina_strbuf_append(eina_buf, inst->ci->area_text);
-    snprintf(buf2, sizeof(buf2), "<font_size= %d>",(int)inst->ci->font_size);
-    eina_strbuf_insert(eina_buf, buf2, 0);
+    snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
+    eina_strbuf_insert(eina_buf, buf, 0);
     str = eina_strbuf_string_get(eina_buf);
-    
 	return str;
 }
+
+const char *
+show_command(void *data)
+{
+	Instance *inst = data;
+    FILE *output;
+    
+	eina_buf = eina_strbuf_new();
+	output = popen(inst->ci->command, "r");
+	char line[256],buf[256];
+    const char *str;
+    
+    snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
+    eina_strbuf_append(eina_buf, buf);
+
+	 while (fgets(line, 256, output) != NULL)
+	 {
+       eina_strbuf_append(eina_buf, line);
+       eina_strbuf_append(eina_buf, "<br>");
+       eina_strbuf_replace_all(eina_buf, "&", "and"); //textblock does not show ampersand and ends formating
+	 } 
+       str = eina_strbuf_string_get(eina_buf);
+     return str;
+}
+
 
