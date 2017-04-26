@@ -417,7 +417,7 @@ static Eina_Bool
 _sticky_notes_conf_timer(void *data) 
 {
    e_util_dialog_internal( D_("StickyNotes Configuration Updated"), data);
-   return EINA_TRUE;
+   return EINA_FALSE;
 }
 
 /* function to search for any Config_Item struct for this Item
@@ -545,8 +545,12 @@ _sticky_notes_config_updated(Config_Item *ci)
         Instance *inst;
 
         inst = l->data;
-        //~ ecore_timer_del(inst->timer);
-        //~ inst->timer = ecore_timer_add(inst->ci->interval, _sticky_notes_cb_check, inst);
+        if (inst->ci != ci) continue;
+        if (!inst->timer)
+          inst->timer = ecore_timer_add(inst->ci->interval, _sticky_notes_cb_check, inst);
+        else
+          ecore_timer_interval_set(inst->timer,inst->ci->interval);
+        
         _sticky_notes_cb_check(inst);
      }
      
@@ -556,13 +560,13 @@ _sticky_notes_config_updated(Config_Item *ci)
 static Eina_Bool
 _sticky_notes_cb_check(void *data)
 {
-   Instance *inst;
+   Instance *inst = data;
    Eina_List *l;
    
            
-   for (l = instances; l; l = l->next) 
-     {
-		inst = l->data;
+   //~ for (l = instances; l; l = l->next) 
+     //~ {
+		//~ inst = l->data;
         
 		if ((inst->ci->header_text) && (!inst->ci->header_switch))
 			 edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->header_text);
@@ -578,7 +582,7 @@ _sticky_notes_cb_check(void *data)
 	     }
 	    
        _font_size_show(inst, EINA_FALSE);	    
-     }
+     //~ }
    
    return EINA_TRUE;
 }
