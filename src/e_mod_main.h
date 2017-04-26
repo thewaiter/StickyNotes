@@ -69,7 +69,7 @@ struct _Config_Item
    const char *header_text, *area_text, *command; 
    /* actual config properties independently for every running gadget. */
    int header_switch;
-   double font_size;
+   double font_size, interval;
 };
 
 /* Setup the E Module Version, Needed to check if module can run. */

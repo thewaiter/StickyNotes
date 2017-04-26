@@ -10,8 +10,8 @@ struct _E_Config_Dialog_Data
 {
    int   header_switch;
    char *header_text, *area_text, *command;
-   double font_size;
-   
+   double font_size, interval;
+      
 
  struct
    {
@@ -89,6 +89,7 @@ _fill_data(Config_Item * ci, E_Config_Dialog_Data *cfdata)
     if (ci->header_text) cfdata->header_text = strdup(ci->header_text);
     if (ci->area_text) cfdata->area_text = strdup(ci->area_text);
     if (ci->command) cfdata->command = strdup(ci->command);
+    cfdata->interval = ci->interval;
 }
 
 static Evas_Object *
@@ -131,6 +132,13 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    ow = e_widget_entry_add(evas, &(cfdata->command), NULL, NULL, NULL);
    e_widget_framelist_object_append(of, ow);
    
+   ow = e_widget_label_add(evas, D_("Refresh interval"));
+   e_widget_framelist_object_append(of, ow);
+   
+   ow = e_widget_slider_add(evas, 1, 0, D_("%2.0f seconds"), 0.0, 60.0, 1.0, 0,&(cfdata->interval), NULL, 40);
+   e_widget_framelist_object_append(of, ow);
+   
+   
    e_widget_list_object_append(o, of, 1, 1, 0.5);
    _cb_check_changed(cfdata,NULL);
     e_dialog_resizable_set(cfd->dia, EINA_TRUE);
@@ -163,6 +171,7 @@ _basic_apply(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata)
    ci->area_text = eina_stringshare_add(cfdata->area_text);
    if (ci->command) eina_stringshare_del(ci->command);
    ci->command = eina_stringshare_add(cfdata->command);
+   ci->interval = cfdata->interval;
    
    e_config_save_queue();
    _sticky_notes_config_updated(ci);

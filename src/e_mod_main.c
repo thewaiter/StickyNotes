@@ -26,6 +26,7 @@ void _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emissio
 const char* text_sized(void *data);
 void _font_size_show(void *data, Eina_Bool save);
 const char* show_command(void *data);
+static Eina_Bool _sticky_notes_config_refresh(void);
 
 /* Local Structures */
 
@@ -39,6 +40,8 @@ struct _Instance
 
    /* evas_object used to display */
    Evas_Object *o_sticky_notes;
+   
+   Ecore_Timer *timer;
 
    /* popup anyone ? */
    E_Menu *menu;
@@ -107,6 +110,7 @@ e_modapi_init(E_Module *m)
    E_CONFIG_VAL(D, T, area_text, STR);
    E_CONFIG_VAL(D, T, font_size, DOUBLE);
    E_CONFIG_VAL(D, T, command, STR);
+   E_CONFIG_VAL(D, T, interval, DOUBLE);
 
    conf_edd = E_CONFIG_DD_NEW("Config", Config);
    #undef T
@@ -250,11 +254,17 @@ _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style)
                                   _sticky_notes_cb_mouse_down, inst);
    edje_object_signal_callback_add(inst->o_sticky_notes, "header,activated", "stickynotes",
                                    _sticky_header_activated_cb, inst);
+   
+   if (inst->ci->interval>0)
+   inst->timer = ecore_timer_add(inst->ci->interval, _sticky_notes_cb_check , inst);
      
    /* add to list of running instances so we can cleanup later */
    instances = eina_list_append(instances, inst);
    _sticky_notes_cb_check(inst);
+   
+   
    /* return the Gadget_Container Client */
+   
    return inst->gcc;
 }
 
@@ -284,7 +294,11 @@ _gc_shutdown(E_Gadcon_Client *gcc)
                                        
         edje_object_signal_callback_del(inst->o_sticky_notes, "header,activated", "stickynotes",
                                    _sticky_header_activated_cb);                               
+        if (inst->timer)
+            ecore_timer_del(inst->timer);
+     
         evas_object_del(inst->o_sticky_notes);
+        
      }
    E_FREE(inst);
 }
@@ -354,9 +368,11 @@ _sticky_notes_conf_new(void)
    
    ci->font_size = 12;
    ci->header_switch = 1;
+   ci->interval = 0.0;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
    ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop. Click on the header for the size changing"));
    ci->command = eina_stringshare_add("calendar");
+   
    _sticky_notes_conf_item_get(NULL);
    IFMODCFGEND;
 
@@ -401,7 +417,7 @@ static Eina_Bool
 _sticky_notes_conf_timer(void *data) 
 {
    e_util_dialog_internal( D_("StickyNotes Configuration Updated"), data);
-   return EINA_FALSE;
+   return EINA_TRUE;
 }
 
 /* function to search for any Config_Item struct for this Item
@@ -444,6 +460,7 @@ _sticky_notes_conf_item_get(const char *id)
    ci->id = eina_stringshare_add(id);
    ci->header_switch = 1;
    ci->font_size = 12;
+   ci->interval = 0.0;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
    ci->command = eina_stringshare_add("calendar");
    ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop." 
@@ -517,8 +534,8 @@ _sticky_notes_cb_menu_configure(void *data, E_Menu *mn, E_Menu_Item *mi)
    _config_sticky_notes_module(inst->ci);
 }
 
-void
-_sticky_notes_config_updated(Config_Item *ci)
+static Eina_Bool
+_sticky_notes_config_refresh(void)
 {
    Eina_List *l;
 
@@ -530,6 +547,26 @@ _sticky_notes_config_updated(Config_Item *ci)
         inst = l->data;
         _sticky_notes_cb_check(inst);
      }
+ return EINA_TRUE;
+}
+
+void
+_sticky_notes_config_updated(Config_Item *ci)
+{
+   Eina_List *l;
+
+   if (!sticky_notes_conf) return;
+   for (l = instances; l; l = l->next)
+     {
+        Instance *inst;
+
+        inst = l->data;
+        //~ ecore_timer_del(inst->timer);
+        //~ inst->timer = ecore_timer_add(inst->ci->interval, _sticky_notes_cb_check, inst);
+        _sticky_notes_cb_check(inst);
+     }
+     
+     
 }
 
 static Eina_Bool
@@ -537,12 +574,12 @@ _sticky_notes_cb_check(void *data)
 {
    Instance *inst;
    Eina_List *l;
-   char buf[64];
+   
            
    for (l = instances; l; l = l->next) 
      {
 		inst = l->data;
-
+        
 		if ((inst->ci->header_text) && (!inst->ci->header_switch))
 			 edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->header_text);
 		else
@@ -555,11 +592,9 @@ _sticky_notes_cb_check(void *data)
              edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command(inst));  
              eina_strbuf_free(eina_buf);
 	     }
+	    
+       _font_size_show(inst, EINA_FALSE);	    
      }
-     
-         //~ eina_strbuf_free(eina_buf);    
-
-   _font_size_show(inst, EINA_FALSE);
    
    return EINA_TRUE;
 }
@@ -609,15 +644,13 @@ const char *
 text_sized(void *data)
 {
 	Instance *inst = data;
-	const char *str;
 	char buf[256];
 	
 	eina_buf = eina_strbuf_new();
     eina_strbuf_append(eina_buf, inst->ci->area_text);
     snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
     eina_strbuf_insert(eina_buf, buf, 0);
-    str = eina_strbuf_string_get(eina_buf);
-	return str;
+	return eina_strbuf_string_get(eina_buf);
 }
 
 const char *
@@ -629,7 +662,6 @@ show_command(void *data)
 	eina_buf = eina_strbuf_new();
 	output = popen(inst->ci->command, "r");
 	char line[256],buf[256];
-    const char *str;
     
     snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
     eina_strbuf_append(eina_buf, buf);
@@ -638,10 +670,11 @@ show_command(void *data)
 	 {
        eina_strbuf_append(eina_buf, line);
        eina_strbuf_append(eina_buf, "<br>");
-       eina_strbuf_replace_all(eina_buf, "&", "and"); //textblock does not show ampersand and ends formating
 	 } 
-       str = eina_strbuf_string_get(eina_buf);
-     return str;
+    
+    eina_strbuf_replace_all(eina_buf, "&", "and"); //textblock does not show ampersand and ends formating
+    pclose(output);
+    return eina_strbuf_string_get(eina_buf);;
 }
 
 
