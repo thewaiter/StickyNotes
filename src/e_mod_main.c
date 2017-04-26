@@ -254,9 +254,8 @@ _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style)
                                   _sticky_notes_cb_mouse_down, inst);
    edje_object_signal_callback_add(inst->o_sticky_notes, "header,activated", "stickynotes",
                                    _sticky_header_activated_cb, inst);
-   
    if (inst->ci->interval>0)
-   inst->timer = ecore_timer_add(inst->ci->interval, _sticky_notes_cb_check , inst);
+     inst->timer = ecore_timer_add(inst->ci->interval, _sticky_notes_cb_check , inst);
      
    /* add to list of running instances so we can cleanup later */
    instances = eina_list_append(instances, inst);
@@ -546,11 +545,11 @@ _sticky_notes_config_updated(Config_Item *ci)
 
         inst = l->data;
         if (inst->ci != ci) continue;
-        if (!inst->timer)
-          inst->timer = ecore_timer_add(inst->ci->interval, _sticky_notes_cb_check, inst);
-        else
-          ecore_timer_interval_set(inst->timer,inst->ci->interval);
+        ecore_timer_del(inst->timer);
         
+        if (inst->ci->interval>0)
+           inst->timer = ecore_timer_add(inst->ci->interval, _sticky_notes_cb_check, inst);
+                
         _sticky_notes_cb_check(inst);
      }
      
