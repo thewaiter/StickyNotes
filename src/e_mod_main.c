@@ -26,7 +26,7 @@ void _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emissio
 const char* text_sized(void *data);
 void _font_size_show(void *data, Eina_Bool save);
 const char* show_command(void *data);
-static Eina_Bool _sticky_notes_config_refresh(void);
+
 
 /* Local Structures */
 
@@ -532,22 +532,6 @@ _sticky_notes_cb_menu_configure(void *data, E_Menu *mn, E_Menu_Item *mi)
 	Instance *inst = NULL;
    if (!(inst = data)) return;
    _config_sticky_notes_module(inst->ci);
-}
-
-static Eina_Bool
-_sticky_notes_config_refresh(void)
-{
-   Eina_List *l;
-
-   if (!sticky_notes_conf) return;
-   for (l = instances; l; l = l->next)
-     {
-        Instance *inst;
-
-        inst = l->data;
-        _sticky_notes_cb_check(inst);
-     }
- return EINA_TRUE;
 }
 
 void
