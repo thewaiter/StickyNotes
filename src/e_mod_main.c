@@ -178,8 +178,6 @@ e_modapi_init(E_Module *m)
 
    /* Give E the module */
    
-   
- 
    return m;
 }
 
@@ -254,9 +252,10 @@ _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style)
                                   _sticky_notes_cb_mouse_down, inst);
    edje_object_signal_callback_add(inst->o_sticky_notes, "header,activated", "stickynotes",
                                    _sticky_header_activated_cb, inst);
-   if (inst->ci->interval>0)
+   
+   if ((inst->ci->interval>0) && (inst->ci->command[0]!='\0'))
      inst->timer = ecore_timer_add(inst->ci->interval, _sticky_notes_cb_check , inst);
-     
+   
    /* add to list of running instances so we can cleanup later */
    instances = eina_list_append(instances, inst);
    _sticky_notes_cb_check(inst);
@@ -408,6 +407,7 @@ _sticky_notes_conf_free(void)
         if (ci->command) eina_stringshare_del(ci->command);
         E_FREE(ci);
      }
+     
    E_FREE(sticky_notes_conf);
 }
 
@@ -545,10 +545,14 @@ _sticky_notes_config_updated(Config_Item *ci)
 
         inst = l->data;
         if (inst->ci != ci) continue;
+        
         ecore_timer_del(inst->timer);
         
         if (inst->ci->interval>0)
            inst->timer = ecore_timer_add(inst->ci->interval, _sticky_notes_cb_check, inst);
+            
+        if (inst->ci->command[0]=='\0')
+           ecore_timer_del(inst->timer);
                 
         _sticky_notes_cb_check(inst);
      }
@@ -572,14 +576,14 @@ _sticky_notes_cb_check(void *data)
 		else
 			 edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->area_text);
 
-        if (inst->ci->area_text)
-			 edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
-
-        if (inst->ci->command[0]!='\0'){
+		if (inst->ci->command[0]!='\0'){
              edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command(inst));  
              eina_strbuf_free(eina_buf);
 	     }
-	    
+	     
+        if ((inst->ci->area_text) && (inst->ci->command[0]=='\0'))
+			 edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
+
        _font_size_show(inst, EINA_FALSE);	    
      //~ }
    
@@ -598,13 +602,14 @@ _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, co
 	 
 	if (!(inst=data)) return;
 	
-    if (inst->ci->area_text)
-    	edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
-    	
     if (inst->ci->command[0]!='\0'){
-        edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command(inst));
-        eina_strbuf_free(eina_buf); 
-	}   
+             edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command(inst));  
+             eina_strbuf_free(eina_buf);
+	     }
+	     
+    if ((inst->ci->area_text) && (inst->ci->command[0]=='\0'))
+			 edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
+
     _font_size_show(inst, EINA_TRUE);
 }
 
