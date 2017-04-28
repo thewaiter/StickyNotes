@@ -10,12 +10,21 @@ Features:
 <br>
 
  - Word wrap
- [<img align="right" src="http://i.imgur.com/xH9Pq2Q.png">](http://i.imgur.com/xH9Pq2Q.png)
- - Font size changing from 8px up to 16px (click on the header) - apply for all gadgets
+ [<img align="right" src="http://i.imgur.com/QuEYaJf.png">](http://i.imgur.com/QuEYaJf.png)
+ - Any command output on the screen
+ - Refresh interval for animated outcome up to 1 hour
+ - Font size changing from 8px up to 16px (click on the header) - apply for each gadget
  - Text HTML tag formating (bold, italic, tab, paragraphs)
  - Note text in the header (default)/custom header text
  - Nice transparent look
  - Light on system resources
+ 
+ <br>
+ Setting dialog
+ <br>
+ 
+  [<img align="left" src="http://www.enlightenment.org/ss/e-59037a686bc5e5.42179229.jpg">](http://www.enlightenment.org/ss/e-59037a686bc5e5.42179229.jpg)
+
 
 
 
