@@ -25,9 +25,7 @@ Features:
  
   [<img align="left" src="http://www.enlightenment.org/ss/e-59037a686bc5e5.42179229.jpg">](http://www.enlightenment.org/ss/e-59037a686bc5e5.42179229.jpg)
 
-
-
-
+<br>
 2017 03 16
 
 <Stefan Uram the_waiter@centrum.sk>
