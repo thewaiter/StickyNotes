@@ -100,7 +100,7 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    
    o = e_widget_list_add(evas, 0, 0);
 
-   of = e_widget_framelist_add(evas, D_("Settings"), 0);
+   of = e_widget_framelist_add(evas, D_("General"), 0);
    e_widget_framelist_content_align_set(of, 0.0, 0.0);
    
    ow = e_widget_check_add(evas, D_(" Note text in the header"), &(cfdata->header_switch));
@@ -126,6 +126,10 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    e_widget_size_min_set(ow, 120, 25);
    e_widget_framelist_object_append(of, ow);
   
+   e_widget_list_object_append(o, of, 1, 0, 0.5);
+  
+   of = e_widget_framelist_add(evas, D_("Command section"), 0);
+  
    ow = e_widget_label_add (evas, D_("Command to run"));
    e_widget_size_min_set(ow, 120, 25);
    e_widget_framelist_object_append(of, ow);
@@ -141,7 +145,6 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    
    ow = e_widget_check_add(evas, D_(" x 60"), &(cfdata->multiply_switch));
    e_widget_framelist_object_append(of, ow);
-   
    
    e_widget_list_object_append(o, of, 1, 1, 0.5);
    _cb_check_changed(cfdata,NULL);
