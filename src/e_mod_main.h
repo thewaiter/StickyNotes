@@ -68,7 +68,7 @@ struct _Config_Item
    const char *id;
    const char *header_text, *area_text, *command; 
    /* actual config properties independently for every running gadget. */
-   int header_switch;
+   int header_switch, multiply_switch;
    double font_size, interval;
 };
 

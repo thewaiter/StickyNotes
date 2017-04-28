@@ -105,6 +105,7 @@ e_modapi_init(E_Module *m)
    #define D conf_item_edd
    E_CONFIG_VAL(D, T, id, STR);
    E_CONFIG_VAL(D, T, header_switch, INT);
+   E_CONFIG_VAL(D, T, multiply_switch, INT);
    E_CONFIG_VAL(D, T, header_text, STR);
    E_CONFIG_VAL(D, T, area_text, STR);
    E_CONFIG_VAL(D, T, font_size, DOUBLE);
@@ -368,6 +369,7 @@ _sticky_notes_conf_new(void)
    
    ci->font_size = 12;
    ci->header_switch = 1;
+   ci->multiply_switch = 0;
    ci->interval = 0.0;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
    ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop. Click on the header for the size changing"));
@@ -460,6 +462,7 @@ _sticky_notes_conf_item_get(const char *id)
    ci = E_NEW(Config_Item, 1);
    ci->id = eina_stringshare_add(id);
    ci->header_switch = 1;
+   ci->multiply_switch = 0;
    ci->font_size = 12;
    ci->interval = 0.0;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
@@ -539,6 +542,7 @@ void
 _sticky_notes_config_updated(Config_Item *ci)
 {
    Eina_List *l;
+   int multi;
 
    if (!sticky_notes_conf) return;
    for (l = instances; l; l = l->next)
@@ -550,8 +554,13 @@ _sticky_notes_config_updated(Config_Item *ci)
         
         ecore_timer_del(inst->timer);
         
+        if (inst->ci->multiply_switch)
+           multi = 60;
+        else
+           multi = 1;
+        
         if (inst->ci->interval>0)
-           inst->timer = ecore_timer_add(inst->ci->interval, _sticky_notes_cb_check, inst);
+           inst->timer = ecore_timer_add(inst->ci->interval * multi, _sticky_notes_cb_check, inst);
             
         if (inst->ci->command[0]=='\0')
            ecore_timer_del(inst->timer);
@@ -567,7 +576,6 @@ _sticky_notes_cb_check(void *data)
 {
    Instance *inst = data;
    Eina_List *l;
-   
            
    //~ for (l = instances; l; l = l->next) 
      //~ {
