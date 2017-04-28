@@ -3,8 +3,7 @@
 #include <Evas.h>
 #include <Ecore.h>
 #include <Ecore_Evas.h>
-#include <Ecore_IMF.h>
-#include <Ecore_IMF_Evas.h>
+#include <time.h>
 
 /* Local Function Prototypes */
 static E_Gadcon_Client *_gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style);
@@ -25,7 +24,7 @@ static Eina_Bool _sticky_notes_cb_check(void *data);
 void _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source);
 const char* text_sized(void *data);
 void _font_size_show(void *data, Eina_Bool save);
-const char* show_command(void *data);
+const char* show_command_output(void *data);
 
 
 /* Local Structures */
@@ -187,6 +186,10 @@ e_modapi_init(E_Module *m)
 EAPI int 
 e_modapi_shutdown(E_Module *m) 
 {
+	/* Kill the config dialog */
+   if (sticky_notes_conf->cfd) e_object_del(E_OBJECT(sticky_notes_conf->cfd));
+   //~ sticky_notes_conf->cfd = NULL;
+	
    /* Unregister the config dialog from the main panel */
    e_configure_registry_item_del("advanced/sticky_notes");
 
@@ -194,9 +197,7 @@ e_modapi_shutdown(E_Module *m)
     category stays if other items using it */
    e_configure_registry_category_del("advanced");
 
-   /* Kill the config dialog */
-   if (sticky_notes_conf->cfd) e_object_del(E_OBJECT(sticky_notes_conf->cfd));
-   sticky_notes_conf->cfd = NULL;
+   
 
    /* Tell E the module is now unloaded. Gets removed from shelves, etc. */
    sticky_notes_conf->module = NULL;
@@ -274,7 +275,10 @@ _gc_shutdown(E_Gadcon_Client *gcc)
    Instance *inst = NULL;
 
    if (!(inst = gcc->data)) return;
+   
    instances = eina_list_remove(instances, inst);
+   if (inst->timer) ecore_timer_del(inst->timer);
+
 
    /* kill popup menu */
    if (inst->menu) 
@@ -292,8 +296,6 @@ _gc_shutdown(E_Gadcon_Client *gcc)
                                        
         edje_object_signal_callback_del(inst->o_sticky_notes, "header,activated", "stickynotes",
                                    _sticky_header_activated_cb);                               
-        if (inst->timer)
-            ecore_timer_del(inst->timer);
      
         evas_object_del(inst->o_sticky_notes);
         
@@ -369,7 +371,7 @@ _sticky_notes_conf_new(void)
    ci->interval = 0.0;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
    ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop. Click on the header for the size changing"));
-   ci->command = eina_stringshare_add("calendar");
+   ci->command = eina_stringshare_add("");
    
    _sticky_notes_conf_item_get(NULL);
    IFMODCFGEND;
@@ -461,7 +463,7 @@ _sticky_notes_conf_item_get(const char *id)
    ci->font_size = 12;
    ci->interval = 0.0;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
-   ci->command = eina_stringshare_add("calendar");
+   ci->command = eina_stringshare_add("");
    ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop." 
                              "Click on the header for the size changing."));
 
@@ -577,7 +579,7 @@ _sticky_notes_cb_check(void *data)
 			 edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->area_text);
 
 		if (inst->ci->command[0]!='\0'){
-             edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command(inst));  
+             edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst));  
              eina_strbuf_free(eina_buf);
 	     }
 	     
@@ -603,7 +605,7 @@ _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, co
 	if (!(inst=data)) return;
 	
     if (inst->ci->command[0]!='\0'){
-             edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command(inst));  
+             edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst));  
              eina_strbuf_free(eina_buf);
 	     }
 	     
@@ -639,33 +641,59 @@ text_sized(void *data)
 	char buf[256];
 	
 	eina_buf = eina_strbuf_new();
+	snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
+    eina_strbuf_append(eina_buf, buf);
     eina_strbuf_append(eina_buf, inst->ci->area_text);
-    snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
-    eina_strbuf_insert(eina_buf, buf, 0);
+    eina_strbuf_append(eina_buf, "</font_size>");
+
 	return eina_strbuf_string_get(eina_buf);
 }
 
 const char *
-show_command(void *data)
+show_command_output(void *data)
 {
 	Instance *inst = data;
     FILE *output;
-    
+    char line[256], buf[16];
 	eina_buf = eina_strbuf_new();
 	output = popen(inst->ci->command, "r");
-	char line[256],buf[256];
-    
+	
     snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
     eina_strbuf_append(eina_buf, buf);
-
+    
 	 while (fgets(line, 256, output) != NULL)
 	 {
        eina_strbuf_append(eina_buf, line);
        eina_strbuf_append(eina_buf, "<br>");
 	 } 
     
+    /*condition if the command is ncal. If yes, format day and day number to BOLD*/
+    
+    if (strncmp(inst->ci->command, "ncal",4)==0){
+		FILE *date;
+		Eina_Strbuf *eina_buf_day;    
+		eina_buf_day = eina_strbuf_new();
+		
+		date = popen("date", "r");
+		
+		char day_number_bolded[16], day_name_bolded[16];
+		char get_date[64], day_name[16], day_number[16];
+		
+		while (fgets(get_date, 64, date) != NULL)
+
+		sscanf (get_date,"%s %*s %s",day_name,day_number);
+		
+		snprintf(day_number_bolded, sizeof(day_number_bolded),"<b>%s</b>", day_number);
+		snprintf(day_name_bolded, sizeof(day_name_bolded),"<b>%s</b>", day_name);
+        eina_strbuf_replace_all(eina_buf, day_name, day_name_bolded); 
+        eina_strbuf_replace_all(eina_buf, day_number, day_number_bolded); 
+	    pclose(date);
+	}
+
     eina_strbuf_replace_all(eina_buf, "&", "and"); //textblock does not show ampersand and ends formating
+    eina_strbuf_append(eina_buf, "</font_size>");
     pclose(output);
+    
     return eina_strbuf_string_get(eina_buf);;
 }
 
