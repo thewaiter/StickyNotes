@@ -588,7 +588,7 @@ _sticky_notes_cb_check(void *data)
 
 		if (inst->ci->command[0]!='\0'){
              edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst));  
-             eina_strbuf_free(eina_buf);
+             eina_strbuf_free();
 	     }
 	     
         if ((inst->ci->area_text) && (inst->ci->command[0]=='\0'))
@@ -679,9 +679,6 @@ show_command_output(void *data)
     
     if (strncmp(inst->ci->command, "ncal",4)==0){
 		FILE *date;
-		Eina_Strbuf *eina_buf_day;    
-		eina_buf_day = eina_strbuf_new();
-		
 		date = popen("date", "r");
 		
 		char day_number_bolded[16], day_name_bolded[16];
