@@ -43,6 +43,8 @@ struct _Instance
 
    /* popup anyone ? */
    E_Menu *menu;
+   
+   Eina_Strbuf *eina_buf;
 
    /* Config_Item structure. Every gadget should have one :) */
    Config_Item *ci;
@@ -53,7 +55,7 @@ struct _Instance
 static Eina_List *instances = NULL;
 static E_Config_DD *conf_edd = NULL;
 static E_Config_DD *conf_item_edd = NULL;
-static Eina_Strbuf *eina_buf;
+
 
 Config *sticky_notes_conf = NULL;
 
@@ -257,6 +259,9 @@ _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style)
    if ((inst->ci->interval>0) && (inst->ci->command[0]!='\0'))
      inst->timer = ecore_timer_add(inst->ci->interval, _sticky_notes_cb_check , inst);
    
+   inst->eina_buf = eina_strbuf_new();
+
+   
    /* add to list of running instances so we can cleanup later */
    instances = eina_list_append(instances, inst);
    _sticky_notes_cb_check(inst);
@@ -278,6 +283,7 @@ _gc_shutdown(E_Gadcon_Client *gcc)
    
    instances = eina_list_remove(instances, inst);
    if (inst->timer) ecore_timer_del(inst->timer);
+   eina_strbuf_free(inst->eina_buf);
 
 
    /* kill popup menu */
@@ -468,7 +474,6 @@ _sticky_notes_conf_item_get(const char *id)
    ci->command = eina_stringshare_add("");
    ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop." 
                              "Click on the header for the size changing."));
-
    sticky_notes_conf->conf_items = eina_list_append(sticky_notes_conf->conf_items, ci);
    return ci;
 }
@@ -566,8 +571,6 @@ _sticky_notes_config_updated(Config_Item *ci)
                 
         _sticky_notes_cb_check(inst);
      }
-     
-     
 }
 
 static Eina_Bool
@@ -589,7 +592,6 @@ _sticky_notes_cb_check(void *data)
 
 		if (inst->ci->command[0]!='\0'){
              edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst));  
-             eina_strbuf_free(eina_buf);
 	     }
 	     
         if ((inst->ci->area_text) && (inst->ci->command[0]=='\0'))
@@ -615,7 +617,6 @@ _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, co
 	
     if (inst->ci->command[0]!='\0'){
              edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst));  
-             eina_strbuf_free(eina_buf);
 	     }
 	     
     if ((inst->ci->area_text) && (inst->ci->command[0]=='\0'))
@@ -649,13 +650,13 @@ text_sized(void *data)
 	Instance *inst = data;
 	char buf[256];
 	
-	eina_buf = eina_strbuf_new();
+	eina_strbuf_reset(inst->eina_buf);
 	snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
-    eina_strbuf_append(eina_buf, buf);
-    eina_strbuf_append(eina_buf, inst->ci->area_text);
-    eina_strbuf_append(eina_buf, "</font_size>");
+    eina_strbuf_append(inst->eina_buf, buf);
+    eina_strbuf_append(inst->eina_buf, inst->ci->area_text);
+    eina_strbuf_append(inst->eina_buf, "</font_size>");
 
-	return eina_strbuf_string_get(eina_buf);
+	return eina_strbuf_string_get(inst->eina_buf);
 }
 
 const char *
@@ -664,16 +665,17 @@ show_command_output(void *data)
 	Instance *inst = data;
     FILE *output;
     char line[256], buf[16];
-	eina_buf = eina_strbuf_new();
+	eina_strbuf_reset(inst->eina_buf);
+	
 	output = popen(inst->ci->command, "r");
 	
     snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
-    eina_strbuf_append(eina_buf, buf);
+    eina_strbuf_append(inst->eina_buf, buf);
     
 	 while (fgets(line, 256, output) != NULL)
 	 {
-       eina_strbuf_append(eina_buf, line);
-       eina_strbuf_append(eina_buf, "<br>");
+       eina_strbuf_append(inst->eina_buf, line);
+       eina_strbuf_append(inst->eina_buf, "<br>");
 	 } 
     
     /*condition if the command is ncal. If yes, format day name and day number to BOLD*/
@@ -692,16 +694,16 @@ show_command_output(void *data)
 		snprintf(day_name_bolded, sizeof(day_name_bolded),"<b>%s</b>", day_name);
 		snprintf(day_number_bolded, sizeof(day_number_bolded),"<b>%s</b>", day_number);
 		
-        eina_strbuf_replace_all(eina_buf, day_name, day_name_bolded); 
-        eina_strbuf_replace_all(eina_buf, day_number, day_number_bolded); 
+        eina_strbuf_replace_all(inst->eina_buf, day_name, day_name_bolded); 
+        eina_strbuf_replace_all(inst->eina_buf, day_number, day_number_bolded); 
 	    pclose(date);
 	}
 
-    eina_strbuf_replace_all(eina_buf, "&", "and"); //textblock does not show ampersand and ends formating
-    eina_strbuf_append(eina_buf, "</font_size>");
+    eina_strbuf_replace_all(inst->eina_buf, "&", "and"); //textblock does not show ampersand and ends formating
+    eina_strbuf_append(inst->eina_buf, "</font_size>");
     pclose(output);
-    
-    return eina_strbuf_string_get(eina_buf);;
+    printf("%s: %s\n",inst->ci->id, eina_strbuf_string_get(inst->eina_buf));
+    return eina_strbuf_string_get(inst->eina_buf);
 }
 
 
