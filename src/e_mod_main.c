@@ -39,11 +39,13 @@ struct _Instance
    /* evas_object used to display */
    Evas_Object *o_sticky_notes;
    
+   /* Timer for each gadget*/
    Ecore_Timer *timer;
 
    /* popup anyone ? */
    E_Menu *menu;
-   
+
+   /* Text buffer for each gadget*/   
    Eina_Strbuf *eina_buf;
 
    /* Config_Item structure. Every gadget should have one :) */
@@ -579,23 +581,23 @@ _sticky_notes_cb_check(void *data)
    Instance *inst = data;
    Eina_List *l;
            
-   //~ Uncommented lines was a solution for to have timer for each gadget separatelly
+   //~ Uncommented lines was a solution to have timer for each gadget separatelly
            
    //~ for (l = instances; l; l = l->next) 
      //~ {
 		//~ inst = l->data;
         
 		if ((inst->ci->header_text) && (!inst->ci->header_switch))
-			 edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->header_text);
+		  edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->header_text);
 		else
-			 edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->area_text);
+		  edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->area_text);
 
-		if (inst->ci->command[0]!='\0'){
-             edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst));  
-	     }
+		if (inst->ci->command[0]!='\0')
+          edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst));  
+	    
 	     
         if ((inst->ci->area_text) && (inst->ci->command[0]=='\0'))
-			 edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
+		  edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
 
        _font_size_show(inst, EINA_FALSE);	    
      //~ }
@@ -615,12 +617,11 @@ _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, co
 	 
 	if (!(inst=data)) return;
 	
-    if (inst->ci->command[0]!='\0'){
-             edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst));  
-	     }
+    if (inst->ci->command[0]!='\0')
+      edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst));  
 	     
     if ((inst->ci->area_text) && (inst->ci->command[0]=='\0'))
-			 edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
+      edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
 
     _font_size_show(inst, EINA_TRUE);
 }
@@ -640,8 +641,7 @@ _font_size_show(void *data, Eina_Bool save)
     edje_object_part_text_set(inst->o_sticky_notes, "font_size", buf);
     edje_object_signal_emit(inst->o_sticky_notes, "size_hidden", "");
     
-    if (save) 
-    e_config_save_queue();
+    if (save) e_config_save_queue();
 }
 
 const char *
@@ -672,8 +672,7 @@ show_command_output(void *data)
     snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
     eina_strbuf_append(inst->eina_buf, buf);
     
-	 while (fgets(line, 256, output) != NULL)
-	 {
+	 while (fgets(line, 256, output) != NULL){
        eina_strbuf_append(inst->eina_buf, line);
        eina_strbuf_append(inst->eina_buf, "<br>");
 	 } 
