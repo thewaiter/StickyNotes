@@ -588,7 +588,7 @@ _sticky_notes_cb_check(void *data)
 
 		if (inst->ci->command[0]!='\0'){
              edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst));  
-             eina_strbuf_free();
+             eina_strbuf_free(eina_buf);
 	     }
 	     
         if ((inst->ci->area_text) && (inst->ci->command[0]=='\0'))
