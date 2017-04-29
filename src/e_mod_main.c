@@ -3,7 +3,6 @@
 #include <Evas.h>
 #include <Ecore.h>
 #include <Ecore_Evas.h>
-#include <time.h>
 
 /* Local Function Prototypes */
 static E_Gadcon_Client *_gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style);
@@ -577,6 +576,8 @@ _sticky_notes_cb_check(void *data)
    Instance *inst = data;
    Eina_List *l;
            
+   //~ Uncommented lines was a solution for to have timer for each gadget separatelly
+           
    //~ for (l = instances; l; l = l->next) 
      //~ {
 		//~ inst = l->data;
@@ -675,21 +676,22 @@ show_command_output(void *data)
        eina_strbuf_append(eina_buf, "<br>");
 	 } 
     
-    /*condition if the command is ncal. If yes, format day and day number to BOLD*/
+    /*condition if the command is ncal. If yes, format day name and day number to BOLD*/
     
-    if (strncmp(inst->ci->command, "ncal",4)==0){
+    if (strncmp(inst->ci->command, "ncal",4)==0 || strncmp(inst->ci->command, "cal",3)==0){
 		FILE *date;
 		date = popen("date", "r");
 		
-		char day_number_bolded[16], day_name_bolded[16];
 		char get_date[64], day_name[16], day_number[16];
+		char day_number_bolded[16], day_name_bolded[16];
 		
 		while (fgets(get_date, 64, date) != NULL)
 
-		sscanf (get_date,"%s %*s %s",day_name,day_number);
+		sscanf (get_date,"%s %*s %s",day_name, day_number);
 		
-		snprintf(day_number_bolded, sizeof(day_number_bolded),"<b>%s</b>", day_number);
 		snprintf(day_name_bolded, sizeof(day_name_bolded),"<b>%s</b>", day_name);
+		snprintf(day_number_bolded, sizeof(day_number_bolded),"<b>%s</b>", day_number);
+		
         eina_strbuf_replace_all(eina_buf, day_name, day_name_bolded); 
         eina_strbuf_replace_all(eina_buf, day_number, day_number_bolded); 
 	    pclose(date);
