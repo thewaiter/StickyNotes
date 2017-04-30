@@ -24,6 +24,7 @@ void _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emissio
 const char* text_sized(void *data);
 void _font_size_show(void *data, Eina_Bool save, const char *chr);
 const char* show_command_output(void *data);
+void _sticky_settings_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source);
 
 
 /* Local Structures */
@@ -260,6 +261,8 @@ _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style)
                                   _sticky_notes_cb_mouse_down, inst);
    edje_object_signal_callback_add(inst->o_sticky_notes, "header,activated", "stickynotes",
                                    _sticky_header_activated_cb, inst);
+   edje_object_signal_callback_add(inst->o_sticky_notes, "settings,activated", "stickynotes",
+                                   _sticky_settings_activated_cb, inst);
    
    multi = inst->ci->multiply_switch ? 60 : 1;
    
@@ -305,9 +308,10 @@ _gc_shutdown(E_Gadcon_Client *gcc)
         /* remove mouse down callback hook */
         evas_object_event_callback_del(inst->o_sticky_notes, EVAS_CALLBACK_MOUSE_DOWN, 
                                        _sticky_notes_cb_mouse_down);
-                                       
         edje_object_signal_callback_del(inst->o_sticky_notes, "header,activated", "stickynotes",
-                                   _sticky_header_activated_cb);                               
+                                   _sticky_header_activated_cb); 
+        edje_object_signal_callback_del(inst->o_sticky_notes, "settings,activated", "stickynotes",
+                                   _sticky_settings_activated_cb);                              
      
         evas_object_del(inst->o_sticky_notes);
         
@@ -618,6 +622,15 @@ _sticky_notes_cb_check(void *data)
 }
 
 void
+_sticky_settings_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source)
+{
+	Instance *inst = data;
+	
+	_sticky_notes_cb_menu_configure(inst, NULL, NULL);
+	
+}
+
+void
 _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source)
 {
 	Instance *inst = data;
@@ -636,6 +649,8 @@ _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, co
       edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
 
     _font_size_show(inst, EINA_TRUE, "");
+    
+
 }
 
 void
