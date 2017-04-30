@@ -669,7 +669,7 @@ show_command_output(void *data)
     FILE *output;
     char line[256], buf[16];
     char *str;
-    str = (char *) malloc(eina_strbuf_length_get(inst->eina_buf));
+    str = (char *) malloc(eina_strbuf_length_get(inst->eina_buf) + 1);
     strcpy(str, eina_strbuf_string_steal(inst->eina_buf));
     //~ eina_strbuf_reset(inst->eina_buf);
 	
