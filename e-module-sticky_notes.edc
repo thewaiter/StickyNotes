@@ -116,7 +116,7 @@ collections
 			   rel2.relative: 1.0 0.0;
 			   rel2.offset:     0  23;
                align: 0.0 0.0;
-               color: 255 255 255 255;
+               color: 255 255 255 150;
                image.normal: "Settings.png";
             }
             description { state: "hilight" 0.0;
@@ -226,6 +226,20 @@ collections
             transition: SINUSOIDAL 0.4;
             target: "Header_icon";
          }
+         program { name: "settings_mouse_in";
+            signal: "mouse,in";
+            source: "bg";
+            action: STATE_SET "hilight" 0.0;
+            transition: SINUSOIDAL 0.4;
+            target: "Settings_icon";
+         }
+         program { name: "settings_mouse_out";
+            signal: "mouse,out";
+            source: "bg";
+            action: STATE_SET "default" 0.0;
+            transition: SINUSOIDAL 0.4;
+            target: "Settings_icon";
+         }   
          program { name: "font_size_show";
             signal: "mouse,in";
             source: "bg";
