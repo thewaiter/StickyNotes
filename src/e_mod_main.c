@@ -594,7 +594,6 @@ _sticky_notes_cb_check(void *data)
 		if (inst->ci->command[0]!='\0')
           edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst));  
 	    
-	     
         if ((inst->ci->area_text) && (inst->ci->command[0]=='\0'))
 		  edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
 
@@ -629,7 +628,7 @@ void
 _font_size_show(void *data, Eina_Bool save, const char *chr)
 {
 	Instance *inst = data;
-    char buf[64];	
+    char buf[4];	
 	if (inst->ci->font_size<10)
       snprintf(buf, sizeof(buf), " %d",(int)inst->ci->font_size);
     else
@@ -637,6 +636,7 @@ _font_size_show(void *data, Eina_Bool save, const char *chr)
     
     edje_object_signal_emit(inst->o_sticky_notes, "size_visible", "");
     edje_object_message_signal_process(inst->o_sticky_notes);
+    
     if (chr=="")
       edje_object_part_text_set(inst->o_sticky_notes, "font_size", buf);
     else
@@ -651,7 +651,7 @@ const char *
 text_sized(void *data)
 {
 	Instance *inst = data;
-	char buf[256];
+	char buf[16];
 	
 	eina_strbuf_reset(inst->eina_buf);
 	snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
@@ -713,7 +713,7 @@ show_command_output(void *data)
 			pclose(date);
 		}
 		
-	   _font_size_show(inst, EINA_FALSE, " R");	    
+	   _font_size_show(inst, EINA_FALSE, " ↓");	    
 
 	}	
 	
