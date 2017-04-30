@@ -122,7 +122,7 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    ow = e_widget_entry_add(evas, &(cfdata->area_text), NULL, NULL, NULL);
    e_widget_framelist_object_append(of, ow);
    
-   ow = e_widget_label_add (evas, D_("These HTML tags are allowed: <b> , <i>, <br>, <ps>, <tab>"));
+   ow = e_widget_label_add (evas, D_("HTML tags: <b>, <i>, <br>, <ps>, <tab>"));
    e_widget_size_min_set(ow, 120, 25);
    e_widget_framelist_object_append(of, ow);
   

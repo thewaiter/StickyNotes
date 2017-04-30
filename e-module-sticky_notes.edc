@@ -117,7 +117,7 @@ collections
                text {
                   font: "Sans:style=normal";
                   size: 9;
-                  text: "px";
+                  text: "12";
                   align: 0.0 0.0;
                   text_class: "module_large";
                }
