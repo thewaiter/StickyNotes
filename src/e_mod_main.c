@@ -271,7 +271,6 @@ _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style)
    instances = eina_list_append(instances, inst);
    _sticky_notes_cb_check(inst);
    
-   
    /* return the Gadget_Container Client */
    
    return inst->gcc;
@@ -686,12 +685,14 @@ show_command_output(void *data)
        eina_strbuf_append(inst->eina_buf, "<br>");
 	 } 
     
+    pclose(output);
+    
     eina_strbuf_replace_all(inst->eina_buf, "&", "and"); //textblock does not show ampersand and ends formating
     eina_strbuf_append(inst->eina_buf, "</font_size>");
     
     if (strcmp(str, eina_strbuf_string_get(inst->eina_buf))!=0){
     
-		/*condition if the command is ncal. If yes, format day name and day number to BOLD*/
+		/*condition if the command is ncal or cal. If yes, format day name and day number to BOLD*/
 		
 		if (strncmp(inst->ci->command, "ncal",4)==0 || strncmp(inst->ci->command, "cal",3)==0){
 			FILE *date;
@@ -716,7 +717,7 @@ show_command_output(void *data)
 
 	}	
 	
-    pclose(output);
+	free(str);
     
     return eina_strbuf_string_get(inst->eina_buf);
 }
