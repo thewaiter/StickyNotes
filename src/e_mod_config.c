@@ -9,7 +9,12 @@
 struct _E_Config_Dialog_Data 
 {
    int   header_switch, multiply_switch;
-   char *header_text, *area_text, *command;
+   char *header_text, *command;
+   char *area_text;
+   char *area_text_2; 
+   char *area_text_3; 
+   char *area_text_4; 
+   char *area_text_5; 
    double font_size, interval;
       
 
@@ -88,6 +93,10 @@ _fill_data(Config_Item * ci, E_Config_Dialog_Data *cfdata)
     cfdata->header_switch = ci->header_switch;
     if (ci->header_text) cfdata->header_text = strdup(ci->header_text);
     if (ci->area_text) cfdata->area_text = strdup(ci->area_text);
+    if (ci->area_text_2) cfdata->area_text_2 = strdup(ci->area_text_2);
+    if (ci->area_text_3) cfdata->area_text_3 = strdup(ci->area_text_3);
+    if (ci->area_text_4) cfdata->area_text_4 = strdup(ci->area_text_4);
+    if (ci->area_text_5) cfdata->area_text_5 = strdup(ci->area_text_5);
     if (ci->command) cfdata->command = strdup(ci->command);
     cfdata->interval = ci->interval;
     cfdata->multiply_switch = ci->multiply_switch;
@@ -120,6 +129,14 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    e_widget_framelist_object_append(of, ow);
    
    ow = e_widget_entry_add(evas, &(cfdata->area_text), NULL, NULL, NULL);
+   e_widget_framelist_object_append(of, ow);
+   ow = e_widget_entry_add(evas, &(cfdata->area_text_2), NULL, NULL, NULL);
+   e_widget_framelist_object_append(of, ow);
+   ow = e_widget_entry_add(evas, &(cfdata->area_text_3), NULL, NULL, NULL);
+   e_widget_framelist_object_append(of, ow);
+   ow = e_widget_entry_add(evas, &(cfdata->area_text_4), NULL, NULL, NULL);
+   e_widget_framelist_object_append(of, ow);
+   ow = e_widget_entry_add(evas, &(cfdata->area_text_5), NULL, NULL, NULL);
    e_widget_framelist_object_append(of, ow);
    
    ow = e_widget_label_add (evas, D_("HTML tags: <b>, <i>, <br>, <ps>, <tab>"));
@@ -176,6 +193,14 @@ _basic_apply(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata)
    ci->header_text = eina_stringshare_add(cfdata->header_text);
    if (ci->area_text) eina_stringshare_del(ci->area_text);
    ci->area_text = eina_stringshare_add(cfdata->area_text);
+   if (ci->area_text_2) eina_stringshare_del(ci->area_text_2);
+   ci->area_text_2 = eina_stringshare_add(cfdata->area_text_2);
+   if (ci->area_text_3) eina_stringshare_del(ci->area_text_3);
+   ci->area_text_3 = eina_stringshare_add(cfdata->area_text_3);
+   if (ci->area_text_4) eina_stringshare_del(ci->area_text_4);
+   ci->area_text_4 = eina_stringshare_add(cfdata->area_text_4);
+   if (ci->area_text_5) eina_stringshare_del(ci->area_text_5);
+   ci->area_text_5 = eina_stringshare_add(cfdata->area_text_5);
    if (ci->command) eina_stringshare_del(ci->command);
    ci->command = eina_stringshare_add(cfdata->command);
    ci->interval = cfdata->interval;

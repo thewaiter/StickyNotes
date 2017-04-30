@@ -111,6 +111,10 @@ e_modapi_init(E_Module *m)
    E_CONFIG_VAL(D, T, multiply_switch, INT);
    E_CONFIG_VAL(D, T, header_text, STR);
    E_CONFIG_VAL(D, T, area_text, STR);
+   E_CONFIG_VAL(D, T, area_text_2, STR);
+   E_CONFIG_VAL(D, T, area_text_3, STR);
+   E_CONFIG_VAL(D, T, area_text_4, STR);
+   E_CONFIG_VAL(D, T, area_text_5, STR);
    E_CONFIG_VAL(D, T, font_size, DOUBLE);
    E_CONFIG_VAL(D, T, command, STR);
    E_CONFIG_VAL(D, T, interval, DOUBLE);
@@ -200,8 +204,6 @@ e_modapi_shutdown(E_Module *m)
    /* Remove the config panel category if we can. E will tell us.
     category stays if other items using it */
    e_configure_registry_category_del("advanced");
-
-   
 
    /* Tell E the module is now unloaded. Gets removed from shelves, etc. */
    sticky_notes_conf->module = NULL;
@@ -362,7 +364,6 @@ static void
 _sticky_notes_conf_new(void) 
 {
    Config_Item *ci = NULL;
-   char buf[128];
    
    sticky_notes_conf = E_NEW(Config, 1);
    ci = E_NEW(Config_Item, 1);
@@ -376,13 +377,18 @@ _sticky_notes_conf_new(void)
    IFMODCFG(0x008d);
    sticky_notes_conf->switch1 = 1;
    
-   ci->font_size = 12;
+   //~ ci->id = eina_stringshare_add(id);
    ci->header_switch = 1;
    ci->multiply_switch = 0;
+   ci->font_size = 12;
    ci->interval = 0.0;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
-   ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop. Click on the header for the size changing"));
    ci->command = eina_stringshare_add("");
+   ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop. "));
+   ci->area_text_2 = eina_stringshare_add(D_("Click on the header for the size changing."));
+   ci->area_text_3 = eina_stringshare_add("");
+   ci->area_text_4 = eina_stringshare_add("");
+   ci->area_text_5 = eina_stringshare_add("");
    
    _sticky_notes_conf_item_get(NULL);
    IFMODCFGEND;
@@ -417,6 +423,10 @@ _sticky_notes_conf_free(void)
         if (ci->id) eina_stringshare_del(ci->id);
         if (ci->header_text) eina_stringshare_del(ci->header_text);
         if (ci->area_text) eina_stringshare_del(ci->area_text);
+        if (ci->area_text_2) eina_stringshare_del(ci->area_text_2);
+        if (ci->area_text_3) eina_stringshare_del(ci->area_text_3);
+        if (ci->area_text_4) eina_stringshare_del(ci->area_text_4);
+        if (ci->area_text_5) eina_stringshare_del(ci->area_text_5);
         if (ci->command) eina_stringshare_del(ci->command);
         E_FREE(ci);
      }
@@ -476,8 +486,11 @@ _sticky_notes_conf_item_get(const char *id)
    ci->interval = 0.0;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
    ci->command = eina_stringshare_add("");
-   ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop." 
-                             "Click on the header for the size changing."));
+   ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop. "));
+   ci->area_text_2 = eina_stringshare_add(D_("Click on the header for the size changing."));
+   ci->area_text_3 = eina_stringshare_add("");
+   ci->area_text_4 = eina_stringshare_add("");
+   ci->area_text_5 = eina_stringshare_add("");
    sticky_notes_conf->conf_items = eina_list_append(sticky_notes_conf->conf_items, ci);
    return ci;
 }
@@ -579,6 +592,7 @@ _sticky_notes_cb_check(void *data)
 {
    Instance *inst = data;
    Eina_List *l;
+   
            
    //~ Uncommented lines was a solution to have timer for each gadget separatelly
            
@@ -652,11 +666,19 @@ text_sized(void *data)
 {
 	Instance *inst = data;
 	char buf[16];
-	
 	eina_strbuf_reset(inst->eina_buf);
+	
 	snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
     eina_strbuf_append(inst->eina_buf, buf);
     eina_strbuf_append(inst->eina_buf, inst->ci->area_text);
+    eina_strbuf_append(inst->eina_buf, "<br>");
+    eina_strbuf_append(inst->eina_buf, inst->ci->area_text_2);
+    eina_strbuf_append(inst->eina_buf, "<br>");
+    eina_strbuf_append(inst->eina_buf, inst->ci->area_text_3);
+    eina_strbuf_append(inst->eina_buf, "<br>");
+    eina_strbuf_append(inst->eina_buf, inst->ci->area_text_4);
+    eina_strbuf_append(inst->eina_buf, "<br>");
+    eina_strbuf_append(inst->eina_buf, inst->ci->area_text_5);
     eina_strbuf_append(inst->eina_buf, "</font_size>");
 
 	return eina_strbuf_string_get(inst->eina_buf);
