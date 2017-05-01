@@ -737,16 +737,20 @@ show_command_output(void *data)
 			
 			char get_date[64], day_name[16], day_number[16];
 			char day_number_bolded[16], day_name_bolded[16];
+			char day_number_space[16], day_name_space[16];
 			
 			while (fgets(get_date, 64, date) != NULL)
 
 			sscanf (get_date,"%s %*s %s",day_name, day_number);
 			
-			snprintf(day_name_bolded, sizeof(day_name_bolded),"<b>%s</b>", day_name);
-			snprintf(day_number_bolded, sizeof(day_number_bolded),"<b>%s</b>", day_number);
+			snprintf(day_name_space, sizeof(day_name_space)," %s ", day_name);
+			snprintf(day_number_space, sizeof(day_number_space)," %s ", day_number);
 			
-			eina_strbuf_replace_all(inst->eina_buf, day_name, day_name_bolded); 
-			eina_strbuf_replace_all(inst->eina_buf, day_number, day_number_bolded); 
+			snprintf(day_name_bolded, sizeof(day_name_bolded),"<b>%s</b>", day_name_space);
+			snprintf(day_number_bolded, sizeof(day_number_bolded),"<b>%s</b>", day_number_space);
+			
+			eina_strbuf_replace_all(inst->eina_buf, day_name_space, day_name_bolded); 
+			eina_strbuf_replace_all(inst->eina_buf, day_number_space, day_number_bolded); 
 			pclose(date);
 		}
 		
