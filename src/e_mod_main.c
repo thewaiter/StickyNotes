@@ -3,6 +3,7 @@
 #include <Evas.h>
 #include <Ecore.h>
 #include <Ecore_Evas.h>
+#include <Elementary.h>
 
 /* Local Function Prototypes */
 static E_Gadcon_Client *_gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style);
@@ -685,15 +686,15 @@ text_sized(void *data)
 	
 	snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
     eina_strbuf_append(inst->eina_buf, buf);
-    eina_strbuf_append(inst->eina_buf, inst->ci->area_text);
+    eina_strbuf_append(inst->eina_buf, elm_entry_utf8_to_markup(inst->ci->area_text));
     eina_strbuf_append(inst->eina_buf, "<br>");
-    eina_strbuf_append(inst->eina_buf, inst->ci->area_text_2);
+    eina_strbuf_append(inst->eina_buf, elm_entry_utf8_to_markup(inst->ci->area_text_2));
     eina_strbuf_append(inst->eina_buf, "<br>");
-    eina_strbuf_append(inst->eina_buf, inst->ci->area_text_3);
+    eina_strbuf_append(inst->eina_buf, elm_entry_utf8_to_markup(inst->ci->area_text_3));
     eina_strbuf_append(inst->eina_buf, "<br>");
-    eina_strbuf_append(inst->eina_buf, inst->ci->area_text_4);
+    eina_strbuf_append(inst->eina_buf, elm_entry_utf8_to_markup(inst->ci->area_text_4));
     eina_strbuf_append(inst->eina_buf, "<br>");
-    eina_strbuf_append(inst->eina_buf, inst->ci->area_text_5);
+    eina_strbuf_append(inst->eina_buf, elm_entry_utf8_to_markup(inst->ci->area_text_5));
     eina_strbuf_append(inst->eina_buf, "</font_size>");
 
 	return eina_strbuf_string_get(inst->eina_buf);
@@ -718,13 +719,11 @@ show_command_output(void *data)
     /* Reading command output to the eina buffer*/
     
 	 while (fgets(line, 256, output) != NULL){
-       eina_strbuf_append(inst->eina_buf, line);
-       eina_strbuf_append(inst->eina_buf, "<br>");
+       eina_strbuf_append(inst->eina_buf, elm_entry_utf8_to_markup(line));
 	 } 
     
     pclose(output);
     
-    eina_strbuf_replace_all(inst->eina_buf, "&", "and"); //textblock does not show ampersand and ends formating
     eina_strbuf_append(inst->eina_buf, "</font_size>");
     
     if (strcmp(str, eina_strbuf_string_get(inst->eina_buf))!=0){
