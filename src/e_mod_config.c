@@ -8,8 +8,8 @@
  * just use the E_Config_Dialog_Data for your data structures declarations */
 struct _E_Config_Dialog_Data 
 {
-   int   header_switch, multiply_switch;
-   char *header_text, *command;
+   int   header_switch, multiply_switch, notif_switch;
+   char *header_text, *command, *notif_text;
    char *area_text;
    char *area_text_2; 
    char *area_text_3; 
@@ -98,8 +98,10 @@ _fill_data(Config_Item * ci, E_Config_Dialog_Data *cfdata)
     if (ci->area_text_4) cfdata->area_text_4 = strdup(ci->area_text_4);
     if (ci->area_text_5) cfdata->area_text_5 = strdup(ci->area_text_5);
     if (ci->command) cfdata->command = strdup(ci->command);
+    if (ci->notif_text) cfdata->notif_text = strdup(ci->notif_text);
     cfdata->interval = ci->interval;
     cfdata->multiply_switch = ci->multiply_switch;
+    cfdata->notif_switch = ci->notif_switch;
 }
 
 static Evas_Object *
@@ -147,7 +149,7 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
   
    of = e_widget_framelist_add(evas, D_("Command section"), 0);
   
-   ow = e_widget_label_add (evas, D_("Command to run"));
+   ow = e_widget_label_add (evas, D_("Command to run and show output"));
    e_widget_size_min_set(ow, 120, 25);
    e_widget_framelist_object_append(of, ow);
    
@@ -160,7 +162,13 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    ow = e_widget_slider_add(evas, 1, 0, D_("%2.0f sec"), 0.0, 60.0, 1.0, 0,&(cfdata->interval), NULL, 40);
    e_widget_framelist_object_append(of, ow);
    
-   ow = e_widget_check_add(evas, D_(" x 60"), &(cfdata->multiply_switch));
+   ow = e_widget_check_add(evas, D_(" x 60 secs"), &(cfdata->multiply_switch));
+   e_widget_framelist_object_append(of, ow);
+   
+   ow = e_widget_check_add(evas, D_(" Notification text on change"), &(cfdata->notif_switch));
+   e_widget_framelist_object_append(of, ow);
+   
+   ow = e_widget_entry_add(evas, &(cfdata->notif_text), NULL, NULL, NULL);
    e_widget_framelist_object_append(of, ow);
    
    e_widget_list_object_append(o, of, 1, 0, 0.5);
@@ -203,8 +211,12 @@ _basic_apply(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata)
    ci->area_text_5 = eina_stringshare_add(cfdata->area_text_5);
    if (ci->command) eina_stringshare_del(ci->command);
    ci->command = eina_stringshare_add(cfdata->command);
+   if (ci->notif_text) eina_stringshare_del(ci->notif_text);
+   ci->notif_text = eina_stringshare_add(cfdata->notif_text);
+   
    ci->interval = cfdata->interval;
    ci->multiply_switch = cfdata->multiply_switch;
+   ci->notif_switch = cfdata->notif_switch;
    
    e_config_save_queue();
    _sticky_notes_config_updated(ci);

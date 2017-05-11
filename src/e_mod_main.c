@@ -24,7 +24,7 @@ static Eina_Bool _sticky_notes_cb_check(void *data);
 void _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source);
 const char* text_sized(void *data);
 void _font_size_show(void *data, Eina_Bool save, const char *chr);
-const char* show_command_output(void *data);
+const char* show_command_output(void *data, Eina_Bool header_clicked);
 void _sticky_settings_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source);
 
 
@@ -119,6 +119,8 @@ e_modapi_init(E_Module *m)
    E_CONFIG_VAL(D, T, area_text_5, STR);
    E_CONFIG_VAL(D, T, font_size, DOUBLE);
    E_CONFIG_VAL(D, T, command, STR);
+   E_CONFIG_VAL(D, T, notif_text, STR);
+   E_CONFIG_VAL(D, T, notif_switch, INT);
    E_CONFIG_VAL(D, T, interval, DOUBLE);
 
    conf_edd = E_CONFIG_DD_NEW("Config", Config);
@@ -385,6 +387,7 @@ _sticky_notes_conf_new(void)
    //~ ci->id = eina_stringshare_add(id);
    ci->header_switch = 1;
    ci->multiply_switch = 0;
+   ci->notif_switch = 0;
    ci->font_size = 12;
    ci->interval = 0.0;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
@@ -394,6 +397,7 @@ _sticky_notes_conf_new(void)
    ci->area_text_3 = eina_stringshare_add("");
    ci->area_text_4 = eina_stringshare_add("");
    ci->area_text_5 = eina_stringshare_add("");
+   ci->notif_text = eina_stringshare_add("");
    
    _sticky_notes_conf_item_get(NULL);
    IFMODCFGEND;
@@ -433,6 +437,7 @@ _sticky_notes_conf_free(void)
         if (ci->area_text_4) eina_stringshare_del(ci->area_text_4);
         if (ci->area_text_5) eina_stringshare_del(ci->area_text_5);
         if (ci->command) eina_stringshare_del(ci->command);
+        if (ci->notif_text) eina_stringshare_del(ci->notif_text);
         E_FREE(ci);
      }
      
@@ -487,6 +492,7 @@ _sticky_notes_conf_item_get(const char *id)
    ci->id = eina_stringshare_add(id);
    ci->header_switch = 1;
    ci->multiply_switch = 0;
+   ci->notif_switch = 0;
    ci->font_size = 12;
    ci->interval = 0.0;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
@@ -496,6 +502,7 @@ _sticky_notes_conf_item_get(const char *id)
    ci->area_text_3 = eina_stringshare_add("");
    ci->area_text_4 = eina_stringshare_add("");
    ci->area_text_5 = eina_stringshare_add("");
+   ci->notif_text = eina_stringshare_add("");
    sticky_notes_conf->conf_items = eina_list_append(sticky_notes_conf->conf_items, ci);
    return ci;
 }
@@ -611,7 +618,7 @@ _sticky_notes_cb_check(void *data)
 		  edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->area_text);
 
 		if (inst->ci->command[0]!='\0')
-          edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst));  
+          edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst, EINA_TRUE));  
 	    
         if ((inst->ci->area_text) && (inst->ci->command[0]=='\0'))
 		  edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
@@ -644,7 +651,7 @@ _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, co
 	if (!(inst=data)) return;
 	
     if (inst->ci->command[0]!='\0')
-      edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst));  
+      edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst, EINA_FALSE));  
 	     
     if ((inst->ci->area_text) && (inst->ci->command[0]=='\0'))
       edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
@@ -686,22 +693,22 @@ text_sized(void *data)
 	
 	snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
     eina_strbuf_append(inst->eina_buf, buf);
-    eina_strbuf_append(inst->eina_buf, elm_entry_utf8_to_markup(inst->ci->area_text));
+    eina_strbuf_append(inst->eina_buf, inst->ci->area_text);
     eina_strbuf_append(inst->eina_buf, "<br>");
-    eina_strbuf_append(inst->eina_buf, elm_entry_utf8_to_markup(inst->ci->area_text_2));
+    eina_strbuf_append(inst->eina_buf, inst->ci->area_text_2);
     eina_strbuf_append(inst->eina_buf, "<br>");
-    eina_strbuf_append(inst->eina_buf, elm_entry_utf8_to_markup(inst->ci->area_text_3));
+    eina_strbuf_append(inst->eina_buf, inst->ci->area_text_3);
     eina_strbuf_append(inst->eina_buf, "<br>");
-    eina_strbuf_append(inst->eina_buf, elm_entry_utf8_to_markup(inst->ci->area_text_4));
+    eina_strbuf_append(inst->eina_buf, inst->ci->area_text_4);
     eina_strbuf_append(inst->eina_buf, "<br>");
-    eina_strbuf_append(inst->eina_buf, elm_entry_utf8_to_markup(inst->ci->area_text_5));
+    eina_strbuf_append(inst->eina_buf, inst->ci->area_text_5);
     eina_strbuf_append(inst->eina_buf, "</font_size>");
 
 	return eina_strbuf_string_get(inst->eina_buf);
 }
 
 const char *
-show_command_output(void *data)
+show_command_output(void *data, Eina_Bool header_clicked)
 {
 	Instance *inst = data;
     FILE *output;
@@ -726,11 +733,11 @@ show_command_output(void *data)
     
     eina_strbuf_append(inst->eina_buf, "</font_size>");
     
+    /*condition if the text has been changed*/
     if (strcmp(str, eina_strbuf_string_get(inst->eina_buf))!=0){
-    
+
 		/*condition if the command is ncal or cal. If yes, format day name and day number to BOLD*/
-		
-		if (strncmp(inst->ci->command, "ncal",4)==0 || strncmp(inst->ci->command, "cal",3)==0){
+		if (strncmp(inst->ci->command, "ncal ",5)==0 || strncmp(inst->ci->command, "cal ",4)==0){
 			FILE *date;
 			date = popen("date", "r");
 			
@@ -753,10 +760,18 @@ show_command_output(void *data)
 			pclose(date);
 		}
 		
-	   _font_size_show(inst, EINA_FALSE, " ↓");	    
-
+	   _font_size_show(inst, EINA_FALSE, " ↓");	 
+    	
+    	char cmd[200];
+	    if ((inst->ci->notif_switch) && (header_clicked)){ 
+	       snprintf(cmd, 200, "notify-send --expire-time=5000 --icon=%s 'StickyNote' '%s'", "accessories-text-editor", inst->ci->notif_text);   
+	    
+	    ecore_init();
+        ecore_exe_run(cmd, NULL);
+        ecore_shutdown();
+	   }
 	}	
-	
+
 	free(str);
     
     return eina_strbuf_string_get(inst->eina_buf);
