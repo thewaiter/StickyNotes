@@ -22,6 +22,7 @@ struct _E_Config_Dialog_Data
    {
       Evas_Object *header_label;
       Evas_Object *header_text;
+      Evas_Object *notif_entry;
    } ui;
 };
 
@@ -32,6 +33,7 @@ static void _fill_data(Config_Item * ci, E_Config_Dialog_Data *cfdata);
 static Evas_Object *_basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata);
 static int _basic_apply(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata);
 static void  _cb_check_changed(void *data, Evas_Object *obj __UNUSED__);
+static void  _cb_check_changed_notif(void *data, Evas_Object *obj __UNUSED__);
 
 /* External Functions */
 
@@ -167,12 +169,15 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    
    ow = e_widget_check_add(evas, D_(" Notification text on change"), &(cfdata->notif_switch));
    e_widget_framelist_object_append(of, ow);
+   e_widget_on_change_hook_set(ow, _cb_check_changed_notif, cfdata);
    
    ow = e_widget_entry_add(evas, &(cfdata->notif_text), NULL, NULL, NULL);
    e_widget_framelist_object_append(of, ow);
+   cfdata->ui.notif_entry = ow;
    
    e_widget_list_object_append(o, of, 1, 0, 0.5);
-   _cb_check_changed(cfdata,NULL);
+   _cb_check_changed(cfdata, NULL);
+   _cb_check_changed_notif(cfdata, NULL);
     e_dialog_resizable_set(cfd->dia, EINA_FALSE);
    return o;
 }
@@ -188,6 +193,18 @@ _cb_check_changed(void *data, Evas_Object *obj __UNUSED__)
   } else {
     e_widget_disabled_set(cfdata->ui.header_label, EINA_FALSE);
     e_widget_disabled_set(cfdata->ui.header_text, EINA_FALSE);
+   }
+}
+
+static void  
+_cb_check_changed_notif(void *data, Evas_Object *obj __UNUSED__)
+{
+	E_Config_Dialog_Data *cfdata;
+	if (!(cfdata = data)) return;
+  if(cfdata->notif_switch) {
+    e_widget_disabled_set(cfdata->ui.notif_entry, EINA_FALSE);
+  } else {
+    e_widget_disabled_set(cfdata->ui.notif_entry, EINA_TRUE);
    }
 }
 
