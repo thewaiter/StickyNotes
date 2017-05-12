@@ -713,8 +713,6 @@ show_command_output(void *data, Eina_Bool header_clicked)
     strcpy(str, eina_strbuf_string_steal(inst->eina_buf));
     //~ eina_strbuf_reset(inst->eina_buf);
 	
-	printf("str: %s\n",str);
-	printf("buf: %s\n", eina_strbuf_string_get(inst->eina_buf));
 	output = popen(inst->ci->command, "r");
 	
     snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
@@ -726,7 +724,6 @@ show_command_output(void *data, Eina_Bool header_clicked)
        eina_strbuf_append(inst->eina_buf, elm_entry_utf8_to_markup(line));
 	 } 
     
-    printf("buf html: %s\n", eina_strbuf_string_get(inst->eina_buf));
     pclose(output);
     
     eina_strbuf_append(inst->eina_buf, "</font_size>");
