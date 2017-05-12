@@ -49,6 +49,8 @@ struct _Instance
 
    /* Text buffer for each gadget*/   
    Eina_Strbuf *eina_buf;
+   Eina_Strbuf *eina_temp;
+   Eina_Strbuf *eina_compare;
 
    /* Config_Item structure. Every gadget should have one :) */
    Config_Item *ci;
@@ -273,8 +275,9 @@ _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style)
      inst->timer = ecore_timer_add(inst->ci->interval * multi, _sticky_notes_cb_check , inst);
    
    inst->eina_buf = eina_strbuf_new();
+   inst->eina_temp = eina_strbuf_new();
+   inst->eina_compare = eina_strbuf_new();
 
-   
    /* add to list of running instances so we can cleanup later */
    instances = eina_list_append(instances, inst);
    _sticky_notes_cb_check(inst);
@@ -295,7 +298,10 @@ _gc_shutdown(E_Gadcon_Client *gcc)
    
    instances = eina_list_remove(instances, inst);
    if (inst->timer) ecore_timer_del(inst->timer);
+   
    eina_strbuf_free(inst->eina_buf);
+   eina_strbuf_free(inst->eina_temp);
+   eina_strbuf_free(inst->eina_compare);   
 
 
    /* kill popup menu */
@@ -315,9 +321,7 @@ _gc_shutdown(E_Gadcon_Client *gcc)
                                    _sticky_header_activated_cb); 
         edje_object_signal_callback_del(inst->o_sticky_notes, "settings,activated", "stickynotes",
                                    _sticky_settings_activated_cb);                              
-     
         evas_object_del(inst->o_sticky_notes);
-        
      }
    E_FREE(inst);
 }
@@ -327,7 +331,7 @@ static void
 _gc_orient(E_Gadcon_Client *gcc, E_Gadcon_Orient orient) 
 {
    e_gadcon_client_aspect_set(gcc, 16, 16);
-   e_gadcon_client_min_size_set(gcc, 200, 40);
+   e_gadcon_client_min_size_set(gcc, 200, 80);
 }
 
 /* Gadget/Module label, name for our module */
@@ -708,10 +712,10 @@ show_command_output(void *data, Eina_Bool header_clicked)
 	Instance *inst = data;
     FILE *output;
     char line[256], buf[16];
-    char *str;
-    str = (char *) malloc(eina_strbuf_length_get(inst->eina_buf) + 1);
-    strcpy(str, eina_strbuf_string_steal(inst->eina_buf));
-    //~ eina_strbuf_reset(inst->eina_buf);
+   
+    eina_strbuf_reset(inst->eina_buf);
+    eina_strbuf_reset(inst->eina_compare);
+    eina_strbuf_append(inst->eina_compare, eina_strbuf_string_get(inst->eina_temp));
 	
 	output = popen(inst->ci->command, "r");
 	
@@ -723,13 +727,16 @@ show_command_output(void *data, Eina_Bool header_clicked)
 	 while (fgets(line, 256, output) != NULL){
        eina_strbuf_append(inst->eina_buf, elm_entry_utf8_to_markup(line));
 	 } 
+	
+	eina_strbuf_reset(inst->eina_temp);
+	eina_strbuf_append(inst->eina_temp, eina_strbuf_string_get(inst->eina_buf));
     
     pclose(output);
     
     eina_strbuf_append(inst->eina_buf, "</font_size>");
     
     /*condition if the command is ncal or cal. If yes, format day name and day number to BOLD*/
-	if (strncmp(inst->ci->command, "ncal ",5)==0 || strncmp(inst->ci->command, "cal ",4)==0){
+	if (strncmp(inst->ci->command, "ncal ", 5)==0 || strncmp(inst->ci->command, "cal ", 4)==0){
 	  FILE *date;
 	  date = popen("date", "r");
 			
@@ -752,23 +759,19 @@ show_command_output(void *data, Eina_Bool header_clicked)
 	  }
 	  
 	/*condition if the text has been changed*/
-	if (strlen(str)>0 && (strcmp(str, eina_strbuf_string_get(inst->eina_buf))!=0)){
+	if (eina_strbuf_length_get(inst->eina_compare)>0 && strcmp(eina_strbuf_string_get(inst->eina_compare), eina_strbuf_string_get(inst->eina_temp))!=0){
 		
 	   _font_size_show(inst, EINA_FALSE, " ↓");	 
     	
     	char cmd[200];
 	    if ((inst->ci->notif_switch) && (header_clicked)){ 
 	       snprintf(cmd, 200, "notify-send --expire-time=5000 --icon=%s 'StickyNote' '%s'", "accessories-text-editor", inst->ci->notif_text);   
-	    
 	       ecore_init();
            ecore_exe_run(cmd, NULL);
            ecore_shutdown();
 	    }
-	   
 	}	
 
-	free(str);
-    
     return eina_strbuf_string_get(inst->eina_buf);
 }
 
