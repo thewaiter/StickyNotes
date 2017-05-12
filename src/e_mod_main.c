@@ -605,7 +605,6 @@ _sticky_notes_cb_check(void *data)
    Instance *inst = data;
    Eina_List *l;
    
-           
    //~ Uncommented lines was a solution to have timer for each gadget separatelly
            
    //~ for (l = instances; l; l = l->next) 
@@ -633,9 +632,7 @@ void
 _sticky_settings_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source)
 {
 	Instance *inst = data;
-	
 	_sticky_notes_cb_menu_configure(inst, NULL, NULL);
-	
 }
 
 void
@@ -657,8 +654,6 @@ _sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, co
       edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
 
     _font_size_show(inst, EINA_TRUE, "");
-    
-
 }
 
 void
@@ -718,6 +713,8 @@ show_command_output(void *data, Eina_Bool header_clicked)
     strcpy(str, eina_strbuf_string_steal(inst->eina_buf));
     //~ eina_strbuf_reset(inst->eina_buf);
 	
+	printf("str: %s\n",str);
+	printf("buf: %s\n", eina_strbuf_string_get(inst->eina_buf));
 	output = popen(inst->ci->command, "r");
 	
     snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
@@ -729,36 +726,36 @@ show_command_output(void *data, Eina_Bool header_clicked)
        eina_strbuf_append(inst->eina_buf, elm_entry_utf8_to_markup(line));
 	 } 
     
+    printf("buf html: %s\n", eina_strbuf_string_get(inst->eina_buf));
     pclose(output);
     
     eina_strbuf_append(inst->eina_buf, "</font_size>");
     
-    /*condition if the text has been changed*/
-    if (strcmp(str, eina_strbuf_string_get(inst->eina_buf))!=0){
-
-		/*condition if the command is ncal or cal. If yes, format day name and day number to BOLD*/
-		if (strncmp(inst->ci->command, "ncal ",5)==0 || strncmp(inst->ci->command, "cal ",4)==0){
-			FILE *date;
-			date = popen("date", "r");
+    /*condition if the command is ncal or cal. If yes, format day name and day number to BOLD*/
+	if (strncmp(inst->ci->command, "ncal ",5)==0 || strncmp(inst->ci->command, "cal ",4)==0){
+	  FILE *date;
+	  date = popen("date", "r");
 			
-			char get_date[64], day_name[16], day_number[16];
-			char day_number_bolded[16], day_name_bolded[16];
-			char day_number_space[16], day_name_space[16];
+	  char get_date[64], day_name[16], day_number[16];
+      char day_number_bolded[16], day_name_bolded[16];
+	  char day_number_space[16], day_name_space[16];
 			
-			while (fgets(get_date, 64, date) != NULL)
-
-			sscanf (get_date,"%s %*s %s",day_name, day_number);
+	  while (fgets(get_date, 64, date) != NULL)
+		sscanf (get_date,"%s %*s %s",day_name, day_number);
 			
-			snprintf(day_name_space, sizeof(day_name_space)," %s ", day_name);
-			snprintf(day_number_space, sizeof(day_number_space)," %s ", day_number);
+		snprintf(day_name_space, sizeof(day_name_space)," %s ", day_name);
+		snprintf(day_number_space, sizeof(day_number_space)," %s ", day_number);
 			
-			snprintf(day_name_bolded, sizeof(day_name_bolded),"<b>%s</b>", day_name_space);
-			snprintf(day_number_bolded, sizeof(day_number_bolded),"<b>%s</b>", day_number_space);
+		snprintf(day_name_bolded, sizeof(day_name_bolded),"<b>%s</b>", day_name_space);
+		snprintf(day_number_bolded, sizeof(day_number_bolded),"<b>%s</b>", day_number_space);
 			
-			eina_strbuf_replace_all(inst->eina_buf, day_name_space, day_name_bolded); 
-			eina_strbuf_replace_all(inst->eina_buf, day_number_space, day_number_bolded); 
-			pclose(date);
-		}
+		eina_strbuf_replace_all(inst->eina_buf, day_name_space, day_name_bolded); 
+		eina_strbuf_replace_all(inst->eina_buf, day_number_space, day_number_bolded); 
+		pclose(date);
+	  }
+	  
+	/*condition if the text has been changed*/
+	if (strlen(str)>0 && (strcmp(str, eina_strbuf_string_get(inst->eina_buf))!=0)){
 		
 	   _font_size_show(inst, EINA_FALSE, " ↓");	 
     	
@@ -766,10 +763,11 @@ show_command_output(void *data, Eina_Bool header_clicked)
 	    if ((inst->ci->notif_switch) && (header_clicked)){ 
 	       snprintf(cmd, 200, "notify-send --expire-time=5000 --icon=%s 'StickyNote' '%s'", "accessories-text-editor", inst->ci->notif_text);   
 	    
-	    ecore_init();
-        ecore_exe_run(cmd, NULL);
-        ecore_shutdown();
-	   }
+	       ecore_init();
+           ecore_exe_run(cmd, NULL);
+           ecore_shutdown();
+	    }
+	   
 	}	
 
 	free(str);
