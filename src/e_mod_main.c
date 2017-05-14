@@ -331,7 +331,7 @@ static void
 _gc_orient(E_Gadcon_Client *gcc, E_Gadcon_Orient orient) 
 {
    e_gadcon_client_aspect_set(gcc, 16, 16);
-   e_gadcon_client_min_size_set(gcc, 200, 80);
+   e_gadcon_client_min_size_set(gcc, 200, 40);
 }
 
 /* Gadget/Module label, name for our module */
@@ -389,15 +389,15 @@ _sticky_notes_conf_new(void)
    sticky_notes_conf->switch1 = 1;
    
    //~ ci->id = eina_stringshare_add(id);
-   ci->header_switch = 1;
+   ci->header_switch = 0;
    ci->multiply_switch = 0;
    ci->notif_switch = 0;
    ci->font_size = 12;
    ci->interval = 0.0;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
    ci->command = eina_stringshare_add("");
-   ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop. "));
-   ci->area_text_2 = eina_stringshare_add(D_("Click on the header for the size changing."));
+   ci->area_text = eina_stringshare_add("");
+   ci->area_text_2 = eina_stringshare_add("");
    ci->area_text_3 = eina_stringshare_add("");
    ci->area_text_4 = eina_stringshare_add("");
    ci->area_text_5 = eina_stringshare_add("");
@@ -494,15 +494,15 @@ _sticky_notes_conf_item_get(const char *id)
 
    ci = E_NEW(Config_Item, 1);
    ci->id = eina_stringshare_add(id);
-   ci->header_switch = 1;
+   ci->header_switch = 0;
    ci->multiply_switch = 0;
    ci->notif_switch = 0;
    ci->font_size = 12;
    ci->interval = 0.0;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
    ci->command = eina_stringshare_add("");
-   ci->area_text = eina_stringshare_add(D_("Sticky Notes for the E/Moksha desktop. "));
-   ci->area_text_2 = eina_stringshare_add(D_("Click on the header for the size changing."));
+   ci->area_text = eina_stringshare_add("");
+   ci->area_text_2 = eina_stringshare_add("");
    ci->area_text_3 = eina_stringshare_add("");
    ci->area_text_4 = eina_stringshare_add("");
    ci->area_text_5 = eina_stringshare_add("");
@@ -607,7 +607,8 @@ static Eina_Bool
 _sticky_notes_cb_check(void *data)
 {
    Instance *inst = data;
-   Eina_List *l;
+   //~ Eina_List *l;
+   char buf[3];
    
    //~ Uncommented lines was a solution to have timer for each gadget separatelly
            
@@ -625,8 +626,10 @@ _sticky_notes_cb_check(void *data)
 	    
         if ((inst->ci->area_text) && (inst->ci->command[0]=='\0'))
 		  edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
-
-       //~ _font_size_show(inst, EINA_FALSE);	    
+ 
+        snprintf(buf, sizeof(buf), "%lf", inst->ci->font_size);
+       _font_size_show(inst, EINA_FALSE, buf);	
+          
      //~ }
    
    return EINA_TRUE;
@@ -636,7 +639,7 @@ void
 _sticky_settings_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source)
 {
 	Instance *inst = data;
-	_sticky_notes_cb_menu_configure(inst, NULL, NULL);
+   _sticky_notes_cb_menu_configure(inst, NULL, NULL);
 }
 
 void
