@@ -13,9 +13,10 @@ Features:
  [<img align="right" src="http://i.imgur.com/QuEYaJf.png">](http://i.imgur.com/QuEYaJf.png)
  - Any command output on the screen
  - Refresh interval for animated outcome up to 1 hour
- - Font size changing from 8px up to 16px (click on the header) - apply for each gadget
+ - Font size changing from 8px up to 16px (click on the header icon)
  - Text HTML tag formating (bold, italic, tab, paragraphs)
- - Note text in the header (default)/custom header text
+ - Note text in the header/custom header text
+ - Notification on the text changing
  - Nice transparent look
  - Light on system resources
  
@@ -23,9 +24,9 @@ Features:
  Setting dialog
  <br>
  
-  [<img align="left" src="http://www.enlightenment.org/ss/e-59037a686bc5e5.42179229.jpg">](http://www.enlightenment.org/ss/e-59037a686bc5e5.42179229.jpg)
+  [<img align="left" src="http://www.enlightenment.org/ss/e-5918aa76ce6f95.29838983.jpg">](http://www.enlightenment.org/ss/e-5918aa76ce6f95.29838983.jpg)
 
 <br>
-2017 03 16
+2017 05 14
 
-<Stefan Uram the_waiter@centrum.sk>
+<Stefan Uram thewaiter@centrum.sk>
