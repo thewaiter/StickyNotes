@@ -754,9 +754,6 @@ show_command_output(void *data, Eina_Bool header_clicked)
 	  
 	/*condition if the text has been changed*/
 	if (eina_strbuf_length_get(inst->eina_compare)>0 && strcmp(eina_strbuf_string_get(inst->eina_compare), eina_strbuf_string_get(inst->eina_temp))!=0){
-		printf("cmp: %s \n", eina_strbuf_string_get(inst->eina_compare));
-		printf("tmp: %s \n", eina_strbuf_string_get(inst->eina_temp));
-    	
     	char cmd[200];
 	    if ((inst->ci->notif_switch) && (header_clicked)){ 
 	       snprintf(cmd, 200, "notify-send --expire-time=5000 --icon=%s 'StickyNote' '%s'", "accessories-text-editor", inst->ci->notif_text);   
