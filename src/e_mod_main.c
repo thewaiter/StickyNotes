@@ -241,7 +241,7 @@ static E_Gadcon_Client *
 _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style) 
 {
    Instance *inst = NULL;
-   char buf[4096];
+   char buf[4096], font_size[3];
    int multi;
 
    /* theme file */
@@ -281,6 +281,9 @@ _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style)
    /* add to list of running instances so we can cleanup later */
    instances = eina_list_append(instances, inst);
    _sticky_notes_cb_check(inst);
+   
+   snprintf(font_size, sizeof(font_size), "%lf", inst->ci->font_size);
+   _font_size_show(inst, EINA_FALSE, font_size);
    
    /* return the Gadget_Container Client */
    
@@ -608,7 +611,6 @@ _sticky_notes_cb_check(void *data)
 {
    Instance *inst = data;
    //~ Eina_List *l;
-   char buf[3];
    
    //~ Uncommented lines was a solution to have timer for each gadget separatelly
            
@@ -627,9 +629,6 @@ _sticky_notes_cb_check(void *data)
         if ((inst->ci->area_text) && (inst->ci->command[0]=='\0'))
 		  edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
  
-        snprintf(buf, sizeof(buf), "%lf", inst->ci->font_size);
-       _font_size_show(inst, EINA_FALSE, buf);	
-          
      //~ }
    
    return EINA_TRUE;
@@ -682,7 +681,6 @@ _font_size_show(void *data, Eina_Bool save, const char *chr)
       edje_object_part_text_set(inst->o_sticky_notes, "font_size", chr);
 
     edje_object_signal_emit(inst->o_sticky_notes, "size_hidden", "");
-    
     if (save) e_config_save_queue();
 }
 
@@ -739,32 +737,25 @@ show_command_output(void *data, Eina_Bool header_clicked)
     eina_strbuf_append(inst->eina_buf, "</font_size>");
     
     /*condition if the command is ncal or cal. If yes, format day name and day number to BOLD*/
-	if (strncmp(inst->ci->command, "ncal ", 5)==0 || strncmp(inst->ci->command, "cal ", 4)==0){
-	  FILE *date;
-	  date = popen("date", "r");
-			
-	  char get_date[64], day_name[16], day_number[16];
-      char day_number_bolded[16], day_name_bolded[16];
-	  char day_number_space[16], day_name_space[16];
-			
-	  while (fgets(get_date, 64, date) != NULL)
-		sscanf (get_date,"%s %*s %s",day_name, day_number);
-			
-		snprintf(day_name_space, sizeof(day_name_space)," %s ", day_name);
-		snprintf(day_number_space, sizeof(day_number_space)," %s ", day_number);
-			
-		snprintf(day_name_bolded, sizeof(day_name_bolded),"<b>%s</b>", day_name_space);
-		snprintf(day_number_bolded, sizeof(day_number_bolded),"<b>%s</b>", day_number_space);
-			
-		eina_strbuf_replace_all(inst->eina_buf, day_name_space, day_name_bolded); 
-		eina_strbuf_replace_all(inst->eina_buf, day_number_space, day_number_bolded); 
-		pclose(date);
-	  }
+	if (strncmp(inst->ci->command, "ncal", 4)==0 || strncmp(inst->ci->command, "cal", 3)==0){
+	  int i, position;
+	  char *ret;
+	  
+	  for (i=0; i<2; i++) {
+		ret = strchr(eina_strbuf_string_get(inst->eina_buf), 8);
+		if (ret) {
+			position = ret - eina_strbuf_string_get(inst->eina_buf);
+			eina_strbuf_remove (inst->eina_buf, position - 1, position + 1);
+			eina_strbuf_insert(inst->eina_buf, "<b>", position -1);
+			eina_strbuf_insert(inst->eina_buf, "</b>", position + 3 );
+		}
+      }
+    }
 	  
 	/*condition if the text has been changed*/
 	if (eina_strbuf_length_get(inst->eina_compare)>0 && strcmp(eina_strbuf_string_get(inst->eina_compare), eina_strbuf_string_get(inst->eina_temp))!=0){
-		
-	   _font_size_show(inst, EINA_FALSE, " ↓");	 
+		printf("cmp: %s \n", eina_strbuf_string_get(inst->eina_compare));
+		printf("tmp: %s \n", eina_strbuf_string_get(inst->eina_temp));
     	
     	char cmd[200];
 	    if ((inst->ci->notif_switch) && (header_clicked)){ 

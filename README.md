@@ -12,11 +12,12 @@ Features:
  - Word wrap
  [<img align="right" src="http://i.imgur.com/QuEYaJf.png">](http://i.imgur.com/QuEYaJf.png)
  - Any command output on the screen
- - Refresh interval for animated outcome up to 1 hour
+ - Refresh interval for outcome up to 1 hour
  - Font size changing from 8px up to 16px (click on the header icon)
  - Text HTML tag formating (bold, italic, tab, paragraphs)
  - Note text in the header/custom header text
  - Notification on the text changing
+ - cal and ncal support for day highlight
  - Nice transparent look
  - Light on system resources
  
