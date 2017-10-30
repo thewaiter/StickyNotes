@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StickyNotes\n"
 "Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
-"POT-Creation-Date: 2017-04-08 18:30+0200\n"
+"POT-Creation-Date: 2017-10-30 19:29+0100\n"
 "PO-Revision-Date: 2011-10-15 12:45+0200\n"
 "Last-Translator: Vít Pelčák <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -17,31 +17,60 @@ msgstr ""
 "X-Generator: Lokalize 1.2\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: src/e_mod_config.c:57
+#: src/e_mod_config.c:76
 msgid "StickyNotes Module"
 msgstr "Modul StickyNotes"
 
-#: src/e_mod_config.c:99 src/e_mod_main.c:461
-msgid "Settings"
-msgstr "Nastavení"
+#: src/e_mod_config.c:127
+msgid "General"
+msgstr "Obecné"
 
-#: src/e_mod_config.c:102
+#: src/e_mod_config.c:130
 msgid " Note text in the header"
 msgstr ""
 
-#: src/e_mod_config.c:106
+#: src/e_mod_config.c:135
 msgid "Header text"
 msgstr ""
 
-#: src/e_mod_config.c:114
+#: src/e_mod_config.c:143
 msgid "Note text"
 msgstr ""
 
-#: src/e_mod_main.c:81
+#: src/e_mod_config.c:164
+msgid "HTML tags: <b>, <i>, <br>, <ps>, <tab>"
+msgstr ""
+
+#: src/e_mod_config.c:170
+msgid "Command section"
+msgstr ""
+
+#: src/e_mod_config.c:172
+msgid "Command to run and show output"
+msgstr ""
+
+#: src/e_mod_config.c:181
+msgid "Refresh interval"
+msgstr ""
+
+#: src/e_mod_config.c:184
+#, c-format
+msgid "%2.0f sec"
+msgstr ""
+
+#: src/e_mod_config.c:187
+msgid " x 60 secs"
+msgstr ""
+
+#: src/e_mod_config.c:190
+msgid " Notification text on change"
+msgstr ""
+
+#: src/e_mod_main.c:101
 msgid "Advanced"
 msgstr ""
 
-#: src/e_mod_main.c:118
+#: src/e_mod_main.c:147
 msgid ""
 "StickyNotes Module Configuration data needed upgrading. Your old "
 "configuration<br> has been wiped and a new set of defaults initialized. "
@@ -59,7 +88,7 @@ msgstr ""
 "položek. Teď můžete modul nakonfigurovat<br>jak potřebujete. Omlouváme se za "
 "možné potíže.<br>"
 
-#: src/e_mod_main.c:138
+#: src/e_mod_main.c:167
 msgid ""
 "Your StickyNotes Module configuration is NEWER than the module version. This "
 "is very<br>strange. This should not happen unless you downgraded<br>the "
@@ -74,27 +103,22 @@ msgstr ""
 "způsobovat problémy a proto bylo nastavení<br>obnoveno na výchozí jako "
 "prevenční opatření. Omlouváme<br>se za možné potíže.<br>"
 
-#: src/e_mod_main.c:292
+#: src/e_mod_main.c:344
 msgid "StickyNotes"
 msgstr "StickyNotes"
 
-#: src/e_mod_main.c:345 src/e_mod_main.c:432
+#: src/e_mod_main.c:400 src/e_mod_main.c:505
 #, fuzzy
 msgid "Sticky note"
 msgstr "Sticky_notes"
 
-#: src/e_mod_main.c:346 src/e_mod_main.c:433
-msgid ""
-"Sticky Notes for the E/Moksha desktop. Click on the header for the size "
-"changing"
-msgstr ""
-
-#: src/e_mod_main.c:389
+#: src/e_mod_main.c:458
 msgid "StickyNotes Configuration Updated"
 msgstr "StickyNotes - aktualizováno nastavení"
 
-#~ msgid "General"
-#~ msgstr "Obecné"
+#: src/e_mod_main.c:539
+msgid "Settings"
+msgstr "Nastavení"
 
 #~ msgid "Use Switch 1"
 #~ msgstr "Použít přepínač 1"

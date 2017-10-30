@@ -124,6 +124,11 @@ e_modapi_init(E_Module *m)
    E_CONFIG_VAL(D, T, notif_text, STR);
    E_CONFIG_VAL(D, T, notif_switch, INT);
    E_CONFIG_VAL(D, T, interval, DOUBLE);
+   E_CONFIG_VAL(D, T, val.r, INT);
+   E_CONFIG_VAL(D, T, val.g, INT);
+   E_CONFIG_VAL(D, T, val.b, INT);
+   E_CONFIG_VAL(D, T, val.a, INT);
+
 
    conf_edd = E_CONFIG_DD_NEW("Config", Config);
    #undef T
@@ -397,6 +402,10 @@ _sticky_notes_conf_new(void)
    ci->notif_switch = 0;
    ci->font_size = 12;
    ci->interval = 0.0;
+   ci->val.r=255;
+   ci->val.g=255;
+   ci->val.b=255;
+   ci->val.a=255;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
    ci->command = eina_stringshare_add("");
    ci->area_text = eina_stringshare_add("");
@@ -502,6 +511,10 @@ _sticky_notes_conf_item_get(const char *id)
    ci->notif_switch = 0;
    ci->font_size = 12;
    ci->interval = 0.0;
+   ci->val.r=255;
+   ci->val.g=255;
+   ci->val.b=255;
+   ci->val.a=255;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
    ci->command = eina_stringshare_add("");
    ci->area_text = eina_stringshare_add("");
@@ -601,6 +614,8 @@ _sticky_notes_config_updated(Config_Item *ci)
             
         if (inst->ci->command[0]=='\0')
            ecore_timer_del(inst->timer);
+           
+        
                 
         _sticky_notes_cb_check(inst);
      }
@@ -610,6 +625,7 @@ static Eina_Bool
 _sticky_notes_cb_check(void *data)
 {
    Instance *inst = data;
+  
    //~ Eina_List *l;
    
    //~ Uncommented lines was a solution to have timer for each gadget separatelly
@@ -628,6 +644,14 @@ _sticky_notes_cb_check(void *data)
 	    
         if ((inst->ci->area_text) && (inst->ci->command[0]=='\0'))
 		  edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
+		  
+		  
+		  //~ snprintf(buf, sizeof(buf),"R:%d,G:%d,B:%d,A:%d",inst->ci->val.r, inst->ci->val.g, inst->ci->val.b, inst->ci->val.a);
+          //~ e_util_dialog_internal("RGBA", buf);
+		  edje_object_color_class_set
+          (inst->o_sticky_notes, "color",
+          inst->ci->val.r, inst->ci->val.g, inst->ci->val.b, inst->ci->val.a,
+          0, 0, 0, 255, 0, 0, 0, 255);
  
      //~ }
    

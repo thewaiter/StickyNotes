@@ -75,6 +75,12 @@ struct _Config_Item
    /* actual config properties independently for every running gadget. */
    int header_switch, multiply_switch, notif_switch;
    double font_size, interval;
+   struct
+   {
+      int       r, g, b, a;
+      Eina_Bool changed;
+      Eina_Bool enabled;
+   } val;
 };
 
 /* Setup the E Module Version, Needed to check if module can run. */

@@ -6,6 +6,7 @@
 /* The typedef for this structure is declared inside the E code in order to
  * allow everybody to use this type, you dont need to declare the typedef, 
  * just use the E_Config_Dialog_Data for your data structures declarations */
+
 struct _E_Config_Dialog_Data 
 {
    int   header_switch, multiply_switch, notif_switch;
@@ -16,8 +17,14 @@ struct _E_Config_Dialog_Data
    char *area_text_4; 
    char *area_text_5; 
    double font_size, interval;
-      
-
+   E_Color    color[3]; 
+   struct
+   {
+      int       r, g, b, a;
+      Eina_Bool changed;
+      Eina_Bool enabled;
+   } val;
+   
  struct
    {
       Evas_Object *header_label;
@@ -33,6 +40,9 @@ struct _E_Config_Dialog_Data
       Evas_Object *area_entry4;
       Evas_Object *area_entry5;
       Evas_Object *html_label;
+      
+      Evas_Object *color[3];
+      Eina_List   *disable_list;
    } ui;
 };
 
@@ -42,9 +52,10 @@ static void _free_data(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata);
 static void _fill_data(Config_Item * ci, E_Config_Dialog_Data *cfdata);
 static Evas_Object *_basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata);
 static int _basic_apply(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata);
-static void  _cb_check_changed(void *data, Evas_Object *obj __UNUSED__);
-static void  _cb_check_changed_notif(void *data, Evas_Object *obj __UNUSED__);
-static void  _cb_check_changed_command(void *data, Evas_Object *obj __UNUSED__);
+static void _cb_check_changed(void *data, Evas_Object *obj __UNUSED__);
+static void _cb_check_changed_notif(void *data, Evas_Object *obj __UNUSED__);
+static void _cb_check_changed_command(void *data, Evas_Object *obj __UNUSED__);
+static void _color_cb_change(void *data, Evas_Object *obj);
 
 /* External Functions */
 
@@ -115,12 +126,18 @@ _fill_data(Config_Item * ci, E_Config_Dialog_Data *cfdata)
     cfdata->interval = ci->interval;
     cfdata->multiply_switch = ci->multiply_switch;
     cfdata->notif_switch = ci->notif_switch;
+    cfdata->color->r=ci->val.r;
+    cfdata->color->g=ci->val.g;
+    cfdata->color->b=ci->val.b;
+    cfdata->color->a=ci->val.a;
+    _color_cb_change(cfdata, NULL);
 }
 
 static Evas_Object *
 _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata) 
 {
-   Evas_Object *o = NULL, *of = NULL, *ow = NULL, *box = NULL;
+   Evas_Object *o = NULL, *of = NULL, *ow = NULL;
+   Evas_Coord mw, mh;
    
    o = e_widget_list_add(evas, 0, 0);
 
@@ -160,13 +177,31 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    e_widget_framelist_object_append(of, ow);
    cfdata->ui.area_entry5 = ow;
 
-   
    ow = e_widget_label_add (evas, D_("HTML tags: <b>, <i>, <br>, <ps>, <tab>"));
    cfdata->ui.html_label = ow;
    e_widget_framelist_object_append(of, ow);
+
+   ow = e_widget_label_add (evas, D_("Click the space for color changing"));
+   cfdata->ui.html_label = ow;
+   e_widget_framelist_object_append(of, ow);
+   
+   //~ ow = edje_object_add(evas);
+   //~ cfdata->ui.text_preview = ow;
+        //~ edje_object_color_class_set
+          //~ (ow, "color", 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0);
+        //~ edje_object_part_text_set(ow, "header_text", "Text with applied colors.");
+        //~ e_widget_framelist_object_append(of, ow);
+     
+   //~ Color dialog----------------------------------------
+   ow = e_widget_color_well_add_full(evas, cfdata->color, 1, 0);
+   cfdata->ui.color[0] = ow;
+   cfdata->ui.disable_list = eina_list_append(cfdata->ui.disable_list, ow);
+   e_widget_on_change_hook_set(ow, _color_cb_change, cfdata);
+   e_widget_framelist_object_append(of, ow);
   
-   e_widget_list_object_append(o, of, 1, 0, 0.5);
-  
+    e_widget_list_object_append(o, of, 1, 0, 0.5);
+     
+   //~ Command section----------------------------------------
    of = e_widget_framelist_add(evas, D_("Command section"), 0);
   
    ow = e_widget_label_add (evas, D_("Command to run and show output"));
@@ -202,6 +237,15 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    
     e_dialog_resizable_set(cfd->dia, EINA_FALSE);
    return o;
+}
+
+static void
+_color_cb_change(void *data, Evas_Object *obj)
+{
+   E_Config_Dialog_Data *cfdata = data;
+   E_Color *col;
+    
+   col = cfdata->color;
 }
 
 static void  
@@ -266,6 +310,11 @@ _basic_apply(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata)
    Config_Item *ci = NULL;
    ci = cfd->data;
    ci->header_switch = cfdata->header_switch;
+   ci->val.r = cfdata->color->r;
+   ci->val.g = cfdata->color->g;
+   ci->val.b = cfdata->color->b;
+   ci->val.a = cfdata->color->a;  
+   
    if (ci->header_text) eina_stringshare_del(ci->header_text);
    ci->header_text = eina_stringshare_add(cfdata->header_text);
    if (ci->area_text) eina_stringshare_del(ci->area_text);
@@ -289,5 +338,9 @@ _basic_apply(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata)
    
    e_config_save_queue();
    _sticky_notes_config_updated(ci);
+   
+   
+   
    return 1;
 }
+

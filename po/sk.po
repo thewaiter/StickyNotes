@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enlightenment\n"
 "Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
-"POT-Creation-Date: 2017-04-08 18:30+0200\n"
+"POT-Creation-Date: 2017-10-30 19:29+0100\n"
 "PO-Revision-Date: 2009-06-09 18:14+0000\n"
 "Last-Translator: Stefan Uram <the_waiter@centrum.sk>\n"
 "Language-Team: Slovak <sk@li.org>\n"
@@ -15,31 +15,60 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/e_mod_config.c:57
+#: src/e_mod_config.c:76
 msgid "StickyNotes Module"
 msgstr "Modul Poznámkový blok"
 
-#: src/e_mod_config.c:99 src/e_mod_main.c:461
-msgid "Settings"
-msgstr "Nastavenie"
+#: src/e_mod_config.c:127
+msgid "General"
+msgstr "Hlavné"
 
-#: src/e_mod_config.c:102
+#: src/e_mod_config.c:130
 msgid " Note text in the header"
 msgstr " Text poznámky v záhlaví"
 
-#: src/e_mod_config.c:106
+#: src/e_mod_config.c:135
 msgid "Header text"
 msgstr "Text v záhlaví"
 
-#: src/e_mod_config.c:114
+#: src/e_mod_config.c:143
 msgid "Note text"
 msgstr "Text v poznámke"
 
-#: src/e_mod_main.c:81
+#: src/e_mod_config.c:164
+msgid "HTML tags: <b>, <i>, <br>, <ps>, <tab>"
+msgstr "HTML tagy: <b>, <i>, <br>, <ps>, <tab>"
+
+#: src/e_mod_config.c:170
+msgid "Command section"
+msgstr "Sekcia príkazov"
+
+#: src/e_mod_config.c:172
+msgid "Command to run and show output"
+msgstr "Príkaz na zobrazenie výstupu"
+
+#: src/e_mod_config.c:181
+msgid "Refresh interval"
+msgstr "Obnonovací interval"
+
+#: src/e_mod_config.c:184
+#, c-format
+msgid "%2.0f sec"
+msgstr ""
+
+#: src/e_mod_config.c:187
+msgid " x 60 secs"
+msgstr " x 60 sekúnd"
+
+#: src/e_mod_config.c:190
+msgid " Notification text on change"
+msgstr "Notifikácia pri zmene"
+
+#: src/e_mod_main.c:101
 msgid "Advanced"
 msgstr "Rozšírené"
 
-#: src/e_mod_main.c:118
+#: src/e_mod_main.c:147
 msgid ""
 "StickyNotes Module Configuration data needed upgrading. Your old "
 "configuration<br> has been wiped and a new set of defaults initialized. "
@@ -56,7 +85,7 @@ msgstr ""
 "Nové nastavenie<br>to urobí. Teraz si môžete modul nastavit tak, "
 "ako<br>chcete. Ospravedlňujeme se za vzniknuté problémy.<br>"
 
-#: src/e_mod_main.c:138
+#: src/e_mod_main.c:167
 msgid ""
 "Your StickyNotes Module configuration is NEWER than the module version. This "
 "is very<br>strange. This should not happen unless you downgraded<br>the "
@@ -71,29 +100,29 @@ msgstr ""
 "protiopatrenie bolo nastavenie zmenené na<br>predvolené. Ospravedlňujeme se "
 "za vzniknuté problémy.<br>"
 
-#: src/e_mod_main.c:292
+#: src/e_mod_main.c:344
 msgid "StickyNotes"
 msgstr "Poznámkový blok"
 
-#: src/e_mod_main.c:345 src/e_mod_main.c:432
+#: src/e_mod_main.c:400 src/e_mod_main.c:505
 msgid "Sticky note"
 msgstr "Poznámkový blok"
 
-#: src/e_mod_main.c:346 src/e_mod_main.c:433
-#, fuzzy
-msgid ""
-"Sticky Notes for the E/Moksha desktop. Click on the header for the size "
-"changing"
-msgstr ""
-"Poznámkový blok pre desktop E/Moksha. Pre zmenu veľkosti fontu klikni na "
-"záhlavie"
-
-#: src/e_mod_main.c:389
+#: src/e_mod_main.c:458
 msgid "StickyNotes Configuration Updated"
 msgstr "Konfigurácia kostry aktualizovaná"
 
-#~ msgid "General"
-#~ msgstr "Hlavné"
+#: src/e_mod_main.c:539
+msgid "Settings"
+msgstr "Nastavenie"
+
+#, fuzzy
+#~ msgid ""
+#~ "Sticky Notes for the E/Moksha desktop. Click on the header for the size "
+#~ "changing"
+#~ msgstr ""
+#~ "Poznámkový blok pre desktop E/Moksha. Pre zmenu veľkosti fontu klikni na "
+#~ "záhlavie"
 
 #~ msgid "Use Switch 1"
 #~ msgstr "Použi prepínač 1"
