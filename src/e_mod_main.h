@@ -78,8 +78,6 @@ struct _Config_Item
    struct
    {
       int       r, g, b, a;
-      Eina_Bool changed;
-      Eina_Bool enabled;
    } val;
 };
 

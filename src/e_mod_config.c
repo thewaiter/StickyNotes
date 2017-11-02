@@ -21,8 +21,6 @@ struct _E_Config_Dialog_Data
    struct
    {
       int       r, g, b, a;
-      Eina_Bool changed;
-      Eina_Bool enabled;
    } val;
    
  struct
@@ -41,8 +39,7 @@ struct _E_Config_Dialog_Data
       Evas_Object *area_entry5;
       Evas_Object *html_label;
       
-      Evas_Object *color[3];
-      Eina_List   *disable_list;
+      Evas_Object *evas_color[3];
    } ui;
 };
 
@@ -137,7 +134,6 @@ static Evas_Object *
 _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata) 
 {
    Evas_Object *o = NULL, *of = NULL, *ow = NULL;
-   Evas_Coord mw, mh;
    
    o = e_widget_list_add(evas, 0, 0);
 
@@ -194,12 +190,11 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
      
    //~ Color dialog----------------------------------------
    ow = e_widget_color_well_add_full(evas, cfdata->color, 1, 0);
-   cfdata->ui.color[0] = ow;
-   cfdata->ui.disable_list = eina_list_append(cfdata->ui.disable_list, ow);
+   cfdata->ui.evas_color[0] = ow;
    e_widget_on_change_hook_set(ow, _color_cb_change, cfdata);
-   e_widget_framelist_object_append(of, ow);
+   e_widget_framelist_object_append_full(of, ow, 1, 1, 1, 1, 0.0, 0.5, 50, 27,9999, 27);
   
-    e_widget_list_object_append(o, of, 1, 0, 0.5);
+   e_widget_list_object_append(o, of, 1, 0, 0.5);
      
    //~ Command section----------------------------------------
    of = e_widget_framelist_add(evas, D_("Command section"), 0);
