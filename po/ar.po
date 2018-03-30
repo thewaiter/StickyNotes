@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sticky_notes module\n"
 "Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
-"POT-Creation-Date: 2017-10-30 19:29+0100\n"
+"POT-Creation-Date: 2018-03-30 11:02+0200\n"
 "PO-Revision-Date: 2012-01-24 20:44+0300\n"
 "Last-Translator: سمير حسين <almusalimalmusalimah@gmail.com>\n"
 "Language-Team: Arabic <almusalimalmusalimah@gmail.com>\n"
@@ -18,52 +18,56 @@ msgstr ""
 "X-Poedit-Country: SAUDI ARABIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: src/e_mod_config.c:76
+#: src/e_mod_config.c:87
 msgid "StickyNotes Module"
 msgstr "وحدة StickyNotes"
 
-#: src/e_mod_config.c:127
+#: src/e_mod_config.c:144
 msgid "General"
 msgstr "عام"
 
-#: src/e_mod_config.c:130
+#: src/e_mod_config.c:147
 msgid " Note text in the header"
 msgstr ""
 
-#: src/e_mod_config.c:135
+#: src/e_mod_config.c:152
 msgid "Header text"
 msgstr ""
 
-#: src/e_mod_config.c:143
+#: src/e_mod_config.c:160
 msgid "Note text"
 msgstr ""
 
-#: src/e_mod_config.c:164
+#: src/e_mod_config.c:180
 msgid "HTML tags: <b>, <i>, <br>, <ps>, <tab>"
 msgstr ""
 
-#: src/e_mod_config.c:170
+#: src/e_mod_config.c:184
+msgid "Click on the space for color changing"
+msgstr ""
+
+#: src/e_mod_config.c:204
 msgid "Command section"
 msgstr ""
 
-#: src/e_mod_config.c:172
+#: src/e_mod_config.c:206
 msgid "Command to run and show output"
 msgstr ""
 
-#: src/e_mod_config.c:181
+#: src/e_mod_config.c:215
 msgid "Refresh interval"
 msgstr ""
 
-#: src/e_mod_config.c:184
+#: src/e_mod_config.c:218
 #, c-format
 msgid "%2.0f sec"
 msgstr ""
 
-#: src/e_mod_config.c:187
+#: src/e_mod_config.c:221
 msgid " x 60 secs"
 msgstr ""
 
-#: src/e_mod_config.c:190
+#: src/e_mod_config.c:224
 msgid " Notification text on change"
 msgstr ""
 
@@ -71,7 +75,7 @@ msgstr ""
 msgid "Advanced"
 msgstr ""
 
-#: src/e_mod_main.c:147
+#: src/e_mod_main.c:152
 msgid ""
 "StickyNotes Module Configuration data needed upgrading. Your old "
 "configuration<br> has been wiped and a new set of defaults initialized. "
@@ -88,7 +92,7 @@ msgstr ""
 "القديمة تفتقر لتوفيره. هذه اﻹعدادات الجديدة ستصلح<br>ذلك عبر إضافتها فيها. "
 "يمكنك اﻵن إعادة إعداد اﻷشياء حسب<br>رغبتك. نأسف ﻹزعاجك.<br>"
 
-#: src/e_mod_main.c:167
+#: src/e_mod_main.c:172
 msgid ""
 "Your StickyNotes Module configuration is NEWER than the module version. This "
 "is very<br>strange. This should not happen unless you downgraded<br>the "
@@ -102,20 +106,20 @@ msgstr ""
 "آخر<br>يحتوي نسخة جديدة من الوحدة تعمل عليه. هذا سيء<br>و كإجراء إحترازي فإن "
 "إعداداتك ستعاد إلى<br>اﻹفتراضيات. نأسف ﻹزعاجك.<br>"
 
-#: src/e_mod_main.c:344
+#: src/e_mod_main.c:349
 msgid "StickyNotes"
 msgstr "الهيكل العضمي"
 
-#: src/e_mod_main.c:400 src/e_mod_main.c:505
+#: src/e_mod_main.c:409 src/e_mod_main.c:518
 #, fuzzy
 msgid "Sticky note"
 msgstr "الهيكل"
 
-#: src/e_mod_main.c:458
+#: src/e_mod_main.c:467
 msgid "StickyNotes Configuration Updated"
 msgstr "إعدادات الهيكل العظمي حُدِّثت"
 
-#: src/e_mod_main.c:539
+#: src/e_mod_main.c:552
 msgid "Settings"
 msgstr "اﻹعدادات"
 
