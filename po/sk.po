@@ -53,7 +53,7 @@ msgstr "Príkaz na zobrazenie výstupu"
 
 #: src/e_mod_config.c:215
 msgid "Refresh interval"
-msgstr "Obnonovací interval"
+msgstr "Obnovovací interval"
 
 #: src/e_mod_config.c:218
 #, c-format
