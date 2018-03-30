@@ -137,7 +137,6 @@ static Evas_Object *
 _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata) 
 {
    Evas_Object *o = NULL, *of = NULL, *ow = NULL;
-   Evas_Coord mw, mh;
    
    o = e_widget_list_add(evas, 0, 0);
 
@@ -184,21 +183,15 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    ow = e_widget_label_add (evas, D_("Click on the space for color changing"));
    e_widget_framelist_object_append(of, ow);
    
-   //~ ow = edje_object_add(evas);
-   //~ cfdata->ui.text_preview = ow;
-        //~ edje_object_color_class_set
-          //~ (ow, "color", 255, 255, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0);
-        //~ edje_object_part_text_set(ow, "header_text", "Text with applied colors.");
-        //~ e_widget_framelist_object_append(of, ow);
-     
    //~ Color dialog----------------------------------------
    ow = e_widget_color_well_add_full(evas, cfdata->color, 1, 0);
    cfdata->ui.color[0] = ow;
    cfdata->ui.disable_list = eina_list_append(cfdata->ui.disable_list, ow);
    e_widget_on_change_hook_set(ow, _color_cb_change, cfdata);
+   
    //~ e_widget_framelist_object_append(of, ow);
-    e_widget_framelist_object_append_full(of, ow, 1, 1, 1, 1, 0.0, 0.5, 20, 25, 50, 25);
-    e_widget_list_object_append(o, of, 1, 0, 0.5);
+   e_widget_framelist_object_append_full(of, ow, 1, 1, 1, 1, 0.0, 0.5, 20, 25, 50, 25);
+   e_widget_list_object_append(o, of, 1, 0, 0.5);
      
    //~ Command section----------------------------------------
    of = e_widget_framelist_add(evas, D_("Command section"), 0);
