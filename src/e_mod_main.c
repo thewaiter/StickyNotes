@@ -769,9 +769,15 @@ show_command_output(void *data, Eina_Bool header_clicked)
 		ret = strchr(eina_strbuf_string_get(inst->eina_buf), 8);
 		if (ret) {
 			position = ret - eina_strbuf_string_get(inst->eina_buf);
-			eina_strbuf_remove (inst->eina_buf, position - 1, position + 1);
-			eina_strbuf_insert(inst->eina_buf, "<b>", position -1);
-			eina_strbuf_insert(inst->eina_buf, "</b>", position + 3 );
+			if (i == 0){
+			  eina_strbuf_remove (inst->eina_buf, position - 2, position +1);
+			  eina_strbuf_insert(inst->eina_buf, "(<b>", position -2 );
+		    }
+		    if (i == 1){
+			  eina_strbuf_remove (inst->eina_buf, position - 1, position +1);
+			  eina_strbuf_insert(inst->eina_buf, "</b>)", position  );
+		    }
+		      eina_strbuf_replace_all(inst->eina_buf, ") ", ")");
 		}
       }
     }
