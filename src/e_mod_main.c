@@ -119,7 +119,7 @@ e_modapi_init(E_Module *m)
    E_CONFIG_VAL(D, T, area_text_3, STR);
    E_CONFIG_VAL(D, T, area_text_4, STR);
    E_CONFIG_VAL(D, T, area_text_5, STR);
-   E_CONFIG_VAL(D, T, font_size, DOUBLE);
+   E_CONFIG_VAL(D, T, font_size, INT);
    E_CONFIG_VAL(D, T, command, STR);
    E_CONFIG_VAL(D, T, notif_text, STR);
    E_CONFIG_VAL(D, T, notif_switch, INT);
@@ -287,7 +287,7 @@ _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style)
    instances = eina_list_append(instances, inst);
    _sticky_notes_cb_check(inst);
    
-   snprintf(font_size, sizeof(font_size), "%lf", inst->ci->font_size);
+   snprintf(font_size, sizeof(font_size), "%d", inst->ci->font_size);
    _font_size_show(inst, EINA_FALSE, font_size);
    
    /* return the Gadget_Container Client */

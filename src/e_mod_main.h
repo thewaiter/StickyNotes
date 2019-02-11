@@ -74,7 +74,8 @@ struct _Config_Item
    const char *area_text_5; 
    /* actual config properties independently for every running gadget. */
    int header_switch, multiply_switch, notif_switch;
-   double font_size, interval;
+   double font_size;
+   double interval;
    struct
    {
       int       r, g, b, a;

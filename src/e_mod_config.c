@@ -16,7 +16,8 @@ struct _E_Config_Dialog_Data
    char *area_text_3; 
    char *area_text_4; 
    char *area_text_5; 
-   double font_size, interval;
+   double font_size;
+   double interval;
    E_Color    color[3]; 
    struct
    {
@@ -176,7 +177,7 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    e_widget_framelist_object_append(of, ow);
    cfdata->ui.area_entry5 = ow;
 
-   ow = e_widget_label_add (evas, D_("HTML tags: <b>, <i>, <br>, <ps>, <tab>"));
+   ow = e_widget_label_add (evas, D_("HTML tags: see the git repo for more info"));
    cfdata->ui.html_label = ow;
    e_widget_framelist_object_append(of, ow);
 
