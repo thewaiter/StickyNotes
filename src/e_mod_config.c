@@ -16,7 +16,7 @@ struct _E_Config_Dialog_Data
    char *area_text_3; 
    char *area_text_4; 
    char *area_text_5; 
-   double font_size;
+   int font_size;
    double interval;
    E_Color    color[3]; 
    struct
