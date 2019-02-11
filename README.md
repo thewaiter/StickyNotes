@@ -14,7 +14,8 @@ Features:
  - Any command output on the screen
  - Refresh interval for outcome up to 1 hour
  - Font size changing from 8px up to 16px (click on the header icon)
- - Text HTML tag formating (bold, italic, tab, paragraphs)
+ - Text HTML-like tags formating:
+   [TEXBLOCK object](https://www.enlightenment.org/develop/legacy/program_guide/evas/textblock_objects)
  - Note text in the header/custom header text
  - Notification on the text changing
  - cal and ncal support for day highlight
