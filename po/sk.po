@@ -37,7 +37,7 @@ msgstr "Text v poznámke"
 
 #: src/e_mod_config.c:180
 msgid "HTML tags: see the git repo for more info"
-msgstr ""
+msgstr "HTML tag: pozri git repo pre viac informácií"
 
 #: src/e_mod_config.c:184
 msgid "Click on the space for color changing"
@@ -120,8 +120,6 @@ msgstr "Konfigurácia kostry aktualizovaná"
 msgid "Settings"
 msgstr "Nastavenie"
 
-#~ msgid "HTML tags: <b>, <i>, <br>, <ps>, <tab>"
-#~ msgstr "HTML tagy: <b>, <i>, <br>, <ps>, <tab>"
 
 #, fuzzy
 #~ msgid ""
