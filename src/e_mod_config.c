@@ -177,7 +177,7 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    e_widget_framelist_object_append(of, ow);
    cfdata->ui.area_entry5 = ow;
 
-   ow = e_widget_label_add (evas, D_("HTML tags: see the git repo for more info"));
+   ow = e_widget_label_add (evas, D_("HTML tags: see the git repo wiki for more info"));
    cfdata->ui.html_label = ow;
    e_widget_framelist_object_append(of, ow);
 
