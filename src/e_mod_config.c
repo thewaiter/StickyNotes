@@ -56,7 +56,6 @@ static int _basic_apply(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata);
 static void _cb_check_changed(void *data, Evas_Object *obj __UNUSED__);
 static void _cb_check_changed_notif(void *data, Evas_Object *obj __UNUSED__);
 static void _cb_check_changed_command(void *data, Evas_Object *obj __UNUSED__);
-static void _color_cb_change(void *data, Evas_Object *obj);
 
 /* External Functions */
 
@@ -105,7 +104,7 @@ _create_data(E_Config_Dialog *cfd)
 }
 
 static void 
-_free_data(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata) 
+_free_data(E_Config_Dialog *cfd __UNUSED__, E_Config_Dialog_Data *cfdata) 
 {
    sticky_notes_conf->cfd = NULL;
    E_FREE(cfdata);
@@ -131,7 +130,6 @@ _fill_data(Config_Item * ci, E_Config_Dialog_Data *cfdata)
     cfdata->color->g=ci->val.g;
     cfdata->color->b=ci->val.b;
     cfdata->color->a=ci->val.a;
-    _color_cb_change(cfdata, NULL);
 }
 
 static Evas_Object *
@@ -188,7 +186,6 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    ow = e_widget_color_well_add_full(evas, cfdata->color, 1, 0);
    cfdata->ui.color[0] = ow;
    cfdata->ui.disable_list = eina_list_append(cfdata->ui.disable_list, ow);
-   e_widget_on_change_hook_set(ow, _color_cb_change, cfdata);
    
    //~ e_widget_framelist_object_append(of, ow);
    e_widget_framelist_object_append_full(of, ow, 1, 1, 1, 1, 0.0, 0.5, 20, 25, 50, 25);
@@ -205,7 +202,6 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    e_widget_framelist_object_append(of, ow);
    e_widget_on_change_hook_set(ow, _cb_check_changed_command, cfdata);
     
-   
    ow = e_widget_label_add(evas, D_("Refresh interval"));
    e_widget_framelist_object_append(of, ow);
    
@@ -230,15 +226,6 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    
     e_dialog_resizable_set(cfd->dia, EINA_FALSE);
    return o;
-}
-
-static void
-_color_cb_change(void *data, Evas_Object *obj)
-{
-   E_Config_Dialog_Data *cfdata = data;
-   E_Color *col;
-    
-   col = cfdata->color;
 }
 
 static void  
@@ -331,8 +318,6 @@ _basic_apply(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata)
    
    e_config_save_queue();
    _sticky_notes_config_updated(ci);
-   
-   
    
    return 1;
 }

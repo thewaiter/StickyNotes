@@ -203,7 +203,7 @@ e_modapi_init(E_Module *m)
  * Function to unload the module
  */
 EAPI int 
-e_modapi_shutdown(E_Module *m) 
+e_modapi_shutdown(E_Module *m __UNUSED__) 
 {
 	/* Kill the config dialog */
    if (sticky_notes_conf->cfd) e_object_del(E_OBJECT(sticky_notes_conf->cfd));
@@ -233,7 +233,7 @@ e_modapi_shutdown(E_Module *m)
  * Function to Save the modules config
  */ 
 EAPI int 
-e_modapi_save(E_Module *m) 
+e_modapi_save(E_Module *m __UNUSED__) 
 {
    e_config_domain_save("module.sticky_notes", conf_edd, sticky_notes_conf);
    return 1;
@@ -336,7 +336,7 @@ _gc_shutdown(E_Gadcon_Client *gcc)
 
 /* For when container says we are changing position */
 static void 
-_gc_orient(E_Gadcon_Client *gcc, E_Gadcon_Orient orient) 
+_gc_orient(E_Gadcon_Client *gcc, E_Gadcon_Orient orient __UNUSED__) 
 {
    e_gadcon_client_aspect_set(gcc, 16, 16);
    e_gadcon_client_min_size_set(gcc, 200, 40);
@@ -344,7 +344,7 @@ _gc_orient(E_Gadcon_Client *gcc, E_Gadcon_Orient orient)
 
 /* Gadget/Module label, name for our module */
 static const char *
-_gc_label(const E_Gadcon_Client_Class *client_class) 
+_gc_label(const E_Gadcon_Client_Class *client_class __UNUSED__) 
 {
    return D_("StickyNotes");
 }
@@ -352,16 +352,16 @@ _gc_label(const E_Gadcon_Client_Class *client_class)
 
 /* so E can keep a unique instance per-container */
 static const char *
-_gc_id_new(const E_Gadcon_Client_Class *client_class) 
+_gc_id_new(const E_Gadcon_Client_Class *client_class __UNUSED__) 
 {
    Config_Item *ci = NULL;
 
-   ci = _sticky_notes_conf_item_get(NULL);
+   ci = _sticky_notes_conf_item_get(NULL); 
    return ci->id;
 }
 
 static Evas_Object *
-_gc_icon(const E_Gadcon_Client_Class *client_class, Evas *evas) 
+_gc_icon(const E_Gadcon_Client_Class *client_class __UNUSED__, Evas *evas) 
 {
    Evas_Object *o = NULL;
    char buf[4096];
@@ -473,7 +473,7 @@ _sticky_notes_conf_timer(void *data)
 static Config_Item *
 _sticky_notes_conf_item_get(const char *id) 
 {
-    Eina_List *l;
+   Eina_List *l;
    Config_Item *ci;
    char buf[128];
 
@@ -529,7 +529,7 @@ _sticky_notes_conf_item_get(const char *id)
 
 /* Pants On */
 static void 
-_sticky_notes_cb_mouse_down(void *data, Evas *evas, Evas_Object *obj, void *event) 
+_sticky_notes_cb_mouse_down(void *data, Evas *evas __UNUSED__, Evas_Object *obj __UNUSED__, void *event) 
 {
    Instance *inst = NULL;
    Evas_Event_Mouse_Down *ev;
@@ -571,7 +571,7 @@ _sticky_notes_cb_mouse_down(void *data, Evas *evas, Evas_Object *obj, void *even
 
 /* popup menu closing, cleanup */
 static void 
-_sticky_notes_cb_menu_post(void *data, E_Menu *menu) 
+_sticky_notes_cb_menu_post(void *data, E_Menu *menu __UNUSED__) 
 {
    Instance *inst = NULL;
 
@@ -584,7 +584,7 @@ _sticky_notes_cb_menu_post(void *data, E_Menu *menu)
 
 /* call configure from popup */
 static void 
-_sticky_notes_cb_menu_configure(void *data, E_Menu *mn, E_Menu_Item *mi) 
+_sticky_notes_cb_menu_configure(void *data, E_Menu *mn __UNUSED__, E_Menu_Item *mi __UNUSED__) 
 {
 	Instance *inst = NULL;
    if (!(inst = data)) return;
@@ -614,8 +614,6 @@ _sticky_notes_config_updated(Config_Item *ci)
             
         if (inst->ci->command[0]=='\0')
            ecore_timer_del(inst->timer);
-           
-        
                 
         _sticky_notes_cb_check(inst);
      }
@@ -659,14 +657,16 @@ _sticky_notes_cb_check(void *data)
 }
 
 void
-_sticky_settings_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source)
+_sticky_settings_activated_cb(void *data, Evas_Object *o __UNUSED__, 
+			const char *emission __UNUSED__, const char *source __UNUSED__)
 {
 	Instance *inst = data;
    _sticky_notes_cb_menu_configure(inst, NULL, NULL);
 }
 
 void
-_sticky_header_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source)
+_sticky_header_activated_cb(void *data, Evas_Object *o __UNUSED__, 
+			const char *emission __UNUSED__, const char *source __UNUSED__)
 {
 	Instance *inst = data;
 	
@@ -699,7 +699,7 @@ _font_size_show(void *data, Eina_Bool save, const char *chr)
     edje_object_signal_emit(inst->o_sticky_notes, "size_visible", "");
     edje_object_message_signal_process(inst->o_sticky_notes);
     
-    if (chr=="")
+    if (strcmp(chr,"")) 
       edje_object_part_text_set(inst->o_sticky_notes, "font_size", buf);
     else
       edje_object_part_text_set(inst->o_sticky_notes, "font_size", chr);
