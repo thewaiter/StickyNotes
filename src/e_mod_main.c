@@ -62,7 +62,6 @@ static Eina_List *instances = NULL;
 static E_Config_DD *conf_edd = NULL;
 static E_Config_DD *conf_item_edd = NULL;
 
-
 Config *sticky_notes_conf = NULL;
 
 static const E_Gadcon_Client_Class _gc_class = 
@@ -354,10 +353,7 @@ _gc_label(const E_Gadcon_Client_Class *client_class __UNUSED__)
 static const char *
 _gc_id_new(const E_Gadcon_Client_Class *client_class __UNUSED__) 
 {
-   Config_Item *ci = NULL;
-
-   ci = _sticky_notes_conf_item_get(NULL); 
-   return ci->id;
+   return _gc_class.name;
 }
 
 static Evas_Object *
@@ -416,6 +412,7 @@ _sticky_notes_conf_new(void)
    ci->notif_text = eina_stringshare_add("");
    
    _sticky_notes_conf_item_get(NULL);
+   
    IFMODCFGEND;
 
    /* update the version */
