@@ -699,7 +699,7 @@ _font_size_show(void *data, Eina_Bool save, const char *chr)
     edje_object_signal_emit(inst->o_sticky_notes, "size_visible", "");
     edje_object_message_signal_process(inst->o_sticky_notes);
     
-    if (strcmp(chr,"")) 
+    if (!(strcmp(chr,""))) 
       edje_object_part_text_set(inst->o_sticky_notes, "font_size", buf);
     else
       edje_object_part_text_set(inst->o_sticky_notes, "font_size", chr);
