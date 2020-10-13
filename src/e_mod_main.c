@@ -147,20 +147,20 @@ e_modapi_init(E_Module *m)
         if ((sticky_notes_conf->version >> 16) < MOD_CONFIG_FILE_EPOCH) 
           {
              /* config too old */
-	    _sticky_notes_conf_free();
-	     ecore_timer_add(1.0, _sticky_notes_conf_timer,
-			     D_("StickyNotes Module Configuration data needed "
-			     "upgrading. Your old configuration<br> has been"
-			     " wiped and a new set of defaults initialized. "
-			     "This<br>will happen regularly during "
-			     "development, so don't report a<br>bug. "
-			     "This simply means the module needs "
-			     "new configuration<br>data by default for "
-			     "usable functionality that your old<br>"
-			     "configuration simply lacks. This new set of "
-			     "defaults will fix<br>that by adding it in. "
-			     "You can re-configure things now to your<br>"
-			     "liking. Sorry for the inconvenience.<br>"));
+        _sticky_notes_conf_free();
+         ecore_timer_add(1.0, _sticky_notes_conf_timer,
+                 D_("StickyNotes Module Configuration data needed "
+                 "upgrading. Your old configuration<br> has been"
+                 " wiped and a new set of defaults initialized. "
+                 "This<br>will happen regularly during "
+                 "development, so don't report a<br>bug. "
+                 "This simply means the module needs "
+                 "new configuration<br>data by default for "
+                 "usable functionality that your old<br>"
+                 "configuration simply lacks. This new set of "
+                 "defaults will fix<br>that by adding it in. "
+                 "You can re-configure things now to your<br>"
+                 "liking. Sorry for the inconvenience.<br>"));
           }
 
         /* Ardvarks */
@@ -168,17 +168,17 @@ e_modapi_init(E_Module *m)
           {
              /* config too new...wtf ? */
              _sticky_notes_conf_free();
-	     ecore_timer_add(1.0, _sticky_notes_conf_timer, 
-			     D_("Your StickyNotes Module configuration is NEWER "
-			     "than the module version. This is "
-			     "very<br>strange. This should not happen unless"
-			     " you downgraded<br>the module or "
-			     "copied the configuration from a place where"
-			     "<br>a newer version of the module "
-			     "was running. This is bad and<br>as a "
-			     "precaution your configuration has been now "
-			     "restored to<br>defaults. Sorry for the "
-			     "inconvenience.<br>"));
+         ecore_timer_add(1.0, _sticky_notes_conf_timer, 
+                 D_("Your StickyNotes Module configuration is NEWER "
+                 "than the module version. This is "
+                 "very<br>strange. This should not happen unless"
+                 " you downgraded<br>the module or "
+                 "copied the configuration from a place where"
+                 "<br>a newer version of the module "
+                 "was running. This is bad and<br>as a "
+                 "precaution your configuration has been now "
+                 "restored to<br>defaults. Sorry for the "
+                 "inconvenience.<br>"));
           }
      }
 
@@ -205,10 +205,10 @@ e_modapi_init(E_Module *m)
 EAPI int 
 e_modapi_shutdown(E_Module *m __UNUSED__) 
 {
-	/* Kill the config dialog */
+    /* Kill the config dialog */
    if (sticky_notes_conf->cfd) e_object_del(E_OBJECT(sticky_notes_conf->cfd));
    //~ sticky_notes_conf->cfd = NULL;
-	
+    
    /* Unregister the config dialog from the main panel */
    e_configure_registry_item_del("advanced/sticky_notes");
 
@@ -479,27 +479,27 @@ _sticky_notes_conf_item_get(const char *id)
 
    if (!id)
      {
-	int  num = 0;
+    int  num = 0;
 
-	/* Create id */
-	if (sticky_notes_conf->conf_items)
-	  {
-	     const char *p;
+    /* Create id */
+    if (sticky_notes_conf->conf_items)
+      {
+         const char *p;
 
-	     ci = eina_list_last (sticky_notes_conf->conf_items)->data;
-	     p = strrchr (ci->id, '.');
-	     if (p) num = atoi (p + 1) + 1;
-	  }
-	snprintf (buf, sizeof (buf), "%s.%d", _gc_class.name, num);
-	id = buf;
+         ci = eina_list_last (sticky_notes_conf->conf_items)->data;
+         p = strrchr (ci->id, '.');
+         if (p) num = atoi (p + 1) + 1;
+      }
+    snprintf (buf, sizeof (buf), "%s.%d", _gc_class.name, num);
+    id = buf;
      }
    else
      {
-	for (l = sticky_notes_conf->conf_items; l; l = l->next)
-	  {
-	     if (!(ci = l->data)) continue;
-	     if (!strcmp (ci->id, id)) return ci;
-	  }
+    for (l = sticky_notes_conf->conf_items; l; l = l->next)
+      {
+         if (!(ci = l->data)) continue;
+         if (!strcmp (ci->id, id)) return ci;
+      }
      }
 
    //GADCON_CLIENT_CONFIG_GET(Config_Item, sticky_notes_conf->conf_items, _gc_class, id);
@@ -585,8 +585,9 @@ _sticky_notes_cb_menu_post(void *data, E_Menu *menu __UNUSED__)
 /* call configure from popup */
 static void 
 _sticky_notes_cb_menu_configure(void *data, E_Menu *mn __UNUSED__, E_Menu_Item *mi __UNUSED__) 
-{
-	Instance *inst = NULL;
+{ 
+   Instance *inst = NULL;
+   
    if (!(inst = data)) return;
    _config_sticky_notes_module(inst->ci);
 }
@@ -630,23 +631,23 @@ _sticky_notes_cb_check(void *data)
            
    //~ for (l = instances; l; l = l->next) 
      //~ {
-		//~ inst = l->data;
+        //~ inst = l->data;
         
-		if ((inst->ci->header_text) && (!inst->ci->header_switch))
-		  edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->header_text);
-		else
-		  edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->area_text);
+        if ((inst->ci->header_text) && (!inst->ci->header_switch))
+          edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->header_text);
+        else
+          edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->area_text);
 
-		if (inst->ci->command[0]!='\0')
+        if (inst->ci->command[0]!='\0')
           edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst, EINA_TRUE));  
-	    
+        
         if ((inst->ci->area_text) && (inst->ci->command[0]=='\0'))
-		  edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
-		  
-		  
-		  //~ snprintf(buf, sizeof(buf),"R:%d,G:%d,B:%d,A:%d",inst->ci->val.r, inst->ci->val.g, inst->ci->val.b, inst->ci->val.a);
+          edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
+          
+          
+          //~ snprintf(buf, sizeof(buf),"R:%d,G:%d,B:%d,A:%d",inst->ci->val.r, inst->ci->val.g, inst->ci->val.b, inst->ci->val.a);
           //~ e_util_dialog_internal("RGBA", buf);
-		  edje_object_color_class_set
+          edje_object_color_class_set
           (inst->o_sticky_notes, "color",
           inst->ci->val.r, inst->ci->val.g, inst->ci->val.b, inst->ci->val.a,
           0, 0, 0, 255, 0, 0, 0, 255);
@@ -658,28 +659,28 @@ _sticky_notes_cb_check(void *data)
 
 void
 _sticky_settings_activated_cb(void *data, Evas_Object *o __UNUSED__, 
-			const char *emission __UNUSED__, const char *source __UNUSED__)
+            const char *emission __UNUSED__, const char *source __UNUSED__)
 {
-	Instance *inst = data;
+    Instance *inst = data;
    _sticky_notes_cb_menu_configure(inst, NULL, NULL);
 }
 
 void
 _sticky_header_activated_cb(void *data, Evas_Object *o __UNUSED__, 
-			const char *emission __UNUSED__, const char *source __UNUSED__)
+            const char *emission __UNUSED__, const char *source __UNUSED__)
 {
-	Instance *inst = data;
-	
-	if (inst->ci->font_size<16)
-	  inst->ci->font_size++;
-	else
-	  inst->ci->font_size = 8;
-	 
-	if (!(inst=data)) return;
-	
+    Instance *inst = data;
+    
+    if (inst->ci->font_size<16)
+      inst->ci->font_size++;
+    else
+      inst->ci->font_size = 8;
+     
+    if (!(inst=data)) return;
+    
     if (inst->ci->command[0]!='\0')
       edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst, EINA_FALSE));  
-	     
+         
     if ((inst->ci->area_text) && (inst->ci->command[0]=='\0'))
       edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
 
@@ -689,12 +690,13 @@ _sticky_header_activated_cb(void *data, Evas_Object *o __UNUSED__,
 void
 _font_size_show(void *data, Eina_Bool save, const char *chr)
 {
-	Instance *inst = data;
-    char buf[4];	
-	if (inst->ci->font_size<10)
-      snprintf(buf, sizeof(buf), " %d",(int)inst->ci->font_size);
+    Instance *inst = data;
+    char buf[64];
+    
+    if (inst->ci->font_size<10)
+      snprintf(buf, sizeof(buf), " %d", inst->ci->font_size);
     else
-      snprintf(buf, sizeof(buf), "%d",(int)inst->ci->font_size);
+      snprintf(buf, sizeof(buf), "%d", inst->ci->font_size);
     
     edje_object_signal_emit(inst->o_sticky_notes, "size_visible", "");
     edje_object_message_signal_process(inst->o_sticky_notes);
@@ -711,11 +713,12 @@ _font_size_show(void *data, Eina_Bool save, const char *chr)
 const char *
 text_sized(void *data)
 {
-	Instance *inst = data;
-	char buf[16];
-	eina_strbuf_reset(inst->eina_buf);
-	
-	snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
+    Instance *inst = data;
+    char buf[16];
+
+    eina_strbuf_reset(inst->eina_buf);
+
+    snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
     eina_strbuf_append(inst->eina_buf, buf);
     eina_strbuf_append(inst->eina_buf, inst->ci->area_text);
     eina_strbuf_append(inst->eina_buf, "<br>");
@@ -728,72 +731,71 @@ text_sized(void *data)
     eina_strbuf_append(inst->eina_buf, inst->ci->area_text_5);
     eina_strbuf_append(inst->eina_buf, "</font_size>");
 
-	return eina_strbuf_string_get(inst->eina_buf);
+  return eina_strbuf_string_get(inst->eina_buf);
 }
 
 const char *
 show_command_output(void *data, Eina_Bool header_clicked)
 {
-	Instance *inst = data;
+    Instance *inst = data;
     FILE *output;
     char line[256], buf[16];
    
     eina_strbuf_reset(inst->eina_buf);
     eina_strbuf_reset(inst->eina_compare);
     eina_strbuf_append(inst->eina_compare, eina_strbuf_string_get(inst->eina_temp));
-	
-	output = popen(inst->ci->command, "r");
-	
+
+    output = popen(inst->ci->command, "r");
+
     snprintf(buf, sizeof(buf), "<font_size= %d>",(int)inst->ci->font_size);
     eina_strbuf_append(inst->eina_buf, buf);
     
     /* Reading command output to the eina buffer*/
     
-	 while (fgets(line, 256, output) != NULL){
+    while (fgets(line, 256, output) != NULL){
        eina_strbuf_append(inst->eina_buf, elm_entry_utf8_to_markup(line));
-	 } 
-	
-	eina_strbuf_reset(inst->eina_temp);
-	eina_strbuf_append(inst->eina_temp, eina_strbuf_string_get(inst->eina_buf));
+    } 
+
+    eina_strbuf_reset(inst->eina_temp);
+    eina_strbuf_append(inst->eina_temp, eina_strbuf_string_get(inst->eina_buf));
     
     pclose(output);
     
     eina_strbuf_append(inst->eina_buf, "</font_size>");
     
     /*condition if the command is ncal or cal. If yes, format day name and day number to BOLD*/
-	if (strncmp(inst->ci->command, "ncal", 4)==0 || strncmp(inst->ci->command, "cal", 3)==0){
-	  int i, position;
-	  char *ret;
-	  
-	  for (i=0; i<2; i++) {
-		ret = strchr(eina_strbuf_string_get(inst->eina_buf), 8);
-		if (ret) {
-			position = ret - eina_strbuf_string_get(inst->eina_buf);
-			if (i == 0){
-			  eina_strbuf_remove (inst->eina_buf, position - 2, position +1);
-			  eina_strbuf_insert(inst->eina_buf, "(<b>", position -2 );
-		    }
-		    if (i == 1){
-			  eina_strbuf_remove (inst->eina_buf, position - 1, position +1);
-			  eina_strbuf_insert(inst->eina_buf, "</b>)", position  );
-		    }
-		      eina_strbuf_replace_all(inst->eina_buf, ") ", ")");
-		}
+    if (strncmp(inst->ci->command, "ncal", 4)==0 || strncmp(inst->ci->command, "cal", 3)==0){
+      int i, position;
+      char *ret;
+  
+      for (i=0; i<2; i++) {
+        ret = strchr(eina_strbuf_string_get(inst->eina_buf), 8);
+        if (ret) {
+            position = ret - eina_strbuf_string_get(inst->eina_buf);
+            if (i == 0){
+              eina_strbuf_remove (inst->eina_buf, position - 2, position +1);
+              eina_strbuf_insert(inst->eina_buf, "(<b>", position -2 );
+            }
+            if (i == 1){
+            eina_strbuf_remove (inst->eina_buf, position - 1, position +1);
+            eina_strbuf_insert(inst->eina_buf, "</b>)", position  );
+            }
+            eina_strbuf_replace_all(inst->eina_buf, ") ", ")");
+       }
       }
     }
-	  
-	/*condition if the text has been changed*/
-	if (eina_strbuf_length_get(inst->eina_compare)>0 && strcmp(eina_strbuf_string_get(inst->eina_compare), eina_strbuf_string_get(inst->eina_temp))!=0){
-    	char cmd[200];
-	    if ((inst->ci->notif_switch) && (header_clicked)){ 
-	       snprintf(cmd, 200, "notify-send --expire-time=5000 --icon=%s 'StickyNote' '%s'", "accessories-text-editor", inst->ci->notif_text);   
-	       ecore_init();
+
+    /*condition if the text has been changed*/
+    if (eina_strbuf_length_get(inst->eina_compare) > 0 && strcmp(eina_strbuf_string_get(inst->eina_compare), eina_strbuf_string_get(inst->eina_temp))!=0){
+        char cmd[200];
+        if ((inst->ci->notif_switch) && (header_clicked)){ 
+           snprintf(cmd, 200, "notify-send --expire-time=5000 --icon=%s 'StickyNote' '%s'",
+                                          "accessories-text-editor", inst->ci->notif_text);   
+           ecore_init();
            ecore_exe_run(cmd, NULL);
            ecore_shutdown();
-	    }
-	}	
+       }
+     }
 
     return eina_strbuf_string_get(inst->eina_buf);
 }
-
-
