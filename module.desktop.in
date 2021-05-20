@@ -5,6 +5,7 @@ Name[ru]=
 Name[de]=Sticky_notesett
 Name[eo]=Sticky_noteseto
 Name[el]=Sticky_notes
+Name[pt]=StickyNotes
 Icon=e-module-sticky_notes
 Comment=Sticky Notes module for the E/Moksha desktop
 Comment[ru]=
@@ -17,6 +18,6 @@ Comment[gl]=
 Comment[fr]=
 Comment[it]=
 Comment[el]=
-Comment[pt]=
+Comment[pt]=Módulo de notas adesivas para a área de trabalho do E/Moksha
 #Several different types available here. NEED TO DOC THESE.
 X-Enlightenment-ModuleType=utils
