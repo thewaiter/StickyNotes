@@ -780,7 +780,7 @@ show_command_output(void *data, Eina_Bool header_clicked)
 
       day = get_time();
       sprintf(day_a, " %s ", day);
-      sprintf(day_b, "<b>[%s]</b>", day);
+      sprintf(day_b, "|<b>%s</b>|", day);
       eina_strbuf_replace(inst->eina_buf, day_a, day_b, 1);
     }
 
