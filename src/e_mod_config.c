@@ -25,7 +25,7 @@ struct _E_Config_Dialog_Data
       Eina_Bool changed;
       Eina_Bool enabled;
    } val;
-   
+
  struct
    {
       Evas_Object *header_label;
@@ -114,43 +114,43 @@ static void
 _fill_data(Config_Item * ci, E_Config_Dialog_Data *cfdata) 
 {
    /* load a temp copy of the config variables */
-    cfdata->header_switch = ci->header_switch;
-    if (ci->header_text) cfdata->header_text = strdup(ci->header_text);
-    if (ci->area_text) cfdata->area_text = strdup(ci->area_text);
-    if (ci->area_text_2) cfdata->area_text_2 = strdup(ci->area_text_2);
-    if (ci->area_text_3) cfdata->area_text_3 = strdup(ci->area_text_3);
-    if (ci->area_text_4) cfdata->area_text_4 = strdup(ci->area_text_4);
-    if (ci->area_text_5) cfdata->area_text_5 = strdup(ci->area_text_5);
-    if (ci->command) cfdata->command = strdup(ci->command);
-    if (ci->notif_text) cfdata->notif_text = strdup(ci->notif_text);
-    cfdata->interval = ci->interval;
-    cfdata->multiply_switch = ci->multiply_switch;
-    cfdata->notif_switch = ci->notif_switch;
-    cfdata->color->r=ci->val.r;
-    cfdata->color->g=ci->val.g;
-    cfdata->color->b=ci->val.b;
-    cfdata->color->a=ci->val.a;
+   cfdata->header_switch = ci->header_switch;
+   if (ci->header_text) cfdata->header_text = strdup(ci->header_text);
+   if (ci->area_text) cfdata->area_text = strdup(ci->area_text);
+   if (ci->area_text_2) cfdata->area_text_2 = strdup(ci->area_text_2);
+   if (ci->area_text_3) cfdata->area_text_3 = strdup(ci->area_text_3);
+   if (ci->area_text_4) cfdata->area_text_4 = strdup(ci->area_text_4);
+   if (ci->area_text_5) cfdata->area_text_5 = strdup(ci->area_text_5);
+   if (ci->command) cfdata->command = strdup(ci->command);
+   if (ci->notif_text) cfdata->notif_text = strdup(ci->notif_text);
+   cfdata->interval = ci->interval;
+   cfdata->multiply_switch = ci->multiply_switch;
+   cfdata->notif_switch = ci->notif_switch;
+   cfdata->color->r=ci->val.r;
+   cfdata->color->g=ci->val.g;
+   cfdata->color->b=ci->val.b;
+   cfdata->color->a=ci->val.a;
 }
 
 static Evas_Object *
 _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata) 
 {
    Evas_Object *o = NULL, *of = NULL, *ow = NULL;
-   
+
    o = e_widget_list_add(evas, 0, 0);
 
    of = e_widget_framelist_add(evas, D_("General"), 0);
    e_widget_framelist_content_align_set(of, 0.0, 0.0);
-   
+
    ow = e_widget_check_add(evas, D_(" Note text in the header"), &(cfdata->header_switch));
    cfdata->ui.header_switcher = ow;
    e_widget_framelist_object_append(of, ow);
    e_widget_on_change_hook_set(ow, _cb_check_changed, cfdata);
-      
+
    ow = e_widget_label_add (evas, D_("Header text"));
    cfdata->ui.header_label = ow;
    e_widget_framelist_object_append (of, ow);
-   
+
    ow = e_widget_entry_add(evas, &(cfdata->header_text), NULL, NULL, NULL);
    cfdata->ui.header_text = ow;
    e_widget_framelist_object_append (of, ow);
@@ -158,7 +158,7 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    ow = e_widget_label_add (evas, D_("Note text"));
    cfdata->ui.area_label = ow;
    e_widget_framelist_object_append(of, ow);
-   
+
    ow = e_widget_entry_add(evas, &(cfdata->area_text), NULL, NULL, NULL);
    e_widget_framelist_object_append(of, ow);
    cfdata->ui.area_entry1 = ow;
@@ -181,49 +181,49 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
 
    ow = e_widget_label_add (evas, D_("Click on the space for color changing"));
    e_widget_framelist_object_append(of, ow);
-   
-   //~ Color dialog----------------------------------------
+
+   /* Color dialog */
    ow = e_widget_color_well_add_full(evas, cfdata->color, 1, 0);
    cfdata->ui.color[0] = ow;
    cfdata->ui.disable_list = eina_list_append(cfdata->ui.disable_list, ow);
-   
-   //~ e_widget_framelist_object_append(of, ow);
+
+   /* e_widget_framelist_object_append(of, ow); */
    e_widget_framelist_object_append_full(of, ow, 1, 1, 1, 1, 0.0, 0.5, 20, 25, 50, 25);
    e_widget_list_object_append(o, of, 1, 0, 0.5);
-     
-   //~ Command section----------------------------------------
+
+   /* Command section */
    of = e_widget_framelist_add(evas, D_("Command section"), 0);
-  
+
    ow = e_widget_label_add (evas, D_("Command to run and show output"));
    e_widget_size_min_set(ow, 120, 25);
    e_widget_framelist_object_append(of, ow);
-   
+
    ow = e_widget_entry_add(evas, &(cfdata->command), NULL, NULL, NULL);
    e_widget_framelist_object_append(of, ow);
    e_widget_on_change_hook_set(ow, _cb_check_changed_command, cfdata);
-    
+
    ow = e_widget_label_add(evas, D_("Refresh interval"));
    e_widget_framelist_object_append(of, ow);
-   
+
    ow = e_widget_slider_add(evas, 1, 0, D_("%2.0f sec"), 0.0, 60.0, 1.0, 0,&(cfdata->interval), NULL, 40);
    e_widget_framelist_object_append(of, ow);
-   
+
    ow = e_widget_check_add(evas, D_(" x 60 secs"), &(cfdata->multiply_switch));
    e_widget_framelist_object_append(of, ow);
-   
+
    ow = e_widget_check_add(evas, D_(" Notification text on change"), &(cfdata->notif_switch));
    e_widget_framelist_object_append(of, ow);
    e_widget_on_change_hook_set(ow, _cb_check_changed_notif, cfdata);
-   
+
    ow = e_widget_entry_add(evas, &(cfdata->notif_text), NULL, NULL, NULL);
    e_widget_framelist_object_append(of, ow);
    cfdata->ui.notif_entry = ow;
-   
+
    e_widget_list_object_append(o, of, 1, 0, 0.5);
    _cb_check_changed(cfdata, NULL);
    _cb_check_changed_command(cfdata, NULL);
    _cb_check_changed_notif(cfdata, NULL);
-   
+
     e_dialog_resizable_set(cfd->dia, EINA_FALSE);
    return o;
 }
@@ -231,57 +231,60 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
 static void  
 _cb_check_changed(void *data, Evas_Object *obj __UNUSED__)
 {
-	E_Config_Dialog_Data *cfdata;
-	if (!(cfdata = data)) return;
-    
-    if(cfdata->header_switch) {
-      e_widget_disabled_set(cfdata->ui.header_label, EINA_TRUE);
-      e_widget_disabled_set(cfdata->ui.header_text, EINA_TRUE);
-    } else {
-      e_widget_disabled_set(cfdata->ui.header_label, EINA_FALSE);
-      e_widget_disabled_set(cfdata->ui.header_text, EINA_FALSE);
-    }
+   E_Config_Dialog_Data *cfdata;
+   if (!(cfdata = data)) return;
+
+   if(cfdata->header_switch) {
+     e_widget_disabled_set(cfdata->ui.header_label, EINA_TRUE);
+     e_widget_disabled_set(cfdata->ui.header_text, EINA_TRUE);
+   } else {
+     e_widget_disabled_set(cfdata->ui.header_label, EINA_FALSE);
+     e_widget_disabled_set(cfdata->ui.header_text, EINA_FALSE);
+   }
 }
 
 static void  
 _cb_check_changed_notif(void *data, Evas_Object *obj __UNUSED__)
 {
-	E_Config_Dialog_Data *cfdata;
-	if (!(cfdata = data)) return;
-    if(cfdata->notif_switch) 
-      e_widget_disabled_set(cfdata->ui.notif_entry, EINA_FALSE);
-    else 
-      e_widget_disabled_set(cfdata->ui.notif_entry, EINA_TRUE);
+   E_Config_Dialog_Data *cfdata;
+   if (!(cfdata = data)) return;
+   if(cfdata->notif_switch)
+     e_widget_disabled_set(cfdata->ui.notif_entry, EINA_FALSE);
+   else
+     e_widget_disabled_set(cfdata->ui.notif_entry, EINA_TRUE);
 }
 
 static void  _cb_check_changed_command(void *data, Evas_Object *obj __UNUSED__)
 {
-	E_Config_Dialog_Data *cfdata;
-	if (!(cfdata = data)) return;
-	
-	if(strlen(cfdata->command)) {
-	  if (cfdata->header_switch)
-	  e_widget_check_checked_set(cfdata->ui.header_switcher, 0);
-  	  e_widget_disabled_set(cfdata->ui.header_switcher, EINA_TRUE);
+   E_Config_Dialog_Data *cfdata;
+   if (!(cfdata = data)) return;
 
-	  e_widget_disabled_set(cfdata->ui.header_text, EINA_FALSE);
-	  e_widget_disabled_set(cfdata->ui.area_label, EINA_TRUE);
+   if(strlen(cfdata->command))
+   {
+      if (cfdata->header_switch)
+        e_widget_check_checked_set(cfdata->ui.header_switcher, 0);
+
+      e_widget_disabled_set(cfdata->ui.header_switcher, EINA_TRUE);
+      e_widget_disabled_set(cfdata->ui.header_text, EINA_FALSE);
+      e_widget_disabled_set(cfdata->ui.area_label, EINA_TRUE);
       e_widget_disabled_set(cfdata->ui.area_entry1, EINA_TRUE);
       e_widget_disabled_set(cfdata->ui.area_entry2, EINA_TRUE);
       e_widget_disabled_set(cfdata->ui.area_entry3, EINA_TRUE);
       e_widget_disabled_set(cfdata->ui.area_entry4, EINA_TRUE);
       e_widget_disabled_set(cfdata->ui.area_entry5, EINA_TRUE);
       e_widget_disabled_set(cfdata->ui.html_label, EINA_TRUE);
-    } else {
-	  e_widget_disabled_set(cfdata->ui.header_switcher, EINA_FALSE);
-  	  e_widget_disabled_set(cfdata->ui.area_label, EINA_FALSE);
+   }
+     else
+   {
+      e_widget_disabled_set(cfdata->ui.header_switcher, EINA_FALSE);
+      e_widget_disabled_set(cfdata->ui.area_label, EINA_FALSE);
       e_widget_disabled_set(cfdata->ui.area_entry1, EINA_FALSE);
       e_widget_disabled_set(cfdata->ui.area_entry2, EINA_FALSE);
       e_widget_disabled_set(cfdata->ui.area_entry3, EINA_FALSE);
       e_widget_disabled_set(cfdata->ui.area_entry4, EINA_FALSE);
       e_widget_disabled_set(cfdata->ui.area_entry5, EINA_FALSE);
       e_widget_disabled_set(cfdata->ui.html_label, EINA_FALSE);
-    }
+   }
 }
 
 static int 
@@ -294,7 +297,7 @@ _basic_apply(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata)
    ci->val.g = cfdata->color->g;
    ci->val.b = cfdata->color->b;
    ci->val.a = cfdata->color->a;  
-   
+
    if (ci->header_text) eina_stringshare_del(ci->header_text);
    ci->header_text = eina_stringshare_add(cfdata->header_text);
    if (ci->area_text) eina_stringshare_del(ci->area_text);
@@ -311,14 +314,13 @@ _basic_apply(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata)
    ci->command = eina_stringshare_add(cfdata->command);
    if (ci->notif_text) eina_stringshare_del(ci->notif_text);
    ci->notif_text = eina_stringshare_add(cfdata->notif_text);
-   
+
    ci->interval = cfdata->interval;
    ci->multiply_switch = cfdata->multiply_switch;
    ci->notif_switch = cfdata->notif_switch;
-   
+
    e_config_save_queue();
    _sticky_notes_config_updated(ci);
-   
+
    return 1;
 }
-
