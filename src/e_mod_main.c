@@ -665,7 +665,7 @@ _sticky_notes_cb_check(void *data)
    return EINA_TRUE;
 }
 
-void
+static void
 _sticky_settings_activated_cb(void *data, Evas_Object *o __UNUSED__, 
             const char *emission __UNUSED__, const char *source __UNUSED__)
 {
@@ -673,13 +673,13 @@ _sticky_settings_activated_cb(void *data, Evas_Object *o __UNUSED__,
    _sticky_notes_cb_menu_configure(inst, NULL, NULL);
 }
 
-void
+static void
 _sticky_header_icon_activated_cb(void *data, Evas_Object *o __UNUSED__,
             const char *emission __UNUSED__, const char *source __UNUSED__)
 {
    Instance *inst = data;
     
-   if (inst->ci->font_size<16)
+   if (inst->ci->font_size < 16)
      inst->ci->font_size++;
    else
      inst->ci->font_size = 8;
@@ -695,7 +695,7 @@ _sticky_header_icon_activated_cb(void *data, Evas_Object *o __UNUSED__,
    _font_size_show(inst, EINA_TRUE, "");
 }
 
-void
+static void
 _sticky_header_text_activated_cb(void *data, Evas_Object *o __UNUSED__,
             const char *emission __UNUSED__, const char *source __UNUSED__)
 {
@@ -707,13 +707,13 @@ _sticky_header_text_activated_cb(void *data, Evas_Object *o __UNUSED__,
      edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst, EINA_FALSE));
 }
 
-void
+static void
 _font_size_show(void *data, Eina_Bool save, const char *chr)
 {
    Instance *inst = data;
    char buf[64];
 
-   if (inst->ci->font_size<10)
+   if (inst->ci->font_size < 10)
      snprintf(buf, sizeof(buf), " %d", inst->ci->font_size);
    else
      snprintf(buf, sizeof(buf), "%d", inst->ci->font_size);
