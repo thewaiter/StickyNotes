@@ -87,7 +87,7 @@ collections {
 				desc { "hidden"; inherit; hid; }
 				desc { "visible"; inherit; vis; }
 			}
-			text { "header_text"; nomouse; effect: SOFT_SHADOW;
+			text { "Header_text"; nomouse; effect: SOFT_SHADOW;
 				desc { "default"; color: VISIBLE; color_class: "color";
 					color3: "#000000";
 					rel1.relative: 0.0 0.0;
@@ -183,10 +183,15 @@ collections {
 				action: STATE_SET "default" 0.0;
 				target: "bg";
 			}
-				program { "header_activated";
+			program { "header_icon_activated";
 				signal: "mouse,clicked,1";
 				source: "Header_icon";
-				action: SIGNAL_EMIT "header,activated" "stickynotes";
+				action: SIGNAL_EMIT "header,icon,activated" "stickynotes";
+			}
+			program { "header_activated";
+				signal: "mouse,clicked,1";
+				source: "bg";
+				action: SIGNAL_EMIT "header,text,activated" "stickynotes";
 			}
 			program { "settings_activated";
 				signal: "mouse,clicked,1";
