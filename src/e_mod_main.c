@@ -755,11 +755,11 @@ text_sized(void *data)
 }
 
 static char *
-get_time()
+get_today()
 {
    time_t rawtime;
    struct tm * timeinfo;
-   char buf[64] = "";
+   char buf[3] = {'\0'};
    time(&rawtime);
    timeinfo = localtime( &rawtime );
 
@@ -795,14 +795,15 @@ show_command_output(void *data, Eina_Bool header_clicked)
 
    /*condition if the command is ncal. If yes, format day number to BOLD*/
    if (!strncmp(inst->ci->command, "ncal", 4))
-    {
-      char *day;
-      char day_a[16], day_b[16];
+     {
+       char *day;
+       char day_a[16], day_b[16];
 
-      day = get_time();
-      sprintf(day_a, " %s ", day);
-      sprintf(day_b, "|<b>%s</b>|", day);
-      eina_strbuf_replace(inst->eina_buf, day_a, day_b, 1);
+       day = get_today();
+       sprintf(day_a, " %s ", day);
+       sprintf(day_b, "|<b>%s</b>|", day);
+       eina_strbuf_replace(inst->eina_buf, day_a, day_b, 1);
+       free(day);
     }
 
    /*condition if the text has been changed*/
