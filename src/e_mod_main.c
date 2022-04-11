@@ -796,8 +796,6 @@ show_command_output(void *data, Eina_Bool header_clicked)
    /*condition if the command is ncal. If yes, format day number to BOLD*/
    if (!strncmp(inst->ci->command, "ncal", 4))
     {
-      int i, position;
-      char *ret;
       char *day;
       char day_a[16], day_b[16];
 
