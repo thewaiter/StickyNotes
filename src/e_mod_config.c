@@ -1,6 +1,4 @@
 #include <e.h>
-#include <Elementary.h>
-
 #include "e_mod_main.h"
 
 /* The typedef for this structure is declared inside the E code in order to

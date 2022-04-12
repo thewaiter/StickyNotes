@@ -1,9 +1,5 @@
 #include <e.h>
 #include "e_mod_main.h"
-#include <Evas.h>
-#include <Ecore.h>
-#include <Ecore_Evas.h>
-#include <Elementary.h>
 
 /* Local Function Prototypes */
 static E_Gadcon_Client *_gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style);
@@ -785,7 +781,7 @@ show_command_output(void *data, Eina_Bool header_clicked)
 
    /* Reading command output to the eina buffer*/
    while (fgets(line, 256, output) != NULL)
-     eina_strbuf_append(inst->eina_buf, elm_entry_utf8_to_markup(line));
+     eina_strbuf_append(inst->eina_buf, evas_textblock_text_utf8_to_markup(NULL, line));
 
    eina_strbuf_reset(inst->eina_temp);
    eina_strbuf_append(inst->eina_temp, eina_strbuf_string_get(inst->eina_buf));
