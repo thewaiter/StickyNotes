@@ -2,30 +2,38 @@
 #include "e_mod_main.h"
 
 /* Local Function Prototypes */
-static E_Gadcon_Client *_gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style);
-static void _gc_shutdown(E_Gadcon_Client *gcc);
-static void _gc_orient(E_Gadcon_Client *gcc, E_Gadcon_Orient orient);
-static const char *_gc_label(const E_Gadcon_Client_Class *client_class);
-static const char *_gc_id_new(const E_Gadcon_Client_Class *client_class);
-static Evas_Object *_gc_icon(const E_Gadcon_Client_Class *client_class, Evas *evas);
+static E_Gadcon_Client * _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style);
+static void              _gc_shutdown(E_Gadcon_Client *gcc);
+static void              _gc_orient(E_Gadcon_Client *gcc, E_Gadcon_Orient orient);
+static const char *      _gc_label(const E_Gadcon_Client_Class *client_class);
+static const char *      _gc_id_new(const E_Gadcon_Client_Class *client_class);
+static Evas_Object *     _gc_icon(const E_Gadcon_Client_Class *client_class, Evas *evas);
 
-static Config_Item *_sticky_notes_conf_item_get(const char *id);
-static void      _sticky_notes_conf_new(void);
-static void      _sticky_notes_conf_free(void);
-static Eina_Bool _sticky_notes_conf_timer(void *data);
+static Config_Item *     _sticky_notes_conf_item_get(const char *id);
+static void              _sticky_notes_conf_new(void);
+static void              _sticky_notes_conf_free(void);
+static Eina_Bool         _sticky_notes_conf_timer(void *data);
 
-static void      _sticky_notes_cb_mouse_down(void *data, Evas *evas, Evas_Object *obj, void *event);
-static void      _sticky_notes_cb_menu_post(void *data, E_Menu *menu);
-static void      _sticky_notes_cb_menu_configure(void *data, E_Menu *mn, E_Menu_Item *mi);
-static Eina_Bool _sticky_notes_cb_check(void *data);
-static void      _sticky_header_icon_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source);
-static void      _sticky_header_text_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source);
-static void      _font_size_show(void *data, Eina_Bool save, const char *chr);
-static void      _sticky_settings_activated_cb(void *data, Evas_Object *o, const char *emission, const char *source);
-static Eina_Bool _change_cb(void *data, int type __UNUSED__, void *event __UNUSED__);
+static void              _sticky_notes_cb_mouse_down(void *data, Evas *evas, 
+                                                     Evas_Object *obj, void *event);
+static void              _sticky_notes_cb_menu_post(void *data, E_Menu *menu);
+static void              _sticky_notes_cb_menu_configure(void *data, E_Menu *mn, 
+                                                         E_Menu_Item *mi);
+static Eina_Bool         _sticky_notes_cb_check(void *data);
+static void              _sticky_header_icon_activated_cb(void *data, Evas_Object *o, 
+                                                          const char *emission, 
+                                                          const char *source);
+static void              _sticky_header_text_activated_cb(void *data, Evas_Object *o, 
+                                                          const char *emission, 
+                                                          const char *source);
+static void              _font_size_show(void *data, Eina_Bool save, const char *chr);
+static void              _sticky_settings_activated_cb(void *data, Evas_Object *o, 
+                                                          const char *emission, 
+                                                          const char *source);
+static Eina_Bool         _change_cb(void *data, int type __UNUSED__, void *event __UNUSED__);
 
-const char *     text_sized(void *data);
-const char *     show_command_output(void *data, Eina_Bool header_clicked);
+const char *             text_sized(void *data);
+const char *             show_command_output(void *data, Eina_Bool header_clicked);
 
 
 /* Local Structures */
