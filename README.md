@@ -18,7 +18,7 @@ Features:
    [TEXBLOCK object](https://www.enlightenment.org/develop/legacy/program_guide/evas/textblock_objects)
  - Note text in the header/custom header text
  - Notification on the text changing
- - cal and ncal support for day highlight
+ - ncal support for day highlight (best result with ncal -hwbM)
  - Nice transparent look
  - Light on system resources
  
