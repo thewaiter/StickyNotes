@@ -12,7 +12,9 @@ Features:
  - Word wrap
  [<img align="right" src="http://i.imgur.com/QuEYaJf.png">](http://i.imgur.com/QuEYaJf.png)
  - Any command output on the screen
- - Refresh interval for outcome up to 1 hour
+ - Refresh interval for command outcome up to 1 hour
+ - Refresh command after system resume
+ - Refresh command after header click 
  - Font size changing from 8px up to 16px (click on the header icon)
  - Text HTML-like tags formating:
    [TEXBLOCK object](https://www.enlightenment.org/develop/legacy/program_guide/evas/textblock_objects)
@@ -26,9 +28,9 @@ Features:
  Setting dialog
  <br>
  
-  [<img align="left" src="http://www.enlightenment.org/ss/e-5918aa76ce6f95.29838983.jpg">](http://www.enlightenment.org/ss/e-5918aa76ce6f95.29838983.jpg)
+  [<img align="left" src="https://i.imgur.com/Jo0uBJk.jpg ">](https://i.imgur.com/L02F1L2.jpg)
 
 <br>
-2017 05 14
+2022 04 16
 
 <Stefan Uram thewaiter@centrum.sk>
