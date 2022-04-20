@@ -782,14 +782,15 @@ show_command_output(void *data, Eina_Bool header_clicked)
    eina_strbuf_reset(inst->eina_compare);
    eina_strbuf_append(inst->eina_compare, eina_strbuf_string_get(inst->eina_temp));
 
-   output = popen(inst->ci->command, "r");
-
    snprintf(buf, sizeof(buf), "<font_size= %d>", (int)inst->ci->font_size);
    eina_strbuf_append(inst->eina_buf, buf);
 
    /* Reading command output to the eina buffer*/
-   while (fgets(line, 256, output) != NULL)
-     eina_strbuf_append(inst->eina_buf, evas_textblock_text_utf8_to_markup(NULL, line));
+   if (output = popen(inst->ci->command, "r"))
+     {
+     while (fgets(line, 256, output) != NULL)
+       eina_strbuf_append(inst->eina_buf, evas_textblock_text_utf8_to_markup(NULL, line));
+     }
 
    eina_strbuf_reset(inst->eina_temp);
    eina_strbuf_append(inst->eina_temp, eina_strbuf_string_get(inst->eina_buf));
