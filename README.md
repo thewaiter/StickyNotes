@@ -25,12 +25,11 @@ Features:
  - Light on system resources
  
  <br>
- Setting dialog
- <br>
  
-  [<img align="left" src="https://i.imgur.com/Jo0uBJk.jpg ">](https://i.imgur.com/L02F1L2.jpg)
-
-<br>
+ ## Settings dialog
+ <br>
+    
+  [<img src="https://i.imgur.com/Jo0uBJk.jpg ">](https://i.imgur.com/L02F1L2.jpg)
+          
 2022 04 16
-
 <Stefan Uram thewaiter@centrum.sk>
