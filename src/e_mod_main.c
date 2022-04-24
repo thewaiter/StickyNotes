@@ -777,6 +777,7 @@ show_command_output(void *data, Eina_Bool header_clicked)
    Instance *inst = data;
    FILE *output;
    char line[256], buf[16];
+   char *command;
 
    eina_strbuf_reset(inst->eina_buf);
    eina_strbuf_reset(inst->eina_compare);
@@ -785,16 +786,29 @@ show_command_output(void *data, Eina_Bool header_clicked)
    snprintf(buf, sizeof(buf), "<font_size= %d>", (int)inst->ci->font_size);
    eina_strbuf_append(inst->eina_buf, buf);
 
+   command = (char *) malloc(strlen(inst->ci->command) + 1);
+   strcpy (command, inst->ci->command);
+
+   if (!strncmp(inst->ci->command, "ncal", 4))
+   {
+      command = realloc(command, strlen(command) + 3);
+      strcat(command, " -h");
+   }
+
    /* Reading command output to the eina buffer*/
-   if (output = popen(inst->ci->command, "r"))
+   if (output = popen(command, "r"))
      {
      while (fgets(line, 256, output) != NULL)
-       eina_strbuf_append(inst->eina_buf, evas_textblock_text_utf8_to_markup(NULL, line));
+       {
+         eina_strbuf_append(inst->eina_buf, " "); //ncal purpose (when actual date on the left)
+         eina_strbuf_append(inst->eina_buf, evas_textblock_text_utf8_to_markup(NULL, line));
+       }
      }
 
    eina_strbuf_reset(inst->eina_temp);
    eina_strbuf_append(inst->eina_temp, eina_strbuf_string_get(inst->eina_buf));
    pclose(output);
+   free(command);
 
    eina_strbuf_append(inst->eina_buf, "</font_size>");
 
@@ -808,8 +822,7 @@ show_command_output(void *data, Eina_Bool header_clicked)
        sprintf(day_a, " %s ", day);
        sprintf(day_b, "|<b>%s</b>|", day);
        eina_strbuf_replace(inst->eina_buf, day_a, day_b, 1);
-       free(day);
-    }
+     }
 
    /*condition if the text has been changed*/
    if (eina_strbuf_length_get(inst->eina_compare) > 0 &&
