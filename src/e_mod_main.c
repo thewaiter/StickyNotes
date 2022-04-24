@@ -759,15 +759,26 @@ text_sized(void *data)
 }
 
 static char *
-get_today()
+get_today(const char *attr)
 {
    time_t rawtime;
    struct tm * timeinfo;
    char buf[3] = {'\0'};
+   char buf_day[4] = {'\0'};
+   int i;
    time(&rawtime);
    timeinfo = localtime( &rawtime );
 
-   snprintf(buf, sizeof(buf), "%01d", timeinfo->tm_mday);
+   if (!strcmp(attr, "today"))
+     snprintf(buf, sizeof(buf), "%01d", timeinfo->tm_mday);
+   else if (!strcmp(attr, "day_w"))
+     {
+       strftime(buf_day, sizeof(buf_day), "%a", timeinfo);
+       for (i = 0; i < 3; i++)
+          buf[i] = buf_day[i];
+       buf[2] = '\0';
+     }
+
    return strdup(buf);
 }
 
@@ -790,10 +801,10 @@ show_command_output(void *data, Eina_Bool header_clicked)
    strcpy (command, inst->ci->command);
 
    if (!strncmp(inst->ci->command, "ncal", 4))
-   {
-      command = realloc(command, strlen(command) + 3);
-      strcat(command, " -h");
-   }
+     {
+        command = realloc(command, strlen(command) + 3);
+        strcat(command, " -h");
+     }
 
    /* Reading command output to the eina buffer*/
    if (output = popen(command, "r"))
@@ -815,12 +826,17 @@ show_command_output(void *data, Eina_Bool header_clicked)
    /*condition if the command is ncal. If yes, format day number to BOLD*/
    if (!strncmp(inst->ci->command, "ncal", 4))
      {
-       char *day;
+       char *today, *day_w;
        char day_a[16], day_b[16];
 
-       day = get_today();
-       sprintf(day_a, " %s ", day);
-       sprintf(day_b, "|<b>%s</b>|", day);
+       today = get_today("today");
+       sprintf(day_a, " %s ", today);
+       sprintf(day_b, "|<b>%s</b>|", today);
+       eina_strbuf_replace(inst->eina_buf, day_a, day_b, 1);
+
+       day_w = get_today("day_w");
+       sprintf(day_a, " %s ", day_w);
+       sprintf(day_b, " <b>%s</b> ", day_w);
        eina_strbuf_replace(inst->eina_buf, day_a, day_b, 1);
      }
 
