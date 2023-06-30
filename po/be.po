@@ -1,0 +1,124 @@
+# Belarusian translation for StickyNotes
+# This file is put in the public domain
+# R0bur <robursw@gmail.com>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: stickynotes\n"
+"Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
+"POT-Creation-Date: 2023-06-29 20:00+0300\n"
+"PO-Revision-Date: 2023-06-29 20:00+0300\n"
+"Last-Translator: R0bur <robursw@gmail.com>\n"
+"Language-Team: Belarusian\n"
+"Language: be\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11) ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20 ? 1: 2);\n"
+
+#: src/e_mod_config.c:88
+msgid "StickyNotes Module"
+msgstr "StickyNotes Module"
+
+#: src/e_mod_config.c:144
+msgid "General"
+msgstr "Агульныя"
+
+#: src/e_mod_config.c:147
+msgid " Note text in the header"
+msgstr "Тэкст нататкі ў загалоўку"
+
+#: src/e_mod_config.c:152
+msgid "Header text"
+msgstr "Тэкст загалоўка"
+
+#: src/e_mod_config.c:160
+msgid "Note text"
+msgstr "Тэкст нататкі"
+
+#: src/e_mod_config.c:180
+msgid "HTML tags: see the git repo wiki for more info"
+msgstr "Тэгі HTML: глядзіце git-рэпазіторый для дадатковых звестак"
+
+#: src/e_mod_config.c:184
+msgid "Click on the space for color changing"
+msgstr "Націсніце, каб змяніць колер"
+
+#: src/e_mod_config.c:198
+msgid "Command section"
+msgstr "Секцыя каманды"
+
+#: src/e_mod_config.c:200
+msgid "Command to run and show output"
+msgstr "Каманда для выканання ды адлюстравання вываду"
+
+#: src/e_mod_config.c:209
+msgid "Refresh interval"
+msgstr "Перыяд абнаўлення"
+
+#: src/e_mod_config.c:212
+#, c-format
+msgid "%2.0f sec"
+msgstr "%2.0f сек"
+
+#: src/e_mod_config.c:215
+msgid " x 60 secs"
+msgstr " x 60 сек"
+
+#: src/e_mod_config.c:218
+msgid " Notification text on change"
+msgstr " Тэкст нататкі пры змяненні"
+
+#: src/e_mod_main.c:101
+msgid "Advanced"
+msgstr "Іншыя"
+
+#: src/e_mod_main.c:152
+msgid ""
+"StickyNotes Module Configuration data needed upgrading. Your old "
+"configuration<br> has been wiped and a new set of defaults initialized. "
+"This<br>will happen regularly during development, so don't report a<br>bug. "
+"This simply means the module needs new configuration<br>data by default for "
+"usable functionality that your old<br>configuration simply lacks. This new "
+"set of defaults will fix<br>that by adding it in. You can re-configure "
+"things now to your<br>liking. Sorry for the inconvenience.<br>"
+msgstr ""
+"StickyNotes Module: Было патрэбна аднавіць налады. Старыя "
+"значэнні<br> былі выдалены, пасля чаго былі наладжаны перадвызначаныя значэнні.<br>"
+"Гэта будзе адбывацца рэгулярна, таму не трэба рабіць справаздачу пра памылкі.<br>"
+"Так адбываецца таму, што модулю патрэбныя новыя перадвызначаныя налады,<br> "
+"каб выкарыстоўваць функцыі, якіх няма ў старых наладах.<br> "
+"Новыя перадвызначаныя значэнні выправят гэта. Зараз вы можаце<br>"
+"наладзіць модуль як пажадаеце.<br>Выбачайце за нязручнасці.<br> "
+
+#: src/e_mod_main.c:172
+msgid ""
+"Your StickyNotes Module configuration is NEWER than the module version. This "
+"is very<br>strange. This should not happen unless you downgraded<br>the "
+"module or copied the configuration from a place where<br>a newer version of "
+"the module was running. This is bad and<br>as a precaution your "
+"configuration has been now restored to<br>defaults. Sorry for the "
+"inconvenience.<br>"
+msgstr ""
+"Вашы налады StickyNotes Module БОЛЬШ НОВЫЯ чым версія модуля. Гэта "
+"вельмі<br>дзіўна. Так не павінна быць, калі толькі вы не пераходзілі<br>на старую "
+"версію ці капіявалі налады адтуль, <br> дзе выкарыстоўвалася больш "
+"новая версія. Гэта дрэнна, і<br>таму на ўсялякі выпадак вашы налады скінуты да "
+"перадвызначаных значэнняў.<br>Выбачайце за нязручнасці.<br>"
+
+#: src/e_mod_main.c:349
+msgid "StickyNotes"
+msgstr "StickyNotes"
+
+#: src/e_mod_main.c:409 src/e_mod_main.c:518
+msgid "Sticky note"
+msgstr "Sticky note"
+
+#: src/e_mod_main.c:467
+msgid "StickyNotes Configuration Updated"
+msgstr "Налады StickyNotes абноўлены"
+
+#: src/e_mod_main.c:552
+msgid "Settings"
+msgstr "Налады"
