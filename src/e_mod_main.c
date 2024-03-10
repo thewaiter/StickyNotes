@@ -807,7 +807,8 @@ show_command_output(void *data, Eina_Bool header_clicked)
      }
 
    /* Reading command output to the eina buffer*/
-   if (output = popen(command, "r"))
+   output = popen(command, "r");
+   if (output)
      {
      while (fgets(line, 256, output) != NULL)
        {
