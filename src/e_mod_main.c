@@ -16,7 +16,6 @@ static Eina_Bool         _sticky_notes_conf_timer(void *data);
 
 static void              _sticky_notes_cb_mouse_down(void *data, Evas *evas, 
                                                      Evas_Object *obj, void *event);
-static void              _sticky_notes_cb_menu_post(void *data, E_Menu *menu);
 static void              _sticky_notes_cb_menu_configure(void *data, E_Menu *mn, 
                                                          E_Menu_Item *mi);
 static Eina_Bool         _sticky_notes_cb_check(void *data);
@@ -51,9 +50,6 @@ struct _Instance
    
    /* Timer for each gadget*/
    Ecore_Timer *timer;
-
-   /* popup anyone ? */
-   E_Menu *menu;
 
    /* Text buffer for each gadget*/   
    Eina_Strbuf *eina_buf;
@@ -323,14 +319,6 @@ _gc_shutdown(E_Gadcon_Client *gcc)
    eina_strbuf_free(inst->eina_temp);
    eina_strbuf_free(inst->eina_compare);
 
-
-   /* kill popup menu */
-   if (inst->menu)
-     {
-        e_menu_post_deactivate_callback_set(inst->menu, NULL, NULL);
-        e_object_del(E_OBJECT(inst->menu));
-        inst->menu = NULL;
-     }
    /* delete the visual */
    if (inst->o_sticky_notes)
      {
@@ -553,7 +541,7 @@ _sticky_notes_cb_mouse_down(void *data, Evas *evas __UNUSED__, Evas_Object *obj 
 
    if (!(inst = data)) return;
    ev = event;
-   if ((ev->button == 3) && (!inst->menu))
+   if (ev->button == 3)
      {
         E_Menu *m;
 
@@ -569,8 +557,6 @@ _sticky_notes_cb_mouse_down(void *data, Evas *evas __UNUSED__, Evas_Object *obj 
 
         /* Each Gadget Client has a utility menu from the Container */
         m = e_gadcon_client_util_menu_items_append(inst->gcc, m, 0);
-        e_menu_post_deactivate_callback_set(m, _sticky_notes_cb_menu_post, inst);
-        inst->menu = m;
         e_gadcon_canvas_zone_geometry_get(inst->gcc->gadcon, &x, &y, 
                                           NULL, NULL);
 
@@ -581,19 +567,6 @@ _sticky_notes_cb_mouse_down(void *data, Evas *evas __UNUSED__, Evas_Object *obj 
         evas_event_feed_mouse_up(inst->gcc->gadcon->evas, ev->button, 
                                  EVAS_BUTTON_NONE, ev->timestamp, NULL);
      }
-}
-
-/* popup menu closing, cleanup */
-static void 
-_sticky_notes_cb_menu_post(void *data, E_Menu *menu __UNUSED__)
-{
-   Instance *inst = NULL;
-
-   if (!(inst = data)) return;
-   
-   if (!inst->menu) return;
-   e_object_del(E_OBJECT(inst->menu));
-   inst->menu = NULL;
 }
 
 /* call configure from popup */
