@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: stickynotes\n"
 "Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
-"POT-Creation-Date: 2019-02-11 11:46+0100\n"
+"POT-Creation-Date: 2024-05-27 21:26+0200\n"
 "PO-Revision-Date: 2021-05-23 12:13+0200\n"
 "Last-Translator: Philippe Jean Guillaumie <similar@orange.fr>\n"
 "Language-Team: French\n"
@@ -19,64 +19,65 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 2.4.3\n"
 
-#: src/e_mod_config.c:88
+#: src/e_mod_config.c:85
 msgid "StickyNotes Module"
 msgstr "Module StickyNotes"
 
-#: src/e_mod_config.c:144
+#: src/e_mod_config.c:140
 msgid "General"
 msgstr "Général"
 
-#: src/e_mod_config.c:147
+#: src/e_mod_config.c:143
 msgid " Note text in the header"
 msgstr " Texte de la note dans l'en-tête"
 
-#: src/e_mod_config.c:152
+#: src/e_mod_config.c:148
 msgid "Header text"
 msgstr "Texte de l'en-tête"
 
-#: src/e_mod_config.c:160
+#: src/e_mod_config.c:156
 msgid "Note text"
 msgstr "Texte de la note"
 
-#: src/e_mod_config.c:180
-msgid "HTML tags: see the git repo for more info"
+#: src/e_mod_config.c:176
+#, fuzzy
+msgid "HTML tags: see the git repo wiki for more info"
 msgstr "Balises HTML : voir le dépôt git pour plus d'informations"
 
-#: src/e_mod_config.c:184
+#: src/e_mod_config.c:180
 msgid "Click on the space for color changing"
 msgstr "Cliquer ci-dessous pour modifier la couleur"
 
-#: src/e_mod_config.c:198
+#: src/e_mod_config.c:193
 msgid "Command section"
 msgstr "Commande"
 
-#: src/e_mod_config.c:200
+#: src/e_mod_config.c:195
 msgid "Command to run and show output"
 msgstr "Commande à exécuter avec affichage de la sortie"
 
-#: src/e_mod_config.c:209
+#: src/e_mod_config.c:203
 msgid "Refresh interval"
 msgstr "Intervalle d'actualisation"
 
-#: src/e_mod_config.c:212
+#: src/e_mod_config.c:206
 #, c-format
 msgid "%2.0f sec"
 msgstr "%2.0f s"
 
-#: src/e_mod_config.c:215
+#: src/e_mod_config.c:209
 msgid " x 60 secs"
 msgstr " x 60 s"
 
-#: src/e_mod_config.c:218
+#: src/e_mod_config.c:212
 msgid " Notification text on change"
 msgstr " Texte de notification pour l'actualisation"
 
-#: src/e_mod_main.c:101
+#: src/e_mod_main.c:105
 msgid "Advanced"
 msgstr "Avancé"
 
-#: src/e_mod_main.c:152
+#: src/e_mod_main.c:156
 msgid ""
 "StickyNotes Module Configuration data needed upgrading. Your old "
 "configuration<br> has been wiped and a new set of defaults initialized. "
@@ -94,7 +95,7 @@ msgstr ""
 "niveau pour être à nouveau fonctionnel.<br>Vous pouvez maintenant tout "
 "reconfigurer selon votre goût.<br>Désolé pour la gêne occasionnée.<br>"
 
-#: src/e_mod_main.c:172
+#: src/e_mod_main.c:176
 msgid ""
 "Your StickyNotes Module configuration is NEWER than the module version. This "
 "is very<br>strange. This should not happen unless you downgraded<br>the "
@@ -111,19 +112,19 @@ msgstr ""
 "précaution, les valeurs<br>par défaut du module ont été restaurées."
 "<br>Désolé pour le désagrément.<br>"
 
-#: src/e_mod_main.c:349
+#: src/e_mod_main.c:351
 msgid "StickyNotes"
 msgstr "StickyNotes"
 
-#: src/e_mod_main.c:409 src/e_mod_main.c:518
+#: src/e_mod_main.c:411 src/e_mod_main.c:520
 msgid "Sticky note"
 msgstr "Note collante"
 
-#: src/e_mod_main.c:467
+#: src/e_mod_main.c:469
 msgid "StickyNotes Configuration Updated"
 msgstr "Configuration de StickyNotes actualisée"
 
-#: src/e_mod_main.c:552
+#: src/e_mod_main.c:554
 msgid "Settings"
 msgstr "Configuration"
 

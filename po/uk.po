@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sticky_notes.HEAD\n"
 "Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
-"POT-Creation-Date: 2019-02-11 11:46+0100\n"
+"POT-Creation-Date: 2024-05-27 21:26+0200\n"
 "PO-Revision-Date: 2011-02-06 10:53+0300\n"
 "Last-Translator: Korostil Daniel <ted.korostiled@gmail.com>\n"
 "Language-Team: translation@linux.org.ua\n"
@@ -17,64 +17,64 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Virtaal 0.6.1\n"
 
-#: src/e_mod_config.c:88
+#: src/e_mod_config.c:85
 msgid "StickyNotes Module"
 msgstr "Скілет"
 
-#: src/e_mod_config.c:144
+#: src/e_mod_config.c:140
 msgid "General"
 msgstr "Загальне"
 
-#: src/e_mod_config.c:147
+#: src/e_mod_config.c:143
 msgid " Note text in the header"
 msgstr ""
 
-#: src/e_mod_config.c:152
+#: src/e_mod_config.c:148
 msgid "Header text"
 msgstr ""
 
-#: src/e_mod_config.c:160
+#: src/e_mod_config.c:156
 msgid "Note text"
 msgstr ""
 
-#: src/e_mod_config.c:180
-msgid "HTML tags: see the git repo for more info"
+#: src/e_mod_config.c:176
+msgid "HTML tags: see the git repo wiki for more info"
 msgstr ""
 
-#: src/e_mod_config.c:184
+#: src/e_mod_config.c:180
 msgid "Click on the space for color changing"
 msgstr ""
 
-#: src/e_mod_config.c:198
+#: src/e_mod_config.c:193
 msgid "Command section"
 msgstr ""
 
-#: src/e_mod_config.c:200
+#: src/e_mod_config.c:195
 msgid "Command to run and show output"
 msgstr ""
 
-#: src/e_mod_config.c:209
+#: src/e_mod_config.c:203
 msgid "Refresh interval"
 msgstr ""
 
-#: src/e_mod_config.c:212
+#: src/e_mod_config.c:206
 #, c-format
 msgid "%2.0f sec"
 msgstr ""
 
-#: src/e_mod_config.c:215
+#: src/e_mod_config.c:209
 msgid " x 60 secs"
 msgstr ""
 
-#: src/e_mod_config.c:218
+#: src/e_mod_config.c:212
 msgid " Notification text on change"
 msgstr ""
 
-#: src/e_mod_main.c:101
+#: src/e_mod_main.c:105
 msgid "Advanced"
 msgstr ""
 
-#: src/e_mod_main.c:152
+#: src/e_mod_main.c:156
 msgid ""
 "StickyNotes Module Configuration data needed upgrading. Your old "
 "configuration<br> has been wiped and a new set of defaults initialized. "
@@ -92,7 +92,7 @@ msgstr ""
 "залучивши нові функції. Тепер ви можете налаштувати все на ваші<br> "
 "вподобання. Вибачте за незручності.<br>"
 
-#: src/e_mod_main.c:172
+#: src/e_mod_main.c:176
 msgid ""
 "Your StickyNotes Module configuration is NEWER than the module version. This "
 "is very<br>strange. This should not happen unless you downgraded<br>the "
@@ -107,20 +107,20 @@ msgstr ""
 "для надійності роботи, налаштування буде повернуто до типових.<br>Вибачте за "
 "незручності.<br>"
 
-#: src/e_mod_main.c:349
+#: src/e_mod_main.c:351
 msgid "StickyNotes"
 msgstr "Скілет"
 
-#: src/e_mod_main.c:409 src/e_mod_main.c:518
+#: src/e_mod_main.c:411 src/e_mod_main.c:520
 #, fuzzy
 msgid "Sticky note"
 msgstr "Скілет"
 
-#: src/e_mod_main.c:467
+#: src/e_mod_main.c:469
 msgid "StickyNotes Configuration Updated"
 msgstr "Налаштування скілету оновлено"
 
-#: src/e_mod_main.c:552
+#: src/e_mod_main.c:554
 msgid "Settings"
 msgstr "Налаштування"
 

@@ -1,27 +1,29 @@
-# Croatian translation for enlightenment
-# This file is distributed under the same license as the enlightenment package.
-# Miro Glavic <glavicmiro@gmail.com>, 2009.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Enlightenment development team
+# This file is distributed under the same license as the sticky_notes package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: enlightenment\n"
+"Project-Id-Version: sticky_notes 0.0.1\n"
 "Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
 "POT-Creation-Date: 2024-05-27 21:26+0200\n"
-"PO-Revision-Date: 2009-02-14 05:06+0000\n"
-"Last-Translator: Miro Glavic <glavicmiro@gmail.com>\n"
-"Language-Team: Croatian <hr@li.org>\n"
-"Language: hr\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: src/e_mod_config.c:85
 msgid "StickyNotes Module"
-msgstr "StickyNotes Modul"
+msgstr ""
 
 #: src/e_mod_config.c:140
 msgid "General"
-msgstr "Općenito"
+msgstr ""
 
 #: src/e_mod_config.c:143
 msgid " Note text in the header"
@@ -82,14 +84,6 @@ msgid ""
 "set of defaults will fix<br>that by adding it in. You can re-configure "
 "things now to your<br>liking. Sorry for the inconvenience.<br>"
 msgstr ""
-"Konfiguracija StickyNotes Modula je trebala nadogradnju. Stara "
-"konfiguracija<br>je izbrisana a novi set zadanih vrijednosti je pokrenut. "
-"Ovo<br>će se događati regularno tijekom razvoja, te nemojte prijavljivati "
-"kao grešku.<br> Ovo prosto znači da modul normalno treba nove konfiguracione "
-"podatke<br>za korisničku funkcionalnost koju vaša stara konfiguracija<br> "
-"jednostavno ne posjeduje. Ovaj novi set zadanih vrijednosti će riješiti<br> "
-"problem svojim dodavanjem. Sad možete re-konfigurirati stvari <br>po želji. "
-"Žao nam je zbog neugodnosti.<br>"
 
 #: src/e_mod_main.c:176
 msgid ""
@@ -100,31 +94,19 @@ msgid ""
 "configuration has been now restored to<br>defaults. Sorry for the "
 "inconvenience.<br>"
 msgstr ""
-"Konfiguracija StickyNotes Modula je NOVIJA od inačice modula. Ovo je jako "
-"čudno.<br> Ovo se nije smjelo desiti, osim da ste možda unazadili <br>modul "
-"ili ste kopirali konfiguraciju gdje je novija inačica modula bila aktivna."
-"<br> Ovo nije dobro i kao predostrožnost vaša konfiguracija je vraćena na "
-"zadane vrijednosti.<br> Žao nam je zbog neugodnosti.<br>"
 
 #: src/e_mod_main.c:351
 msgid "StickyNotes"
-msgstr "StickyNotes"
+msgstr ""
 
 #: src/e_mod_main.c:411 src/e_mod_main.c:520
-#, fuzzy
 msgid "Sticky note"
-msgstr "StickyNotes"
+msgstr ""
 
 #: src/e_mod_main.c:469
 msgid "StickyNotes Configuration Updated"
-msgstr "Konfiguracija StickyNotes Osvježena"
+msgstr ""
 
 #: src/e_mod_main.c:554
 msgid "Settings"
 msgstr ""
-
-#~ msgid "Use Switch 1"
-#~ msgstr "Upotrijebi Prekidač 1"
-
-#~ msgid "Configuration"
-#~ msgstr "Konfiguracija"
