@@ -19,7 +19,7 @@ msgstr ""
 
 #: src/e_mod_config.c:85
 msgid "StickyNotes Module"
-msgstr "Modul StickyNotes"
+msgstr "Modul Poznámkový blok"
 
 #: src/e_mod_config.c:140
 msgid "General"
@@ -27,52 +27,52 @@ msgstr "Obecné"
 
 #: src/e_mod_config.c:143
 msgid " Note text in the header"
-msgstr ""
+msgstr " Text poznámky v záhlaví"
 
 #: src/e_mod_config.c:148
 msgid "Header text"
-msgstr ""
+msgstr "Text v záhlaví"
 
 #: src/e_mod_config.c:156
 msgid "Note text"
-msgstr ""
+msgstr "Text v poznámce"
 
 #: src/e_mod_config.c:176
 msgid "HTML tags: see the git repo wiki for more info"
-msgstr ""
+msgstr "HTML tagy: další info ve wiki git repozitáře"
 
 #: src/e_mod_config.c:180
 msgid "Click on the space for color changing"
-msgstr ""
+msgstr "Klikni pro výběr barvy textu"
 
 #: src/e_mod_config.c:193
 msgid "Command section"
-msgstr ""
+msgstr "Sekce příkazů"
 
 #: src/e_mod_config.c:195
 msgid "Command to run and show output"
-msgstr ""
+msgstr "Příkaz pro spuštění a zobrazení výstupu"
 
 #: src/e_mod_config.c:203
 msgid "Refresh interval"
-msgstr ""
+msgstr "Interval obnovení"
 
 #: src/e_mod_config.c:206
 #, c-format
 msgid "%2.0f sec"
-msgstr ""
+msgstr "%2.0f sek."
 
 #: src/e_mod_config.c:209
 msgid " x 60 secs"
-msgstr ""
+msgstr " x 60 sekund"
 
 #: src/e_mod_config.c:212
 msgid " Notification text on change"
-msgstr ""
+msgstr " Notifikace při změně"
 
 #: src/e_mod_main.c:105
 msgid "Advanced"
-msgstr ""
+msgstr "Rozšířené"
 
 #: src/e_mod_main.c:156
 msgid ""
@@ -101,7 +101,7 @@ msgid ""
 "configuration has been now restored to<br>defaults. Sorry for the "
 "inconvenience.<br>"
 msgstr ""
-"Nastavení StickyNotes modulu je NOVĚJŠÍ než verze modulu. To je velice divné."
+"Nastavení modulu Poznámkový blok je NOVĚJŠÍ než verze modulu. To je velice divné."
 "<br>Nemělo by to nastávat, pokud jste nesnížili verzi vašeho modulu<br>nebo "
 "nenahráli konfiguraci z místa, kde běží novější<br>verze. Toto může "
 "způsobovat problémy a proto bylo nastavení<br>obnoveno na výchozí jako "
@@ -109,23 +109,16 @@ msgstr ""
 
 #: src/e_mod_main.c:351
 msgid "StickyNotes"
-msgstr "StickyNotes"
+msgstr "Poznámkový blok"
 
 #: src/e_mod_main.c:411 src/e_mod_main.c:520
-#, fuzzy
 msgid "Sticky note"
-msgstr "Sticky_notes"
+msgstr "Poznámkový blok"
 
 #: src/e_mod_main.c:469
 msgid "StickyNotes Configuration Updated"
-msgstr "StickyNotes - aktualizováno nastavení"
+msgstr "Poznámkový blok: konfigurace aktualizována"
 
 #: src/e_mod_main.c:554
 msgid "Settings"
 msgstr "Nastavení"
-
-#~ msgid "Use Switch 1"
-#~ msgstr "Použít přepínač 1"
-
-#~ msgid "Configuration"
-#~ msgstr "Konfigurace"
