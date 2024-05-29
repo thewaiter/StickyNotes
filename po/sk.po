@@ -114,7 +114,7 @@ msgstr "Poznámkový blok"
 
 #: src/e_mod_main.c:469
 msgid "StickyNotes Configuration Updated"
-msgstr "Konfigurácia kostry aktualizovaná"
+msgstr "Poznámkový blok: konfigurácia aktualizovaná"
 
 #: src/e_mod_main.c:554
 msgid "Settings"
