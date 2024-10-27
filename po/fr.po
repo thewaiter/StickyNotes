@@ -1,14 +1,14 @@
 # French translation for StickyNotes.
 # This file is put in the public domain.
 # batden <batden@orange.fr>, 2009, 2010.
-# similar <similar@orange.fr>, 2021.
+# similar <similar@orange.fr>, 2021, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: stickynotes\n"
 "Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
 "POT-Creation-Date: 2024-05-27 21:26+0200\n"
-"PO-Revision-Date: 2021-05-23 12:13+0200\n"
+"PO-Revision-Date: 2024-07-06 07:56+0200\n"
 "Last-Translator: Philippe Jean Guillaumie <similar@orange.fr>\n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.4.3\n"
 
 #: src/e_mod_config.c:85
 msgid "StickyNotes Module"
@@ -40,9 +40,8 @@ msgid "Note text"
 msgstr "Texte de la note"
 
 #: src/e_mod_config.c:176
-#, fuzzy
 msgid "HTML tags: see the git repo wiki for more info"
-msgstr "Balises HTML : voir le dépôt git pour plus d'informations"
+msgstr "Balises HTML : voir le wiki du dépôt git pour plus d'informations"
 
 #: src/e_mod_config.c:180
 msgid "Click on the space for color changing"
