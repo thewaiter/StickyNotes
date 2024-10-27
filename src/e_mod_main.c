@@ -88,7 +88,7 @@ EAPI E_Module_Api e_modapi = {E_MODULE_API_VERSION, "Sticky_notes"};
 EAPI void *
 e_modapi_init(E_Module *m)
 {
-  char buf[4096];
+   char buf[4096];
 
    /* Location of message catalogs for localization */
    snprintf(buf, sizeof(buf), "%s/locale", e_module_dir_get(m));
@@ -97,7 +97,6 @@ e_modapi_init(E_Module *m)
 
    /* Location of theme to load for this module */
    snprintf(buf, sizeof(buf), "%s/e-module-sticky_notes.edj", m->dir);
-
 
    /* Display this Modules config info in the main Config Panel */
 
@@ -133,7 +132,6 @@ e_modapi_init(E_Module *m)
    E_CONFIG_VAL(D, T, val.b, INT);
    E_CONFIG_VAL(D, T, val.a, INT);
 
-
    conf_edd = E_CONFIG_DD_NEW("Config", Config);
    #undef T
    #undef D
@@ -151,8 +149,8 @@ e_modapi_init(E_Module *m)
         if ((sticky_notes_conf->version >> 16) < MOD_CONFIG_FILE_EPOCH)
           {
              /* config too old */
-        _sticky_notes_conf_free();
-         ecore_timer_add(1.0, _sticky_notes_conf_timer,
+             _sticky_notes_conf_free();
+             ecore_timer_add(1.0, _sticky_notes_conf_timer,
                  D_("StickyNotes Module Configuration data needed "
                  "upgrading. Your old configuration<br> has been"
                  " wiped and a new set of defaults initialized. "
@@ -172,7 +170,7 @@ e_modapi_init(E_Module *m)
           {
              /* config too new...wtf ? */
              _sticky_notes_conf_free();
-         ecore_timer_add(1.0, _sticky_notes_conf_timer, 
+             ecore_timer_add(1.0, _sticky_notes_conf_timer,
                  D_("Your StickyNotes Module configuration is NEWER "
                  "than the module version. This is "
                  "very<br>strange. This should not happen unless"
@@ -212,7 +210,7 @@ e_modapi_shutdown(E_Module *m __UNUSED__)
     /* Kill the config dialog */
    if (sticky_notes_conf->cfd) e_object_del(E_OBJECT(sticky_notes_conf->cfd));
    //~ sticky_notes_conf->cfd = NULL;
-    
+
    /* Unregister the config dialog from the main panel */
    e_configure_registry_item_del("advanced/sticky_notes");
 
@@ -282,12 +280,12 @@ _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style)
 
    ecore_event_handler_add(E_EVENT_SYS_RESUME, _change_cb, inst);
    ecore_event_handler_add(ECORE_EVENT_SYSTEM_TIMEDATE_CHANGED, _change_cb, inst);
-   
+
    multi = inst->ci->multiply_switch ? 60 : 1;
-   
-   if ((inst->ci->interval>0) && (inst->ci->command[0] != '\0'))
-     inst->timer = ecore_timer_add(inst->ci->interval * multi, _sticky_notes_cb_check , inst);
-   
+
+   if ((inst->ci->interval > 0) && (inst->ci->command[0] != '\0'))
+     inst->timer = ecore_timer_add(inst->ci->interval * multi, _sticky_notes_cb_check, inst);
+
    inst->eina_buf = eina_strbuf_new();
    inst->eina_temp = eina_strbuf_new();
    inst->eina_compare = eina_strbuf_new();
@@ -295,10 +293,10 @@ _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style)
    /* add to list of running instances so we can cleanup later */
    instances = eina_list_append(instances, inst);
    _sticky_notes_cb_check(inst);
-   
+
    snprintf(font_size, sizeof(font_size), "%d", inst->ci->font_size);
    _font_size_show(inst, EINA_FALSE, font_size);
-   
+
    /* return the Gadget_Container Client */
    return inst->gcc;
 }
@@ -311,10 +309,10 @@ _gc_shutdown(E_Gadcon_Client *gcc)
    Instance *inst = NULL;
 
    if (!(inst = gcc->data)) return;
-   
+
    instances = eina_list_remove(instances, inst);
    if (inst->timer) ecore_timer_del(inst->timer);
-   
+
    eina_strbuf_free(inst->eina_buf);
    eina_strbuf_free(inst->eina_temp);
    eina_strbuf_free(inst->eina_compare);
@@ -351,7 +349,6 @@ _gc_label(const E_Gadcon_Client_Class *client_class __UNUSED__)
    return D_("StickyNotes");
 }
 
-
 /* so E can keep a unique instance per-container */
 static const char *
 _gc_id_new(const E_Gadcon_Client_Class *client_class __UNUSED__)
@@ -385,10 +382,10 @@ static void
 _sticky_notes_conf_new(void)
 {
    Config_Item *ci = NULL;
-   
+
    sticky_notes_conf = E_NEW(Config, 1);
    ci = E_NEW(Config_Item, 1);
-   
+
    sticky_notes_conf->version = (MOD_CONFIG_FILE_EPOCH << 16);
 
 #define IFMODCFG(v) if ((sticky_notes_conf->version & 0xffff) < v) {
@@ -397,7 +394,7 @@ _sticky_notes_conf_new(void)
    /* setup defaults */
    IFMODCFG(0x008d);
    sticky_notes_conf->switch1 = 1;
-   
+
    //~ ci->id = eina_stringshare_add(id);
    ci->header_switch = 0;
    ci->multiply_switch = 0;
@@ -416,7 +413,7 @@ _sticky_notes_conf_new(void)
    ci->area_text_4 = eina_stringshare_add("");
    ci->area_text_5 = eina_stringshare_add("");
    ci->notif_text = eina_stringshare_add("");
-   
+
    _sticky_notes_conf_item_get(NULL);
    IFMODCFGEND;
 
@@ -458,7 +455,7 @@ _sticky_notes_conf_free(void)
         if (ci->notif_text) eina_stringshare_del(ci->notif_text);
         E_FREE(ci);
      }
-     
+
    E_FREE(sticky_notes_conf);
 }
 
@@ -481,27 +478,27 @@ _sticky_notes_conf_item_get(const char *id)
 
    if (!id)
      {
-    int  num = 0;
+       int  num = 0;
 
-    /* Create id */
-    if (sticky_notes_conf->conf_items)
-      {
-         const char *p;
+       /* Create id */
+       if (sticky_notes_conf->conf_items)
+         {
+           const char *p;
 
-         ci = eina_list_last (sticky_notes_conf->conf_items)->data;
-         p = strrchr (ci->id, '.');
-         if (p) num = atoi (p + 1) + 1;
-      }
-    snprintf (buf, sizeof (buf), "%s.%d", _gc_class.name, num);
-    id = buf;
+           ci = eina_list_last (sticky_notes_conf->conf_items)->data;
+           p = strrchr (ci->id, '.');
+           if (p) num = atoi (p + 1) + 1;
+         }
+      snprintf (buf, sizeof (buf), "%s.%d", _gc_class.name, num);
+      id = buf;
      }
    else
      {
-    for (l = sticky_notes_conf->conf_items; l; l = l->next)
-      {
-         if (!(ci = l->data)) continue;
-         if (!strcmp (ci->id, id)) return ci;
-      }
+       for (l = sticky_notes_conf->conf_items; l; l = l->next)
+         {
+           if (!(ci = l->data)) continue;
+           if (!strcmp (ci->id, id)) return ci;
+         }
      }
 
    //GADCON_CLIENT_CONFIG_GET(Config_Item, sticky_notes_conf->conf_items, _gc_class, id);
@@ -574,7 +571,7 @@ static void
 _sticky_notes_cb_menu_configure(void *data, E_Menu *mn __UNUSED__, E_Menu_Item *mi __UNUSED__)
 { 
    Instance *inst = NULL;
-   
+
    if (!(inst = data)) return;
    _config_sticky_notes_module(inst->ci);
 }
@@ -610,9 +607,9 @@ static Eina_Bool
 _sticky_notes_cb_check(void *data)
 {
    Instance *inst = data;
-  
+
    //~ Eina_List *l;
-   
+
    //~ Uncommented lines was a solution to have timer for each gadget separatelly
            
    //~ for (l = instances; l; l = l->next)
@@ -655,7 +652,7 @@ _sticky_header_icon_activated_cb(void *data, Evas_Object *o __UNUSED__,
             const char *emission __UNUSED__, const char *source __UNUSED__)
 {
    Instance *inst = data;
-    
+
    if (inst->ci->font_size < 16)
      inst->ci->font_size++;
    else
@@ -783,11 +780,13 @@ show_command_output(void *data, Eina_Bool header_clicked)
    output = popen(command, "r");
    if (output)
      {
-     while (fgets(line, 256, output) != NULL)
-       {
-         eina_strbuf_append(inst->eina_buf, " "); //ncal purpose (when actual date on the left)
-         eina_strbuf_append(inst->eina_buf, evas_textblock_text_utf8_to_markup(NULL, line));
-       }
+       while (fgets(line, 256, output) != NULL)
+         {
+           // ncal purpose (when actual date on the left)
+           eina_strbuf_append(inst->eina_buf, " ");
+           eina_strbuf_append(inst->eina_buf,
+                              evas_textblock_text_utf8_to_markup(NULL, line));
+         }
      }
 
    eina_strbuf_reset(inst->eina_temp);
