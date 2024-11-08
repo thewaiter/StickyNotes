@@ -2,26 +2,27 @@
 # This file is distributed under the same license as the enlightenment package.
 # Adaptado ao acordo ortográfico de 1990
 # Sérgio Marques <smarquespt@gmail.com>, 2010.
-# Hugo Carvalho <hugokarvalho@hotmail.com>, 2021.
+# Hugo Carvalho <hugokarvalho@hotmail.com>, 2021-2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: sticky_notes\n"
 "Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
 "POT-Creation-Date: 2024-05-27 21:26+0200\n"
-"PO-Revision-Date: 2021-05-19 21:09+0100\n"
+"PO-Revision-Date: 2024-11-08 21:34+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Launchpad-Export-Date: 2012-12-07 16:24+0000\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: src/e_mod_config.c:85
 msgid "StickyNotes Module"
-msgstr "Módulo StickyNotes"
+msgstr "Módulo de Notas adesivas"
 
 #: src/e_mod_config.c:140
 msgid "General"
@@ -40,9 +41,8 @@ msgid "Note text"
 msgstr "Texto da nota"
 
 #: src/e_mod_config.c:176
-#, fuzzy
 msgid "HTML tags: see the git repo wiki for more info"
-msgstr "HTML tags: ver repositório do git para mais informações"
+msgstr "Etiquetas HTML: ver a wiki do repositório git para mais informações"
 
 #: src/e_mod_config.c:180
 msgid "Click on the space for color changing"
@@ -63,11 +63,11 @@ msgstr "Intervalo entre atualizações"
 #: src/e_mod_config.c:206
 #, c-format
 msgid "%2.0f sec"
-msgstr "%2.0f seg"
+msgstr "%2.0f seg."
 
 #: src/e_mod_config.c:209
 msgid " x 60 secs"
-msgstr " x 60 segs"
+msgstr " x 60 segs."
 
 #: src/e_mod_config.c:212
 msgid " Notification text on change"
@@ -87,10 +87,10 @@ msgid ""
 "set of defaults will fix<br>that by adding it in. You can re-configure "
 "things now to your<br>liking. Sorry for the inconvenience.<br>"
 msgstr ""
-"A configuração do StickyNotes precisa de ser atualizada. A sua configuração "
-"foi apagada e foram iniciados novos valores padrão.<br>Isto irá ocorrer "
-"regularmente durante o desenvolvimento e não deve reportar nenhum erro."
-"<br>Isto apenas significa que o módulo precisa de novos dados de "
+"A configuração do Notas adesivas precisa de ser atualizada. A sua "
+"configuração foi apagada e foram iniciados novos valores padrão.<br>Isto irá "
+"ocorrer regularmente durante o desenvolvimento e não deve reportar nenhum "
+"erro.<br>Isto apenas significa que o módulo precisa de novos dados de "
 "configuração que a sua antiga configuração não possui.<br>Este conjunto de "
 "valores irá corrigir a configuração.<br> Mais tarde poderá configurar o "
 "módulo ao seu gosto. Desculpe o incómodo.<br>"
@@ -104,15 +104,15 @@ msgid ""
 "configuration has been now restored to<br>defaults. Sorry for the "
 "inconvenience.<br>"
 msgstr ""
-"A configuração do módulo StickyNotes é mais recente que a do módulo.<br>Isto "
-"é muito estranho e só acontece se reverter o seu módulo ou caso tenha "
-"copiado a configuração de um local em que está instalada uma versão mais "
-"recente do módulo.<br>Isto é mau e por precaução, a sua configuração foi "
-"restaurada para as omissões.<br>Desculpe o incómodo.<br>"
+"A configuração do módulo Notas adesivas é mais recente que a do módulo."
+"<br>Isto é muito estranho e só acontece se reverter o seu módulo ou caso "
+"tenha copiado a configuração de um local em que está instalada uma versão "
+"mais recente do módulo.<br>Isto é mau e por precaução, a sua configuração "
+"foi restaurada para as omissões.<br>Desculpe o incómodo.<br>"
 
 #: src/e_mod_main.c:351
 msgid "StickyNotes"
-msgstr "StickyNotes"
+msgstr "Notas adesivas"
 
 #: src/e_mod_main.c:411 src/e_mod_main.c:520
 msgid "Sticky note"
