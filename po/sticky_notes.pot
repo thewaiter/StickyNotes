@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR Enlightenment development team
+# Copyright (C) YEAR Bodhi Linux
 # This file is distributed under the same license as the sticky_notes package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: sticky_notes 0.0.1\n"
-"Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
+"Project-Id-Version: sticky_notes 0.1.1\n"
+"Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
 "POT-Creation-Date: 2024-05-27 21:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"

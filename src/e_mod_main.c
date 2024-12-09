@@ -1,4 +1,5 @@
 #include <e.h>
+#include "config.h"
 #include "e_mod_main.h"
 
 /* Local Function Prototypes */
@@ -88,12 +89,11 @@ EAPI E_Module_Api e_modapi = {E_MODULE_API_VERSION, "Sticky_notes"};
 EAPI void *
 e_modapi_init(E_Module *m)
 {
-   char buf[4096];
+   char buf[PATH_MAX];
 
-   /* Location of message catalogs for localization */
-   snprintf(buf, sizeof(buf), "%s/locale", e_module_dir_get(m));
-   bindtextdomain(PACKAGE, buf);
-   bind_textdomain_codeset(PACKAGE, "UTF-8");
+   /* Set up module locales*/
+   bindtextdomain(LOCALEDOMAIN, LOCALEDIR);
+   bind_textdomain_codeset(LOCALEDOMAIN, "UTF-8");
 
    /* Location of theme to load for this module */
    snprintf(buf, sizeof(buf), "%s/e-module-sticky_notes.edj", m->dir);
@@ -248,7 +248,7 @@ static E_Gadcon_Client *
 _gc_init(E_Gadcon *gc, const char *name, const char *id, const char *style)
 {
    Instance *inst = NULL;
-   char buf[4096], font_size[3];
+   char buf[PATH_MAX], font_size[3];
    int multi;
 
    /* theme file */
@@ -363,7 +363,7 @@ static Evas_Object *
 _gc_icon(const E_Gadcon_Client_Class *client_class __UNUSED__, Evas *evas)
 {
    Evas_Object *o = NULL;
-   char buf[4096];
+   char buf[PATH_MAX];
 
    /* theme */
    snprintf(buf, sizeof(buf), "%s/e-module-sticky_notes.edj", sticky_notes_conf->module->dir);
