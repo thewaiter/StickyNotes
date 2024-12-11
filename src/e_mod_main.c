@@ -1,5 +1,5 @@
 #include <e.h>
-#include "config.h"
+
 #include "e_mod_main.h"
 
 /* Local Function Prototypes */

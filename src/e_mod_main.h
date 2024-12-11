@@ -1,6 +1,7 @@
 #ifndef E_MOD_MAIN_H
 #define E_MOD_MAIN_H
 
+#include "config.h"
 #ifdef HAVE_GETTEXT
 # include <libintl.h>
 # define D_(string) dgettext(LOCALEDOMAIN, string)
