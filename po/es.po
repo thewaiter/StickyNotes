@@ -1,20 +1,20 @@
 # Spanish translation for sticky_notes
-# This file is distributed under the same license as the enlightenment package.
-# Paco Molinero <paco@byasl.com>, 2008.
-# DiegoJ <diegojromerolopez@gmail.com>, 2009.
-# Aníbal Garrido <khany@member.trisquel.info>, 2012.
+#
+# This file is put in the public domain.
 msgid ""
 msgstr ""
 "Project-Id-Version: sticky_notes\n"
-"Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
+"Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
 "POT-Creation-Date: 2024-05-27 21:26+0200\n"
-"PO-Revision-Date: 2012-11-08 02:06+0100\n"
-"Last-Translator: Aníbal Garrido <khany@member.trisquel.info>\n"
-"Language-Team: Enlightenment Team\n"
+"PO-Revision-Date: 2023-12-09 09:47-0500\n"
+"Last-Translator: Alejandro Díaz <escuelaslinux@gmail.com>\n"
+"Language-Team: Spanish <>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: src/e_mod_config.c:85
 msgid "StickyNotes Module"
@@ -26,48 +26,48 @@ msgstr "General"
 
 #: src/e_mod_config.c:143
 msgid " Note text in the header"
-msgstr ""
+msgstr "Nota de texto en la cabecera"
 
 #: src/e_mod_config.c:148
 msgid "Header text"
-msgstr ""
+msgstr "Texto de cabecera"
 
 #: src/e_mod_config.c:156
 msgid "Note text"
-msgstr ""
+msgstr "Texto de nota"
 
 #: src/e_mod_config.c:176
 msgid "HTML tags: see the git repo wiki for more info"
-msgstr ""
+msgstr "Etiquetas HTML: vea el wiki en el repositorio git para más información"
 
 #: src/e_mod_config.c:180
 msgid "Click on the space for color changing"
-msgstr ""
+msgstr "Pulsa en el espacio para cambio de color"
 
 #: src/e_mod_config.c:193
 msgid "Command section"
-msgstr ""
+msgstr "Sección de comandos"
 
 #: src/e_mod_config.c:195
 msgid "Command to run and show output"
-msgstr ""
+msgstr "Comando para ejecutar y mostrar salida"
 
 #: src/e_mod_config.c:203
 msgid "Refresh interval"
-msgstr ""
+msgstr "Intervalo de refresco"
 
 #: src/e_mod_config.c:206
 #, c-format
 msgid "%2.0f sec"
-msgstr ""
+msgstr "%2.0f seg"
 
 #: src/e_mod_config.c:209
 msgid " x 60 secs"
-msgstr ""
+msgstr " x 60 segundos"
 
 #: src/e_mod_config.c:212
 msgid " Notification text on change"
-msgstr ""
+msgstr " Texto de notificación al cambiar"
 
 #: src/e_mod_main.c:105
 msgid "Advanced"
@@ -115,7 +115,7 @@ msgstr "StickyNotes"
 #: src/e_mod_main.c:411 src/e_mod_main.c:520
 #, fuzzy
 msgid "Sticky note"
-msgstr "Sticky_notes"
+msgstr "Nota Sticky"
 
 #: src/e_mod_main.c:469
 msgid "StickyNotes Configuration Updated"
@@ -126,7 +126,7 @@ msgid "Settings"
 msgstr "Preferencias"
 
 #~ msgid "Use Switch 1"
-#~ msgstr "Cambio de usuarios 1"
+#~ msgstr "Cambio de uso 1"
 
 #~ msgid "Configuration"
 #~ msgstr "Configuración"
