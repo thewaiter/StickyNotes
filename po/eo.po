@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: sticky_notes 0.0.1\n"
-"Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
-"POT-Creation-Date: 2024-05-27 21:26+0200\n"
+"Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
+"POT-Creation-Date: 2024-12-14 07:40-0500\n"
 "PO-Revision-Date: 2012-12-05 10:25+0000\n"
 "Last-Translator: Michael Moroni <michael.moroni@mailoo.org>\n"
 "Language-Team: Esperanto <translation-team-eo@lists.sourceforge.net>\n"
@@ -71,11 +71,11 @@ msgstr ""
 msgid " Notification text on change"
 msgstr ""
 
-#: src/e_mod_main.c:105
+#: src/e_mod_main.c:104
 msgid "Advanced"
 msgstr "Progresita"
 
-#: src/e_mod_main.c:156
+#: src/e_mod_main.c:154
 msgid ""
 "StickyNotes Module Configuration data needed upgrading. Your old "
 "configuration<br> has been wiped and a new set of defaults initialized. "
@@ -93,7 +93,7 @@ msgstr ""
 "da aprioroj korektos tion, aldonante ĝin.<br> Vi povas laŭvole agordi denove "
 "nun. Pardonu pro la ĝeno.<br>"
 
-#: src/e_mod_main.c:176
+#: src/e_mod_main.c:174
 msgid ""
 "Your StickyNotes Module configuration is NEWER than the module version. This "
 "is very<br>strange. This should not happen unless you downgraded<br>the "
@@ -108,20 +108,20 @@ msgstr ""
 "funkciis. Tio estas malbone kaj viaj<br> agordoj estis restaŭritaj al "
 "aprioroj, kiel antaŭzorgo. Pardonu pro la ĝeno.<br>"
 
-#: src/e_mod_main.c:351
+#: src/e_mod_main.c:349
 msgid "StickyNotes"
 msgstr "Sticky_noteseto"
 
-#: src/e_mod_main.c:411 src/e_mod_main.c:520
+#: src/e_mod_main.c:408 src/e_mod_main.c:517
 #, fuzzy
 msgid "Sticky note"
 msgstr "Sticky_noteseto"
 
-#: src/e_mod_main.c:469
+#: src/e_mod_main.c:466
 msgid "StickyNotes Configuration Updated"
 msgstr "La agordoj pri Sticky_noteseto estas ĝisdatigitaj"
 
-#: src/e_mod_main.c:554
+#: src/e_mod_main.c:551
 msgid "Settings"
 msgstr "Agordoj"
 

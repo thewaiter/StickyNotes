@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: enlightenment\n"
-"Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
-"POT-Creation-Date: 2024-05-27 21:26+0200\n"
+"Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
+"POT-Creation-Date: 2024-12-14 07:40-0500\n"
 "PO-Revision-Date: 2008-11-29 23:35+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <he@li.org>\n"
@@ -68,11 +68,11 @@ msgstr ""
 msgid " Notification text on change"
 msgstr ""
 
-#: src/e_mod_main.c:105
+#: src/e_mod_main.c:104
 msgid "Advanced"
 msgstr ""
 
-#: src/e_mod_main.c:156
+#: src/e_mod_main.c:154
 msgid ""
 "StickyNotes Module Configuration data needed upgrading. Your old "
 "configuration<br> has been wiped and a new set of defaults initialized. "
@@ -89,7 +89,7 @@ msgstr ""
 "תתקן<br>זאת על ידי הוספתן. תוכל לשנות את ההגדרות בחזרה לצורה המועדפת עליך."
 "<br>סליחה על אי הנעימות.<br>"
 
-#: src/e_mod_main.c:176
+#: src/e_mod_main.c:174
 msgid ""
 "Your StickyNotes Module configuration is NEWER than the module version. This "
 "is very<br>strange. This should not happen unless you downgraded<br>the "
@@ -104,20 +104,20 @@ msgstr ""
 "זו<br>אינה רצויה וכאמצעי בטיחות התצורה שלך שוחזרה לברירות המחדל.<br>סליחה על "
 "אי הנעימות.<br>"
 
-#: src/e_mod_main.c:351
+#: src/e_mod_main.c:349
 msgid "StickyNotes"
 msgstr "שלד"
 
-#: src/e_mod_main.c:411 src/e_mod_main.c:520
+#: src/e_mod_main.c:408 src/e_mod_main.c:517
 #, fuzzy
 msgid "Sticky note"
 msgstr "שלד"
 
-#: src/e_mod_main.c:469
+#: src/e_mod_main.c:466
 msgid "StickyNotes Configuration Updated"
 msgstr "תצורת השלד עודכנה"
 
-#: src/e_mod_main.c:554
+#: src/e_mod_main.c:551
 msgid "Settings"
 msgstr ""
 

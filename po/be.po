@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: stickynotes\n"
-"Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
-"POT-Creation-Date: 2024-05-27 21:26+0200\n"
+"Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
+"POT-Creation-Date: 2024-12-14 07:40-0500\n"
 "PO-Revision-Date: 2023-06-29 20:00+0300\n"
 "Last-Translator: R0bur <robursw@gmail.com>\n"
 "Language-Team: Belarusian\n"
@@ -14,8 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11) ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20 ? 1: 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11) ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20 ? 1: 2);\n"
 
 #: src/e_mod_config.c:85
 msgid "StickyNotes Module"
@@ -70,11 +70,11 @@ msgstr " x 60 сек"
 msgid " Notification text on change"
 msgstr " Тэкст нататкі пры змяненні"
 
-#: src/e_mod_main.c:105
+#: src/e_mod_main.c:104
 msgid "Advanced"
 msgstr "Іншыя"
 
-#: src/e_mod_main.c:156
+#: src/e_mod_main.c:154
 msgid ""
 "StickyNotes Module Configuration data needed upgrading. Your old "
 "configuration<br> has been wiped and a new set of defaults initialized. "
@@ -92,7 +92,7 @@ msgstr ""
 "перадвызначаныя значэнні выправят гэта. Зараз вы можаце<br>наладзіць модуль "
 "як пажадаеце.<br>Выбачайце за нязручнасці.<br> "
 
-#: src/e_mod_main.c:176
+#: src/e_mod_main.c:174
 msgid ""
 "Your StickyNotes Module configuration is NEWER than the module version. This "
 "is very<br>strange. This should not happen unless you downgraded<br>the "
@@ -107,18 +107,18 @@ msgstr ""
 "новая версія. Гэта дрэнна, і<br>таму на ўсялякі выпадак вашы налады скінуты "
 "да перадвызначаных значэнняў.<br>Выбачайце за нязручнасці.<br>"
 
-#: src/e_mod_main.c:351
+#: src/e_mod_main.c:349
 msgid "StickyNotes"
 msgstr "StickyNotes"
 
-#: src/e_mod_main.c:411 src/e_mod_main.c:520
+#: src/e_mod_main.c:408 src/e_mod_main.c:517
 msgid "Sticky note"
 msgstr "Sticky note"
 
-#: src/e_mod_main.c:469
+#: src/e_mod_main.c:466
 msgid "StickyNotes Configuration Updated"
 msgstr "Налады StickyNotes абноўлены"
 
-#: src/e_mod_main.c:554
+#: src/e_mod_main.c:551
 msgid "Settings"
 msgstr "Налады"

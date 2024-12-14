@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: StickyNotes\n"
-"Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
-"POT-Creation-Date: 2024-05-27 21:26+0200\n"
+"Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
+"POT-Creation-Date: 2024-12-14 07:40-0500\n"
 "PO-Revision-Date: 2011-10-15 12:45+0200\n"
 "Last-Translator: Vít Pelčák <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
@@ -70,11 +70,11 @@ msgstr " x 60 sekund"
 msgid " Notification text on change"
 msgstr " Notifikace při změně"
 
-#: src/e_mod_main.c:105
+#: src/e_mod_main.c:104
 msgid "Advanced"
 msgstr "Rozšířené"
 
-#: src/e_mod_main.c:156
+#: src/e_mod_main.c:154
 msgid ""
 "StickyNotes Module Configuration data needed upgrading. Your old "
 "configuration<br> has been wiped and a new set of defaults initialized. "
@@ -92,7 +92,7 @@ msgstr ""
 "položek. Teď můžete modul nakonfigurovat<br>jak potřebujete. Omlouváme se za "
 "možné potíže.<br>"
 
-#: src/e_mod_main.c:176
+#: src/e_mod_main.c:174
 msgid ""
 "Your StickyNotes Module configuration is NEWER than the module version. This "
 "is very<br>strange. This should not happen unless you downgraded<br>the "
@@ -101,24 +101,24 @@ msgid ""
 "configuration has been now restored to<br>defaults. Sorry for the "
 "inconvenience.<br>"
 msgstr ""
-"Nastavení modulu Poznámkový blok je NOVĚJŠÍ než verze modulu. To je velice divné."
-"<br>Nemělo by to nastávat, pokud jste nesnížili verzi vašeho modulu<br>nebo "
-"nenahráli konfiguraci z místa, kde běží novější<br>verze. Toto může "
-"způsobovat problémy a proto bylo nastavení<br>obnoveno na výchozí jako "
-"prevenční opatření. Omlouváme<br>se za možné potíže.<br>"
+"Nastavení modulu Poznámkový blok je NOVĚJŠÍ než verze modulu. To je velice "
+"divné.<br>Nemělo by to nastávat, pokud jste nesnížili verzi vašeho "
+"modulu<br>nebo nenahráli konfiguraci z místa, kde běží novější<br>verze. "
+"Toto může způsobovat problémy a proto bylo nastavení<br>obnoveno na výchozí "
+"jako prevenční opatření. Omlouváme<br>se za možné potíže.<br>"
 
-#: src/e_mod_main.c:351
+#: src/e_mod_main.c:349
 msgid "StickyNotes"
 msgstr "Poznámkový blok"
 
-#: src/e_mod_main.c:411 src/e_mod_main.c:520
+#: src/e_mod_main.c:408 src/e_mod_main.c:517
 msgid "Sticky note"
 msgstr "Poznámkový blok"
 
-#: src/e_mod_main.c:469
+#: src/e_mod_main.c:466
 msgid "StickyNotes Configuration Updated"
 msgstr "Poznámkový blok: konfigurace aktualizována"
 
-#: src/e_mod_main.c:554
+#: src/e_mod_main.c:551
 msgid "Settings"
 msgstr "Nastavení"

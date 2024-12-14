@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: stickynotes\n"
-"Report-Msgid-Bugs-To: enlightenment-devel@lists.sourceforge.net\n"
-"POT-Creation-Date: 2024-05-27 21:26+0200\n"
+"Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
+"POT-Creation-Date: 2024-12-14 07:40-0500\n"
 "PO-Revision-Date: 2024-07-06 07:56+0200\n"
 "Last-Translator: Philippe Jean Guillaumie <similar@orange.fr>\n"
 "Language-Team: French\n"
@@ -72,11 +72,11 @@ msgstr " x 60 s"
 msgid " Notification text on change"
 msgstr " Texte de notification pour l'actualisation"
 
-#: src/e_mod_main.c:105
+#: src/e_mod_main.c:104
 msgid "Advanced"
 msgstr "Avancé"
 
-#: src/e_mod_main.c:156
+#: src/e_mod_main.c:154
 msgid ""
 "StickyNotes Module Configuration data needed upgrading. Your old "
 "configuration<br> has been wiped and a new set of defaults initialized. "
@@ -94,7 +94,7 @@ msgstr ""
 "niveau pour être à nouveau fonctionnel.<br>Vous pouvez maintenant tout "
 "reconfigurer selon votre goût.<br>Désolé pour la gêne occasionnée.<br>"
 
-#: src/e_mod_main.c:176
+#: src/e_mod_main.c:174
 msgid ""
 "Your StickyNotes Module configuration is NEWER than the module version. This "
 "is very<br>strange. This should not happen unless you downgraded<br>the "
@@ -111,19 +111,19 @@ msgstr ""
 "précaution, les valeurs<br>par défaut du module ont été restaurées."
 "<br>Désolé pour le désagrément.<br>"
 
-#: src/e_mod_main.c:351
+#: src/e_mod_main.c:349
 msgid "StickyNotes"
 msgstr "StickyNotes"
 
-#: src/e_mod_main.c:411 src/e_mod_main.c:520
+#: src/e_mod_main.c:408 src/e_mod_main.c:517
 msgid "Sticky note"
 msgstr "Note collante"
 
-#: src/e_mod_main.c:469
+#: src/e_mod_main.c:466
 msgid "StickyNotes Configuration Updated"
 msgstr "Configuration de StickyNotes actualisée"
 
-#: src/e_mod_main.c:554
+#: src/e_mod_main.c:551
 msgid "Settings"
 msgstr "Configuration"
 

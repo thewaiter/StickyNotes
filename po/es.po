@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sticky_notes\n"
 "Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
-"POT-Creation-Date: 2024-05-27 21:26+0200\n"
+"POT-Creation-Date: 2024-12-14 07:40-0500\n"
 "PO-Revision-Date: 2023-12-09 09:47-0500\n"
 "Last-Translator: Alejandro Díaz <escuelaslinux@gmail.com>\n"
 "Language-Team: Spanish <>\n"
@@ -69,11 +69,11 @@ msgstr " x 60 segundos"
 msgid " Notification text on change"
 msgstr " Texto de notificación al cambiar"
 
-#: src/e_mod_main.c:105
+#: src/e_mod_main.c:104
 msgid "Advanced"
 msgstr "Avanzado"
 
-#: src/e_mod_main.c:156
+#: src/e_mod_main.c:154
 msgid ""
 "StickyNotes Module Configuration data needed upgrading. Your old "
 "configuration<br> has been wiped and a new set of defaults initialized. "
@@ -92,7 +92,7 @@ msgstr ""
 "Este nuevo conjunto de preferencias por defecto reparará<br>eso. Puede "
 "reconfigurar cosas a su <br>gusto. Disculpe las molestias.<br>"
 
-#: src/e_mod_main.c:176
+#: src/e_mod_main.c:174
 msgid ""
 "Your StickyNotes Module configuration is NEWER than the module version. This "
 "is very<br>strange. This should not happen unless you downgraded<br>the "
@@ -108,20 +108,19 @@ msgstr ""
 "y<br>como precaución su configuración ha sido restaurada a sus valores "
 "<br>por defecto. Disculpe las molestias.<br>"
 
-#: src/e_mod_main.c:351
+#: src/e_mod_main.c:349
 msgid "StickyNotes"
 msgstr "StickyNotes"
 
-#: src/e_mod_main.c:411 src/e_mod_main.c:520
-#, fuzzy
+#: src/e_mod_main.c:408 src/e_mod_main.c:517
 msgid "Sticky note"
 msgstr "Nota Sticky"
 
-#: src/e_mod_main.c:469
+#: src/e_mod_main.c:466
 msgid "StickyNotes Configuration Updated"
 msgstr "Configuración de StickyNotes actualizada"
 
-#: src/e_mod_main.c:554
+#: src/e_mod_main.c:551
 msgid "Settings"
 msgstr "Preferencias"
 
