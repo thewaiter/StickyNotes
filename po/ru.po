@@ -1,15 +1,15 @@
 # Russian translation for enlightenment
 # Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
 # This file is distributed under the same license as the enlightenment package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+# Black Raven <Unknown>, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: enlightenment\n"
 "Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
 "POT-Creation-Date: 2024-12-14 07:40-0500\n"
-"PO-Revision-Date: 2009-12-11 19:59+0000\n"
-"Last-Translator: Black Raven <Unknown>\n"
+"PO-Revision-Date: 2024-12-15 17:00+0300\n"
+"Last-Translator: R0bur <robursw@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/e_mod_config.c:85
 msgid "StickyNotes Module"
-msgstr "StickyNotes Module"
+msgstr "Модуль Стикеры"
 
 #: src/e_mod_config.c:140
 msgid "General"
@@ -28,52 +28,52 @@ msgstr "Общее"
 
 #: src/e_mod_config.c:143
 msgid " Note text in the header"
-msgstr ""
+msgstr " Текст заметки в заголовке"
 
 #: src/e_mod_config.c:148
 msgid "Header text"
-msgstr ""
+msgstr "Текст заголовка"
 
 #: src/e_mod_config.c:156
 msgid "Note text"
-msgstr ""
+msgstr "Текст заметки"
 
 #: src/e_mod_config.c:176
 msgid "HTML tags: see the git repo wiki for more info"
-msgstr ""
+msgstr "Теги HTML: подробности см. в wiki git-репозитория"
 
 #: src/e_mod_config.c:180
 msgid "Click on the space for color changing"
-msgstr ""
+msgstr "Шёлкните для изменения цвета"
 
 #: src/e_mod_config.c:193
 msgid "Command section"
-msgstr ""
+msgstr "Секция команды"
 
 #: src/e_mod_config.c:195
 msgid "Command to run and show output"
-msgstr ""
+msgstr "Команда для выполнения и отображения вывода"
 
 #: src/e_mod_config.c:203
 msgid "Refresh interval"
-msgstr ""
+msgstr "Интервал обновления"
 
 #: src/e_mod_config.c:206
 #, c-format
 msgid "%2.0f sec"
-msgstr ""
+msgstr "%2.0f сек"
 
 #: src/e_mod_config.c:209
 msgid " x 60 secs"
-msgstr ""
+msgstr " x 60 сек"
 
 #: src/e_mod_config.c:212
 msgid " Notification text on change"
-msgstr ""
+msgstr " Текст уведомления при изменении"
 
 #: src/e_mod_main.c:104
 msgid "Advanced"
-msgstr ""
+msgstr "Расширенные"
 
 #: src/e_mod_main.c:154
 msgid ""
@@ -114,7 +114,6 @@ msgid "StickyNotes"
 msgstr "StickyNotes"
 
 #: src/e_mod_main.c:408 src/e_mod_main.c:517
-#, fuzzy
 msgid "Sticky note"
 msgstr "Sticky note"
 
@@ -124,7 +123,7 @@ msgstr "Настройки StickyNotes обновлены"
 
 #: src/e_mod_main.c:551
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #~ msgid "Use Switch 1"
 #~ msgstr "Использовать Переключатель 1"
