@@ -110,7 +110,7 @@ msgstr ""
 
 #: src/e_mod_main.c:349
 msgid "StickyNotes"
-msgstr "StickyNotes"
+msgstr "Notas adhesivas"
 
 #: src/e_mod_main.c:408 src/e_mod_main.c:517
 msgid "Sticky note"
