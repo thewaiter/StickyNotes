@@ -3,6 +3,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
 # MixCool <lars.thoms@mixcool.de>, 2009.
 # Fabian Nowak <timystery@arcor.de>, 2011.
+# Christian Becker <xpistianbecker@gmail.com>, 2024.
 #
 msgid ""
 msgstr ""
@@ -10,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
 "POT-Creation-Date: 2024-12-14 07:40-0500\n"
 "PO-Revision-Date: 2009-11-07 18:18+0000\n"
-"Last-Translator: Fabian Nowak <timystery@arcor.de>\n"
+"Last-Translator: Christian Becker <xpistianbecker@gmail.com>\n"
 "Language-Team: German <de@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +22,7 @@ msgstr ""
 
 #: src/e_mod_config.c:85
 msgid "StickyNotes Module"
-msgstr "Modulsticky_notesett"
+msgstr "StickyNotes-Modul"
 
 #: src/e_mod_config.c:140
 msgid "General"
@@ -29,52 +30,52 @@ msgstr "Allgemein"
 
 #: src/e_mod_config.c:143
 msgid " Note text in the header"
-msgstr ""
+msgstr "Notiztext in der Kopfzeile"
 
 #: src/e_mod_config.c:148
 msgid "Header text"
-msgstr ""
+msgstr "Kopfzeilentext"
 
 #: src/e_mod_config.c:156
 msgid "Note text"
-msgstr ""
+msgstr "Notiztext"
 
 #: src/e_mod_config.c:176
 msgid "HTML tags: see the git repo wiki for more info"
-msgstr ""
+msgstr "HTML tags: siehe git Repowiki für mehr Information"
 
 #: src/e_mod_config.c:180
 msgid "Click on the space for color changing"
-msgstr ""
+msgstr "Um die Farbe zu wechseln auf die leere Fläche klicken"
 
 #: src/e_mod_config.c:193
 msgid "Command section"
-msgstr ""
+msgstr "Befehle"
 
 #: src/e_mod_config.c:195
 msgid "Command to run and show output"
-msgstr ""
+msgstr "Befehl zum Ausführen und Anzeigen der Ausgabe"
 
 #: src/e_mod_config.c:203
 msgid "Refresh interval"
-msgstr ""
+msgstr "Aktualisierungsintervall"
 
 #: src/e_mod_config.c:206
 #, c-format
 msgid "%2.0f sec"
-msgstr ""
+msgstr "%2.0f s"
 
 #: src/e_mod_config.c:209
 msgid " x 60 secs"
-msgstr ""
+msgstr " x 60 s"
 
 #: src/e_mod_config.c:212
 msgid " Notification text on change"
-msgstr ""
+msgstr "Benachrichtigungstext bei Änderung"
 
 #: src/e_mod_main.c:104
 msgid "Advanced"
-msgstr ""
+msgstr "Fortgeschritten"
 
 #: src/e_mod_main.c:154
 msgid ""
@@ -86,7 +87,7 @@ msgid ""
 "set of defaults will fix<br>that by adding it in. You can re-configure "
 "things now to your<br>liking. Sorry for the inconvenience.<br>"
 msgstr ""
-"Die Moduleinstellungen bedurften einer Aktualisierung. Ihre alte "
+"Die Moduleinstellungen von StickyNotes bedurften einer Aktualisierung. Ihre alte "
 "Konfiguration<br> wurde durch neue Standardwerte ersetzt. Dies<br>wird "
 "regelmäßig während des Entwicklungsprozesses passieren. Melden Sie dies "
 "nicht als<br>Fehler. Es bedeutet lediglich, dass das Benachrichtigungsmodul "
@@ -106,31 +107,31 @@ msgid ""
 "inconvenience.<br>"
 msgstr ""
 "Ihre Moduleinstellungen sind NEUER als die Modulversion selbst. Das ist "
-"sehr<br>seltsam und sollte nicht passieren, außer Sie haben das Modul "
-"<br>deaktualisiert oder die Moduleinstellungen von einem Ort kopiert, an "
+"sehr<br>seltsam und sollte nicht passieren, außer Sie haben die Modulversion "
+"<br>herabgestuft oder die Moduleinstellungen von einem Ort kopiert, an "
 "dem<br>eine neuere Version des Modules lief. Das ist kritisch.<br>Ihre "
 "Einstellungen wurden sicherheitshalber auf Standardwerte<br>zurückgesetzt. "
 "Entschuldigen Sie die Umstände.<br>"
 
 #: src/e_mod_main.c:349
 msgid "StickyNotes"
-msgstr "Sticky_notesett"
+msgstr "StickyNotes"
 
 #: src/e_mod_main.c:408 src/e_mod_main.c:517
 #, fuzzy
 msgid "Sticky note"
-msgstr "Sticky_notesett"
+msgstr "Sticky Note"
 
 #: src/e_mod_main.c:466
 msgid "StickyNotes Configuration Updated"
-msgstr "Sticky_notesett-Einstellungen aktualisiert"
+msgstr "StickyNotes-Einstellungen aktualisiert"
 
 #: src/e_mod_main.c:551
 msgid "Settings"
 msgstr "Einstellungen"
 
 #~ msgid "Use Switch 1"
-#~ msgstr "Schalter eins benutzen"
+#~ msgstr "Schalter 1 benutzen"
 
 #~ msgid "Configuration"
-#~ msgstr "Einstellungen"
+#~ msgstr "Konfiguration"
