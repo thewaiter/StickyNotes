@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
 "POT-Creation-Date: 2024-12-14 07:40-0500\n"
 "PO-Revision-Date: 2012-12-07 19:45+0100\n"
-"Last-Translator: Massimo Maiurana <maiurana@gmail.com>\n"
+"Last-Translator: diekrz2 <diekrz2@protonmail.com>\n"
 "Language-Team: Italiano\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -25,48 +25,48 @@ msgstr "Generale"
 
 #: src/e_mod_config.c:143
 msgid " Note text in the header"
-msgstr ""
+msgstr "Testo della nota nel header"
 
 #: src/e_mod_config.c:148
 msgid "Header text"
-msgstr ""
+msgstr "Testo del header"
 
 #: src/e_mod_config.c:156
 msgid "Note text"
-msgstr ""
+msgstr "Testo della nota"
 
 #: src/e_mod_config.c:176
 msgid "HTML tags: see the git repo wiki for more info"
-msgstr ""
+msgstr "tag HTML: controlla la wiki nel repo git per maggiori informazioni"
 
 #: src/e_mod_config.c:180
 msgid "Click on the space for color changing"
-msgstr ""
+msgstr "Clicca sullo spazio per cambiare colore"
 
 #: src/e_mod_config.c:193
 msgid "Command section"
-msgstr ""
+msgstr "Seleziona comando"
 
 #: src/e_mod_config.c:195
 msgid "Command to run and show output"
-msgstr ""
+msgstr "Comando da avviare e mostrare l'output"
 
 #: src/e_mod_config.c:203
 msgid "Refresh interval"
-msgstr ""
+msgstr "Aggiorna l'intervallo"
 
 #: src/e_mod_config.c:206
 #, c-format
 msgid "%2.0f sec"
-msgstr ""
+msgstr "%2.0f sec"
 
 #: src/e_mod_config.c:209
 msgid " x 60 secs"
-msgstr ""
+msgstr " x 60 secondi"
 
 #: src/e_mod_config.c:212
 msgid " Notification text on change"
-msgstr ""
+msgstr "Testo di notifica al cambio"
 
 #: src/e_mod_main.c:104
 msgid "Advanced"
@@ -87,7 +87,7 @@ msgstr ""
 "è<br>stato inizializzato un nuovo set di impostazioni predefinite. "
 "Questo<br>avverrà regolarmente durante lo sviluppo, quindi non riportate bug."
 "<br>Questo significa semplicemente che il modulo ha bisogno di nuovi<br>dati "
-"predefiniti di configurazione per funzionalità mancanti nella<br>vecchia "
+"predefiniti di configurazione per le funzionalità mancanti nella<br>vecchia "
 "configurazione. Questo nuovo set sistemerà le cose aggiungendo<br>quei dati. "
 "Potete riconfigurare le cose a vostro piacimento. Ci<br>scusiamo per "
 "l'inconveniente."
@@ -101,11 +101,11 @@ msgid ""
 "configuration has been now restored to<br>defaults. Sorry for the "
 "inconvenience.<br>"
 msgstr ""
-"La vostra configurazione del modulo StickyNotes è più NUOVA "
+"La vostra configurazione del modulo StickyNotes è più RECENTE "
 "della<br>versione del modulo. Questo è molto strano. Non dovrebbe succedere "
 "a meno<br>che siate passati ad una vecchia versione del modulo StickyNotes o "
 "avete<br>copiato la configurazione di un sistema su cui gira una "
-"versione<br>più nuova del modulo. A scopo precauzionale la "
+"versione<br>più recente del modulo. A scopo precauzionale la "
 "vostra<br>configurazione è stata adesso ripristinata ai valori predefiniti."
 "<br>Ci scusiamo per l'inconveniente."
 
@@ -115,7 +115,7 @@ msgstr "StickyNotes"
 
 #: src/e_mod_main.c:408 src/e_mod_main.c:517
 msgid "Sticky note"
-msgstr "Sticky note"
+msgstr "note Sticky"
 
 #: src/e_mod_main.c:466
 msgid "StickyNotes Configuration Updated"
