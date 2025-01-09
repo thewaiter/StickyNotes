@@ -7,9 +7,9 @@ msgstr ""
 "Project-Id-Version: enlightenment\n"
 "Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
 "POT-Creation-Date: 2024-12-14 07:40-0500\n"
-"PO-Revision-Date: 2009-02-23 12:45+0000\n"
-"Last-Translator: Stanislaw Gackowski <launchpad@soeb.eu>\n"
-"Language-Team: Polish <pl@li.org>\n"
+"PO-Revision-Date: 2025-01-09 15:40+0000\n"
+"Last-Translator: diekrz2 <diekrz2@protonmail.com>\n"
+"Language-Team: Polish\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: src/e_mod_config.c:85
 msgid "StickyNotes Module"
-msgstr "Moduł szkieletu"
+msgstr "Moduł StickyNotes"
 
 #: src/e_mod_config.c:140
 msgid "General"
@@ -25,52 +25,52 @@ msgstr "Ogólne"
 
 #: src/e_mod_config.c:143
 msgid " Note text in the header"
-msgstr ""
+msgstr "tekst notatki w nagłówku"
 
 #: src/e_mod_config.c:148
 msgid "Header text"
-msgstr ""
+msgstr "Tekst nagłówka"
 
 #: src/e_mod_config.c:156
 msgid "Note text"
-msgstr ""
+msgstr "Tekst notatki"
 
 #: src/e_mod_config.c:176
 msgid "HTML tags: see the git repo wiki for more info"
-msgstr ""
+msgstr "tagi HTML: zobacz wiki w repozytorium git aby uzyskać więcej informacji"
 
 #: src/e_mod_config.c:180
 msgid "Click on the space for color changing"
-msgstr ""
+msgstr "Kliknij na puste miejsce poniżej aby zmienić kolor"
 
 #: src/e_mod_config.c:193
 msgid "Command section"
-msgstr ""
+msgstr "Sekcja komend"
 
 #: src/e_mod_config.c:195
 msgid "Command to run and show output"
-msgstr ""
+msgstr "Komenda do wykonania i wyświetlanie wyniku"
 
 #: src/e_mod_config.c:203
 msgid "Refresh interval"
-msgstr ""
+msgstr "Przedział czasowy odświeżania"
 
 #: src/e_mod_config.c:206
 #, c-format
 msgid "%2.0f sec"
-msgstr ""
+msgstr "%2.0f sek"
 
 #: src/e_mod_config.c:209
 msgid " x 60 secs"
-msgstr ""
+msgstr "x 60 sekund"
 
 #: src/e_mod_config.c:212
 msgid " Notification text on change"
-msgstr ""
+msgstr "Tekst powiadomienia przy zmianie"
 
 #: src/e_mod_main.c:104
 msgid "Advanced"
-msgstr ""
+msgstr "Zaawansowane"
 
 #: src/e_mod_main.c:154
 msgid ""
@@ -82,12 +82,12 @@ msgid ""
 "set of defaults will fix<br>that by adding it in. You can re-configure "
 "things now to your<br>liking. Sorry for the inconvenience.<br>"
 msgstr ""
-"Dane konfiguracji modułu szkieletu potrzebowały aktualizację. Twoja stara "
-"konfiguracja<br> była usunięta i zastąpiona nowym zestaw standardów. "
+"Dane konfiguracji modułu StickyNotes potrzebowały aktualizacji. Twoja stara "
+"konfiguracja<br> została usunięta i zastąpiona nowym zestawem ustawień domyślnych. "
 "To<br>się zdarza regularnie podczas rozwoju, także proszę nie "
-"raportować<br>błąd. To po prostu oznacza ze moduł potrzebuje nowe domyślne "
-"dane<br>konfiguracji dla użytkowej funkcjonalności, którą twoja "
-"stara<br>konfiguracja nie ma. Nowy zestaw domyślnych poprawi<br>to poprzez "
+"raportować<br>błędów. To po prostu oznacza że moduł potrzebuje nowych domyślnych "
+"danych<br>konfiguracji dla użytkowych funkcjonalności, których twoja "
+"stara<br>konfiguracja nie miała. Nowy zestaw domyślnych ustawień poprawi<br>to poprzez "
 "dodanie. Teraz możesz re-konfigurować rzeczy według własnego<br>uznania. "
 "Przepraszamy za niedogodności.<br>"
 
@@ -100,28 +100,28 @@ msgid ""
 "configuration has been now restored to<br>defaults. Sorry for the "
 "inconvenience.<br>"
 msgstr ""
-"Twoja konfiguracja modułu szkieletu jest NOWSZA niż wersja modułu. To jest "
-"bardzo<br>dziwne. Nie powinno się to stawać, jeżeli nie "
-"dezaktualizowałeś<br> moduł, lub kopiowałeś konfiguracje z miejsca "
-"gdzie<br>nowsza wersja modułu działała. To jest źle i<br>jako ostrożność "
+"Twoja konfiguracja modułu StickyNotes jest NOWSZA niż wersja modułu. To jest "
+"bardzo<br>dziwne. Nie powinno tak być, jeżeli nie "
+"dezaktualizowałeś<br> modułu, lub kopiowałeś konfiguracje z miejsca "
+"gdzie<br>nowsza wersja modułu działała. To jest złe i<br>jako środek ostrożności "
 "twoja konfiguracja została przywrócona do ustawień<br>domyślnych. "
 "Przepraszamy za niedogodności.<br>"
 
 #: src/e_mod_main.c:349
 msgid "StickyNotes"
-msgstr "Szkielet"
+msgstr "StickyNotes"
 
 #: src/e_mod_main.c:408 src/e_mod_main.c:517
 msgid "Sticky note"
-msgstr "Szkielet"
+msgstr "Notatka Sticky"
 
 #: src/e_mod_main.c:466
 msgid "StickyNotes Configuration Updated"
-msgstr "Konfiguracja szkieletu zaktualizowana"
+msgstr "Konfiguracja StickyNotes zaktualizowana"
 
 #: src/e_mod_main.c:551
 msgid "Settings"
-msgstr ""
+msgstr "Ustawienia"
 
 #~ msgid "Use Switch 1"
 #~ msgstr "Użyj przełącznik 1"
