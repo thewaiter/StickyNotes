@@ -13,7 +13,7 @@ styles {
 }
 
 collections {
-	group { "icon"; max: 24 24;
+	group { "icon";
 		parts {
 			image { "image"; nomouse;
 				desc { "default";
