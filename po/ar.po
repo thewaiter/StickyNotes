@@ -1,15 +1,16 @@
-# Arabic translation for sticky_notes.
+# Arabic translation for the StickyNotes module.
 # This file is put in the public domain.
-# sameeer hussain <almusalimalmusalimah> 2011.
+#
+# sameeer hussain <almusalimalmusalimah> 2017.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: sticky_notes module\n"
+"Project-Id-Version: stickynotes\n"
 "Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
 "POT-Creation-Date: 2024-12-14 07:40-0500\n"
 "PO-Revision-Date: 2012-01-24 20:44+0300\n"
 "Last-Translator: سمير حسين <almusalimalmusalimah@gmail.com>\n"
-"Language-Team: Arabic <almusalimalmusalimah@gmail.com>\n"
+"Language-Team: Arabic\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,9 +123,3 @@ msgstr "إعدادات الهيكل العظمي حُدِّثت"
 #: src/e_mod_main.c:551
 msgid "Settings"
 msgstr "اﻹعدادات"
-
-#~ msgid "Use Switch 1"
-#~ msgstr "استخدم المفتاح 1"
-
-#~ msgid "Configuration"
-#~ msgstr "الإعدادات"

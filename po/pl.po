@@ -1,10 +1,11 @@
-# Polish translation for enlightenment
-# This file is distributed under the same license as the enlightenment package.
+# Polish Heimen translation for the StickyNotes module.
+# This file is put in the public domain.
+#
 # Stanislaw Gackowski <launchpad@soeb.eu>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: enlightenment\n"
+"Project-Id-Version: stickynotes\n"
 "Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
 "POT-Creation-Date: 2024-12-14 07:40-0500\n"
 "PO-Revision-Date: 2025-01-09 15:40+0000\n"
@@ -122,9 +123,3 @@ msgstr "Konfiguracja StickyNotes zaktualizowana"
 #: src/e_mod_main.c:551
 msgid "Settings"
 msgstr "Ustawienia"
-
-#~ msgid "Use Switch 1"
-#~ msgstr "Użyj przełącznik 1"
-
-#~ msgid "Configuration"
-#~ msgstr "Konfiguracja"

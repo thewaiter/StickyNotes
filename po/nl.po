@@ -1,15 +1,16 @@
-# Dutch translation for enlightenment
-# This file is distributed under the same license as the enlightenment package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+# Dutch translation for the StickyNotes module.
+# This file is put in the public domain.
+#
+# Heimen Stoffels <vistausss@gmail.com>, 2017.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: enlightenment\n"
+"Project-Id-Version: stickynotes\n"
 "Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
 "POT-Creation-Date: 2024-12-14 07:40-0500\n"
 "PO-Revision-Date: 2011-09-04 16:33+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@gmail.com>\n"
-"Language-Team: Dutch <nl@li.org>\n"
+"Language-Team: Dutch\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,9 +123,3 @@ msgstr "Sticky_noteset-configuratie geüpdate"
 #: src/e_mod_main.c:551
 msgid "Settings"
 msgstr "Instellingen"
-
-#~ msgid "Use Switch 1"
-#~ msgstr "Gebruik omzetter 1"
-
-#~ msgid "Configuration"
-#~ msgstr "Configuratie"

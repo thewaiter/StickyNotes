@@ -1,15 +1,16 @@
-# Italian translation for E17 sticky_notes module.
+# Italian translation for the StickyNotes module.
 # This file is put in the public domain.
-# Massimo Maiurana <maiurana@gmail.com>, 2009.
+#
+# Massimo Maiurana <maiurana@gmail.com>, 2017.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Sticky_notes\n"
+"Project-Id-Version: stickynotes\n"
 "Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
 "POT-Creation-Date: 2024-12-14 07:40-0500\n"
 "PO-Revision-Date: 2025-01-08 19:25+0100\n"
 "Last-Translator: diekrz2 <diekrz2@protonmail.com>\n"
-"Language-Team: Italiano\n"
+"Language-Team: Italian\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,6 +125,3 @@ msgstr "Configurazione di StickyNotes aggiornata"
 #: src/e_mod_main.c:551
 msgid "Settings"
 msgstr "Impostazioni"
-
-#~ msgid "Use Switch 1"
-#~ msgstr "Usa switch 1"

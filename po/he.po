@@ -1,15 +1,16 @@
-# Hebrew translation for enlightenment
-# This file is distributed under the same license as the enlightenment package.
-# Yaron <sh.yaron@gmail.com>, 2008.
+# Hebrew translation for the StickyNotes module.
+# This file is put in the public domain.
+#
+# Yaron <sh.yaron@gmail.com>, 2017.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: enlightenment\n"
+"Project-Id-Version: stickynotes\n"
 "Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
 "POT-Creation-Date: 2024-12-14 07:40-0500\n"
 "PO-Revision-Date: 2008-11-29 23:35+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
-"Language-Team: Hebrew <he@li.org>\n"
+"Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -120,9 +121,3 @@ msgstr "תצורת השלד עודכנה"
 #: src/e_mod_main.c:551
 msgid "Settings"
 msgstr ""
-
-#~ msgid "Use Switch 1"
-#~ msgstr "השתמש במפסק 1"
-
-#~ msgid "Configuration"
-#~ msgstr "תצורה"

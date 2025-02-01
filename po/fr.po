@@ -1,7 +1,7 @@
-# French translation for StickyNotes.
+# French translation for the StickyNotes module.
 # This file is put in the public domain.
-# batden <batden@orange.fr>, 2009, 2010.
-# similar <similar@orange.fr>, 2021, 2024.
+#
+# Philippe Jean Guillaumie <similar@orange.fr>, 2021
 #
 msgid ""
 msgstr ""
@@ -126,9 +126,3 @@ msgstr "Configuration de StickyNotes actualisée"
 #: src/e_mod_main.c:551
 msgid "Settings"
 msgstr "Configuration"
-
-#~ msgid "Use Switch 1"
-#~ msgstr "Utiliser Switch 1"
-
-#~ msgid "Configuration"
-#~ msgstr "Configuration"

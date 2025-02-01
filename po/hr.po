@@ -1,15 +1,16 @@
-# Croatian translation for enlightenment
-# This file is distributed under the same license as the enlightenment package.
-# Miro Glavic <glavicmiro@gmail.com>, 2009.
+# Croatian translation for the StickyNotes module.
+# This file is put in the public domain.
+#
+# Miro Glavic <glavicmiro@gmail.com>, 2017.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: enlightenment\n"
+"Project-Id-Version: stickynotes\n"
 "Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
 "POT-Creation-Date: 2024-12-14 07:40-0500\n"
 "PO-Revision-Date: 2009-02-14 05:06+0000\n"
 "Last-Translator: Miro Glavic <glavicmiro@gmail.com>\n"
-"Language-Team: Croatian <hr@li.org>\n"
+"Language-Team: Croatian\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -121,9 +122,3 @@ msgstr "Konfiguracija StickyNotes Osvježena"
 #: src/e_mod_main.c:551
 msgid "Settings"
 msgstr ""
-
-#~ msgid "Use Switch 1"
-#~ msgstr "Upotrijebi Prekidač 1"
-
-#~ msgid "Configuration"
-#~ msgstr "Konfiguracija"
