@@ -2,6 +2,7 @@
 Type=Link
 Name=StickyNotes
 Name[be]=Стыкеры
+Name[cs]=Poznámkový blok
 Name[de]=Sticky_notesett
 Name[el]=Sticky_notes
 Name[eo]=Sticky_noteseto
@@ -12,11 +13,11 @@ Name[gl]=
 Name[pt]=Notas adesivas
 Name[ru]=Стикеры
 Name[sk]=Poznámkový blok
-Name[cs]=Poznámkový blok
 GenericName[es]=Módulo Notas Adhesivas
 Icon=e-module-sticky_notes
 Comment=Sticky Notes module for the E/Moksha desktop.
 Comment[be]=Модуль Стыкеры для працоўнага стала E/Moksha.
+Comment[cs]=Poznámkový blok pro desktop E/Moksha.
 Comment[de]=
 Comment[el]=
 Comment[eo]=
@@ -27,6 +28,5 @@ Comment[gl]=
 Comment[pt]=Módulo de notas adesivas para a área de trabalho do E/Moksha.
 Comment[ru]=Модуль Стикеры для рабочего стола E/Moksha.
 Comment[sk]=Poznámkový blok na desktop E/Moksha.
-Comment[cs]=Poznámkový blok pro desktop E/Moksha.
 #Several different types available here. NEED TO DOC THESE.
 X-Enlightenment-ModuleType=utils
