@@ -117,7 +117,7 @@ e_modapi_init(E_Module *m)
    E_CONFIG_VAL(D, T, header_switch, INT);
    E_CONFIG_VAL(D, T, multiply_switch, INT);
    E_CONFIG_VAL(D, T, header_text, STR);
-   E_CONFIG_VAL(D, T, area_text, STR);
+   E_CONFIG_VAL(D, T, area_text_1, STR);
    E_CONFIG_VAL(D, T, area_text_2, STR);
    E_CONFIG_VAL(D, T, area_text_3, STR);
    E_CONFIG_VAL(D, T, area_text_4, STR);
@@ -401,13 +401,13 @@ _sticky_notes_conf_new(void)
    ci->notif_switch = 0;
    ci->font_size = 12;
    ci->interval = 0.0;
-   ci->val.r=255;
-   ci->val.g=255;
-   ci->val.b=255;
-   ci->val.a=255;
+   ci->val.r = 255;
+   ci->val.g = 255;
+   ci->val.b = 255;
+   ci->val.a = 255;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
    ci->command = eina_stringshare_add("");
-   ci->area_text = eina_stringshare_add("");
+   ci->area_text_1 = eina_stringshare_add("");
    ci->area_text_2 = eina_stringshare_add("");
    ci->area_text_3 = eina_stringshare_add("");
    ci->area_text_4 = eina_stringshare_add("");
@@ -446,7 +446,7 @@ _sticky_notes_conf_free(void)
         /* cleanup stringshares */
         if (ci->id) eina_stringshare_del(ci->id);
         if (ci->header_text) eina_stringshare_del(ci->header_text);
-        if (ci->area_text) eina_stringshare_del(ci->area_text);
+        if (ci->area_text_1) eina_stringshare_del(ci->area_text_1);
         if (ci->area_text_2) eina_stringshare_del(ci->area_text_2);
         if (ci->area_text_3) eina_stringshare_del(ci->area_text_3);
         if (ci->area_text_4) eina_stringshare_del(ci->area_text_4);
@@ -510,13 +510,13 @@ _sticky_notes_conf_item_get(const char *id)
    ci->notif_switch = 0;
    ci->font_size = 12;
    ci->interval = 0.0;
-   ci->val.r=255;
-   ci->val.g=255;
-   ci->val.b=255;
-   ci->val.a=255;
+   ci->val.r = 255;
+   ci->val.g = 255;
+   ci->val.b = 255;
+   ci->val.a = 255;
    ci->header_text = eina_stringshare_add(D_("Sticky note"));
    ci->command = eina_stringshare_add("");
-   ci->area_text = eina_stringshare_add("");
+   ci->area_text_1 = eina_stringshare_add("");
    ci->area_text_2 = eina_stringshare_add("");
    ci->area_text_3 = eina_stringshare_add("");
    ci->area_text_4 = eina_stringshare_add("");
@@ -619,12 +619,12 @@ _sticky_notes_cb_check(void *data)
         if ((inst->ci->header_text) && (!inst->ci->header_switch))
           edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->header_text);
         else
-          edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->area_text);
+          edje_object_part_text_set(inst->o_sticky_notes, "header_text", inst->ci->area_text_1);
 
         if (inst->ci->command[0] != '\0')
           edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst, EINA_TRUE));
 
-        if ((inst->ci->area_text) && (inst->ci->command[0] == '\0'))
+        if ((inst->ci->area_text_1) && (inst->ci->command[0] == '\0'))
           edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
 
         //~ snprintf(buf, sizeof(buf),"R:%d,G:%d,B:%d,A:%d",inst->ci->val.r, inst->ci->val.g, inst->ci->val.b, inst->ci->val.a);
@@ -663,7 +663,7 @@ _sticky_header_icon_activated_cb(void *data, Evas_Object *o __UNUSED__,
    if (inst->ci->command[0] != '\0')
      edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst, EINA_FALSE));
 
-   if ((inst->ci->area_text) && (inst->ci->command[0] == '\0'))
+   if ((inst->ci->area_text_1) && (inst->ci->command[0] == '\0'))
       edje_object_part_text_set(inst->o_sticky_notes, "area_text", text_sized(inst));
 
    _font_size_show(inst, EINA_TRUE, "");
@@ -714,7 +714,7 @@ text_sized(void *data)
 
    snprintf(buf, sizeof(buf), "<font_size= %d>", (int)inst->ci->font_size);
    eina_strbuf_append(inst->eina_buf, buf);
-   eina_strbuf_append(inst->eina_buf, inst->ci->area_text);
+   eina_strbuf_append(inst->eina_buf, inst->ci->area_text_1);
    eina_strbuf_append(inst->eina_buf, "<br>");
    eina_strbuf_append(inst->eina_buf, inst->ci->area_text_2);
    eina_strbuf_append(inst->eina_buf, "<br>");

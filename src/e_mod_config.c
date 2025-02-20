@@ -9,14 +9,14 @@ struct _E_Config_Dialog_Data
 {
    int   header_switch, multiply_switch, notif_switch;
    char *header_text, *command, *notif_text;
-   char *area_text;
+   char *area_text_1;
    char *area_text_2; 
    char *area_text_3; 
    char *area_text_4; 
    char *area_text_5; 
    int font_size;
    double interval;
-   E_Color    color[3]; 
+   E_Color color[3]; 
    struct
    {
       int       r, g, b, a;
@@ -114,7 +114,7 @@ _fill_data(Config_Item * ci, E_Config_Dialog_Data *cfdata)
    /* load a temp copy of the config variables */
    cfdata->header_switch = ci->header_switch;
    if (ci->header_text) cfdata->header_text = strdup(ci->header_text);
-   if (ci->area_text) cfdata->area_text = strdup(ci->area_text);
+   if (ci->area_text_1) cfdata->area_text_1 = strdup(ci->area_text_1);
    if (ci->area_text_2) cfdata->area_text_2 = strdup(ci->area_text_2);
    if (ci->area_text_3) cfdata->area_text_3 = strdup(ci->area_text_3);
    if (ci->area_text_4) cfdata->area_text_4 = strdup(ci->area_text_4);
@@ -124,10 +124,10 @@ _fill_data(Config_Item * ci, E_Config_Dialog_Data *cfdata)
    cfdata->interval = ci->interval;
    cfdata->multiply_switch = ci->multiply_switch;
    cfdata->notif_switch = ci->notif_switch;
-   cfdata->color->r=ci->val.r;
-   cfdata->color->g=ci->val.g;
-   cfdata->color->b=ci->val.b;
-   cfdata->color->a=ci->val.a;
+   cfdata->color->r = ci->val.r;
+   cfdata->color->g = ci->val.g;
+   cfdata->color->b = ci->val.b;
+   cfdata->color->a = ci->val.a;
 }
 
 static Evas_Object *
@@ -157,7 +157,7 @@ _basic_create(E_Config_Dialog *cfd, Evas *evas, E_Config_Dialog_Data *cfdata)
    cfdata->ui.area_label = ow;
    e_widget_framelist_object_append(of, ow);
 
-   ow = e_widget_entry_add(evas, &(cfdata->area_text), NULL, NULL, NULL);
+   ow = e_widget_entry_add(evas, &(cfdata->area_text_1), NULL, NULL, NULL);
    e_widget_framelist_object_append(of, ow);
    cfdata->ui.area_entry1 = ow;
    ow = e_widget_entry_add(evas, &(cfdata->area_text_2), NULL, NULL, NULL);
@@ -298,8 +298,8 @@ _basic_apply(E_Config_Dialog *cfd, E_Config_Dialog_Data *cfdata)
 
    if (ci->header_text) eina_stringshare_del(ci->header_text);
    ci->header_text = eina_stringshare_add(cfdata->header_text);
-   if (ci->area_text) eina_stringshare_del(ci->area_text);
-   ci->area_text = eina_stringshare_add(cfdata->area_text);
+   if (ci->area_text_1) eina_stringshare_del(ci->area_text_1);
+   ci->area_text_1 = eina_stringshare_add(cfdata->area_text_1);
    if (ci->area_text_2) eina_stringshare_del(ci->area_text_2);
    ci->area_text_2 = eina_stringshare_add(cfdata->area_text_2);
    if (ci->area_text_3) eina_stringshare_del(ci->area_text_3);

@@ -69,7 +69,7 @@ struct _Config_Item
    /* unique id for every running gadget, this is managed by gadcon */
    const char *id;
    const char *header_text, *command, *notif_text; 
-   const char *area_text;
+   const char *area_text_1;
    const char *area_text_2; 
    const char *area_text_3; 
    const char *area_text_4; 
