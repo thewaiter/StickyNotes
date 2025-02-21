@@ -658,7 +658,7 @@ _sticky_header_icon_activated_cb(void *data, Evas_Object *o __UNUSED__,
    else
      inst->ci->font_size = 8;
 
-   if (!(inst=data)) return;
+   if (!(inst = data)) return;
 
    if (inst->ci->command[0] != '\0')
      edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst, EINA_FALSE));
@@ -675,7 +675,7 @@ _sticky_header_text_activated_cb(void *data, Evas_Object *o __UNUSED__,
 {
    Instance *inst = data;
 
-   if (!(inst=data)) return;
+   if (!(inst = data)) return;
 
    if (inst->ci->command[0] != '\0')
      edje_object_part_text_set(inst->o_sticky_notes, "area_text", show_command_output(inst, EINA_FALSE));

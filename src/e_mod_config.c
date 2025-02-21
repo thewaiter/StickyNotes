@@ -19,7 +19,7 @@ struct _E_Config_Dialog_Data
    E_Color color[3]; 
    struct
    {
-      int       r, g, b, a;
+      int r, g, b, a;
       Eina_Bool changed;
       Eina_Bool enabled;
    } val;
@@ -29,17 +29,17 @@ struct _E_Config_Dialog_Data
       Evas_Object *header_label;
       Evas_Object *header_text;
       Evas_Object *header_switcher;
-      
+
       Evas_Object *area_label;
       Evas_Object *notif_entry;
-      
+
       Evas_Object *area_entry1;
       Evas_Object *area_entry2;
       Evas_Object *area_entry3;
       Evas_Object *area_entry4;
       Evas_Object *area_entry5;
       Evas_Object *html_label;
-      
+
       Evas_Object *color[3];
       Eina_List   *disable_list;
    } ui;
