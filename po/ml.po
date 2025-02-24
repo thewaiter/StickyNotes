@@ -1,0 +1,124 @@
+# Malayalam translation for the StickyNotes module.
+# This file is put in the public domain.
+#
+# Indraneel Rajeevan <https://github.com/indraneel12>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: stickynotes\n"
+"Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
+"POT-Creation-Date: 2025-02-24 23:19+0530\n"
+"PO-Revision-Date: 2025-02-24 23:19+0530\n"
+"Last-Translator: Indraneel Rajeevan <https://github.com/indraneel12>\n"
+"Language-Team: Malayalam\n"
+"Language: ml\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: src/e_mod_config.c:85
+msgid "StickyNotes Module"
+msgstr "സ്റ്റിക്കിനോട്ട്സ് മൊഡ്യൂൾ"
+
+#: src/e_mod_config.c:140
+msgid "General"
+msgstr "പൊതുവായ"
+
+#: src/e_mod_config.c:143
+msgid " Note text in the header"
+msgstr " തലക്കെട്ടിലെ വാചകം കുറിച്ചെടുക്കുക"
+
+#: src/e_mod_config.c:148
+msgid "Header text"
+msgstr "തലക്കെട്ട് വാചകം"
+
+#: src/e_mod_config.c:156
+msgid "Note text"
+msgstr "കുറിപ്പ് വാചകം"
+
+#: src/e_mod_config.c:176
+msgid "HTML tags: see the git repo wiki for more info"
+msgstr "HTML ടാഗുകൾ: കൂടുതൽ വിവരങ്ങൾക്ക് ഗിറ്റ് റിപ്പോ വിക്കി കാണുക"
+
+#: src/e_mod_config.c:180
+msgid "Click on the space for color changing"
+msgstr "നിറം മാറ്റുന്നതിനുള്ള സ്ഥലത്ത് ക്ലിക്ക് ചെയ്യുക"
+
+#: src/e_mod_config.c:193
+msgid "Command section"
+msgstr "കമാൻഡ് വിഭാഗം"
+
+#: src/e_mod_config.c:195
+msgid "Command to run and show output"
+msgstr "റൺ ചെയ്ത് ഔട്ട്പുട്ട് കാണിക്കാനുമുള്ള നിർദേശം"
+
+#: src/e_mod_config.c:203
+msgid "Refresh interval"
+msgstr "റീഫ്രെശ്ശ് ഇടവേള"
+
+#: src/e_mod_config.c:206
+#, c-format
+msgid "%2.0f sec"
+msgstr "%2.0f സെക്കൻഡ്"
+
+#: src/e_mod_config.c:209
+msgid " x 60 secs"
+msgstr " x 60 സെക്കൻ്റുകൾ"
+
+#: src/e_mod_config.c:212
+msgid " Notification text on change"
+msgstr " മാറ്റത്തെക്കുറിച്ചുള്ള അറിയിപ്പ് വാചകം"
+
+#: src/e_mod_main.c:104
+msgid "Advanced"
+msgstr "വിപുലമായ"
+
+#: src/e_mod_main.c:154
+msgid ""
+"StickyNotes Module Configuration data needed upgrading. Your old "
+"configuration<br> has been wiped and a new set of defaults initialized. "
+"This<br>will happen regularly during development, so don't report a<br>bug. "
+"This simply means the module needs new configuration<br>data by default for "
+"usable functionality that your old<br>configuration simply lacks. This new "
+"set of defaults will fix<br>that by adding it in. You can re-configure "
+"things now to your<br>liking. Sorry for the inconvenience.<br>"
+msgstr ""
+"സ്റ്റിക്കിനോട്ട്സ് മൊഡ്യൂൾ കോൺഫിഗറേഷൻ ഡാറ്റ അപ്‌ഗ്രേഡ് ചെയ്യേണ്ടതുണ്ടായിരുന്നു. നിങ്ങളുടെ പഴയ "
+"കോൺഫിഗറേഷൻ<br>മായ്ച്ചു പുതിയൊരു കൂട്ടം സ്ഥിരസ്ഥിതികൾ ആരംഭിക്കപ്പെട്ടിരിക്കുന്നു. വികസന സമയത്ത് "
+"ഇത്<br>പതിവായി സംഭവിക്കും, അതിനാൽ ബഗ് റിപ്പോർട്ട്<br>ചെയ്യരുത്. ഇതിനർത്ഥം നിങ്ങളുടെ പഴയ "
+"കോൺഫിഗറേഷനിൽ ഇല്ലാത്ത<br>ഉപയോഗയോഗ്യമായ പ്രവർത്തനത്തിനായി മൊഡ്യൂളിന് സ്ഥിരസ്ഥിതിയായി "
+"പുതിയ<br>കോൺഫിഗറേഷൻ ഡാറ്റ ആവശ്യമാണ് എന്നാണ്. ഈ പുതിയ സ്ഥിരസ്ഥിതികളുടെ കൂട്ടം അത് "
+"ചേർത്തുകൊണ്ട്<br>അത് പരിഹരിക്കും. നിങ്ങളുടെ ഇഷ്ടത്തിനനുസരിച്ച് ഇപ്പോൾ കാര്യങ്ങൾ "
+"വീണ്ടും<br>ക്രമീകരിക്കാൻ കഴിയും. അസൗകര്യത്തിന് ക്ഷമിക്കുക.<br>"
+
+#: src/e_mod_main.c:174
+msgid ""
+"Your StickyNotes Module configuration is NEWER than the module version. This "
+"is very<br>strange. This should not happen unless you downgraded<br>the "
+"module or copied the configuration from a place where<br>a newer version of "
+"the module was running. This is bad and<br>as a precaution your "
+"configuration has been now restored to<br>defaults. Sorry for the "
+"inconvenience.<br>"
+msgstr ""
+"നിങ്ങളുടെ സ്റ്റിക്കിനോട്ട്സ് മൊഡ്യൂൾ കോൺഫിഗറേഷൻ മൊഡ്യൂൾ പതിപ്പിനേക്കാൾ പുതിയതാണ്. ഇത് "
+"വളരെ<br>വിചിത്രമാണ്. മൊഡ്യൂൾ ഡൗൺഗ്രേഡ് ചെയ്യുകയോ<br>മൊഡ്യൂളിന്റെ പുതിയ പതിപ്പ് പ്രവർത്തിക്കുന്ന "
+"സ്ഥലത്ത് നിന്ന്<br>കോൺഫിഗറേഷൻ പകർത്തുകയോ ചെയ്തില്ലെങ്കിൽ ഇത് സംഭവിക്കാൻ പാടില്ല. ഇത് "
+"മോശമാണ്,<br>മുൻകരുതൽ എന്ന നിലയിൽ നിങ്ങളുടെ കോൺഫിഗറേഷൻ ഇപ്പോൾ<br>സ്ഥിരസ്ഥിതിയിലേക്ക് "
+"പുനഃസ്ഥാപിച്ചിരിക്കുന്നു. അസൗകര്യത്തിന് ക്ഷമിക്കുക.<br>"
+
+#: src/e_mod_main.c:349
+msgid "StickyNotes"
+msgstr "സ്റ്റിക്കിനോട്ട്സ്"
+
+#: src/e_mod_main.c:408 src/e_mod_main.c:517
+msgid "Sticky note"
+msgstr "സ്റ്റിക്കി നോട്ട്"
+
+#: src/e_mod_main.c:466
+msgid "StickyNotes Configuration Updated"
+msgstr "സ്റ്റിക്കിനോട്ട്സ് കോൺഫിഗറേഷൻ അപ്ഡേറ്റ് ചെയ്തു"
+
+#: src/e_mod_main.c:551
+msgid "Settings"
+msgstr "ക്രമീകരണങ്ങൾ"
