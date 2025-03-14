@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: stickynotes\n"
 "Report-Msgid-Bugs-To: moksha@bodhilinux.com\n"
 "POT-Creation-Date: 2024-12-14 07:40-0500\n"
-"PO-Revision-Date: 2023-07-23 15:41+0100\n"
+"PO-Revision-Date: 2025-03-14 11:52-0300\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Brazilian Portuguese\n"
 "Language: pt_BR\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2009-11-12 04:51+0000\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: src/e_mod_config.c:85
 msgid "StickyNotes Module"
@@ -48,11 +48,11 @@ msgstr "Clique no espaço para alterar a cor"
 
 #: src/e_mod_config.c:193
 msgid "Command section"
-msgstr "Secção de comando"
+msgstr "Seção de comando"
 
 #: src/e_mod_config.c:195
 msgid "Command to run and show output"
-msgstr "Comando a executar e mostrar resultado"
+msgstr "Comando para executar e mostrar resultado"
 
 #: src/e_mod_config.c:203
 msgid "Refresh interval"
@@ -69,7 +69,7 @@ msgstr " x 60 segs"
 
 #: src/e_mod_config.c:212
 msgid " Notification text on change"
-msgstr " Texto de notificação sobre as alterações"
+msgstr " Texto de notificação ao alterar"
 
 #: src/e_mod_main.c:104
 msgid "Advanced"
@@ -85,13 +85,13 @@ msgid ""
 "set of defaults will fix<br>that by adding it in. You can re-configure "
 "things now to your<br>liking. Sorry for the inconvenience.<br>"
 msgstr ""
-"A configuração do StickyNotes precisa de ser atualizada. Sua configuração "
-"foi apagada e foram iniciados novos valores padrão.<br>Isso irá ocorrer "
-"regularmente durante o desenvolvimento e não deve reportar nenhum erro."
-"<br>Isso apenas significa que o módulo precisa de novos dados de "
-"configuração que a sua antiga configuração não possui.<br>Esse conjunto de "
-"valores irá corrigir a configuração.<br> Mais tarde poderá configurar o "
-"módulo ao seu gosto. Desculpe o incómodo.<br>"
+"A configuração do módulo StickyNotes precisa de ser atualizada. Sua "
+"configuração antiga<br>foi apagada e um novo conjunto de valores padrão foi "
+"inicializado.<br>Isso irá ocorrer regularmente durante o desenvolvimento, "
+"então não precisa reportar nenhum bug.<br>Isso apenas significa que o módulo "
+"precisa de novos dados de configuração que a sua antiga configuração não "
+"possuía.<br>Esse conjunto de valores irá corrigir isso.<br> Mais tarde "
+"poderá (re)configurar o módulo ao seu gosto. Desculpe o incómodo.<br>"
 
 #: src/e_mod_main.c:174
 msgid ""
@@ -118,7 +118,7 @@ msgstr "Nota adesiva"
 
 #: src/e_mod_main.c:466
 msgid "StickyNotes Configuration Updated"
-msgstr "A configuração foi atualizada"
+msgstr "A configuração do StickyNotes foi atualizada"
 
 #: src/e_mod_main.c:551
 msgid "Settings"
