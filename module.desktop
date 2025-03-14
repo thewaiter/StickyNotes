@@ -12,6 +12,7 @@ Name[it]=
 Name[gl]=
 Name[ml]=സ്റ്റിക്കിനോട്ട്സ്
 Name[pt]=Notas adesivas
+Name[pt_BR]=Notas adesivas
 Name[ru]=Стикеры
 Name[sk]=Poznámkový blok
 GenericName[es]=Módulo Notas Adhesivas
@@ -28,6 +29,7 @@ Comment[it]=
 Comment[gl]=
 Comment[ml]=ഇ/മോക്ഷ ഡെസ്ക്ടോപ്പിനുള്ള സ്റ്റിക്കി നോട്ട്സ് മൊഡ്യൂൾ.
 Comment[pt]=Módulo de notas adesivas para a área de trabalho do E/Moksha.
+Comment[pt_BR]=Módulo de notas adesivas para a área de trabalho do E/Moksha.
 Comment[ru]=Модуль Стикеры для рабочего стола E/Moksha.
 Comment[sk]=Poznámkový blok na desktop E/Moksha.
 #Several different types available here. NEED TO DOC THESE.
