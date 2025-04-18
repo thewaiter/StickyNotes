@@ -16,6 +16,7 @@ Name[pt]=Notas adesivas
 Name[pt_BR]=Notas adesivas
 Name[ru]=Стикеры
 Name[sk]=Poznámkový blok
+Name[hi]=स्टिकी नोट
 GenericName[es]=Módulo Notas Adhesivas
 Icon=e-module-sticky_notes
 Comment=Sticky Notes module for the Moksha desktop.
@@ -34,5 +35,6 @@ Comment[pt]=Módulo de notas adesivas para a área de trabalho do Moksha.
 Comment[pt_BR]=Módulo de notas adesivas para a área de trabalho do Moksha.
 Comment[ru]=Модуль Стикеры для рабочего стола Moksha.
 Comment[sk]=Poznámkový blok pre desktop Moksha.
+Comment[hi]=मोक्ष डेस्कटॉप के लिए स्टिकी नोट्स
 #Several different types available here. NEED TO DOC THESE.
 X-Enlightenment-ModuleType=utils
