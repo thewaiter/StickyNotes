@@ -18,60 +18,60 @@ msgstr ""
 
 #: src/e_mod_config.c:85
 msgid "StickyNotes Module"
-msgstr ""
+msgstr "स्टिकी नोट्स मॉड्यूल"
 
 #: src/e_mod_config.c:140
 msgid "General"
-msgstr ""
+msgstr "सामान्य"
 
 #: src/e_mod_config.c:143
 msgid " Note text in the header"
-msgstr ""
+msgstr "हेडर में पाठ नोट करें"
 
 #: src/e_mod_config.c:148
 msgid "Header text"
-msgstr ""
+msgstr "शीर्षलेख पाठ"
 
 #: src/e_mod_config.c:156
 msgid "Note text"
-msgstr ""
+msgstr "टेक्स्ट नोट करें"
 
 #: src/e_mod_config.c:176
 msgid "HTML tags: see the git repo wiki for more info"
-msgstr ""
+msgstr "HTML टैग: अधिक जानकारी के लिए git repo wiki देखें"
 
 #: src/e_mod_config.c:180
 msgid "Click on the space for color changing"
-msgstr ""
+msgstr "रंग बदलने के लिए स्थान पर क्लिक करें"
 
 #: src/e_mod_config.c:193
 msgid "Command section"
-msgstr ""
+msgstr "आदेश अनुभाग"
 
 #: src/e_mod_config.c:195
 msgid "Command to run and show output"
-msgstr ""
+msgstr "चलाने और आउटपुट दिखाने के लिए कमांड"
 
 #: src/e_mod_config.c:203
 msgid "Refresh interval"
-msgstr ""
+msgstr "अंतराल ताज़ा करें"
 
 #: src/e_mod_config.c:206
 #, c-format
 msgid "%2.0f sec"
-msgstr ""
+msgstr "%2.0f सेकंड"
 
 #: src/e_mod_config.c:209
 msgid " x 60 secs"
-msgstr ""
+msgstr " x 60 सेकंड"
 
 #: src/e_mod_config.c:212
 msgid " Notification text on change"
-msgstr ""
+msgstr "परिवर्तन पर अधिसूचना"
 
 #: src/e_mod_main.c:104
 msgid "Advanced"
-msgstr ""
+msgstr "उन्नत अनुभाग"
 
 #: src/e_mod_main.c:154
 msgid ""
@@ -82,7 +82,12 @@ msgid ""
 "usable functionality that your old<br>configuration simply lacks. This new "
 "set of defaults will fix<br>that by adding it in. You can re-configure "
 "things now to your<br>liking. Sorry for the inconvenience.<br>"
-msgstr ""
+msgstr """स्टिकीनोट्स मॉड्यूल कॉन्फ़िगरेशन डेटा को अपग्रेड करने की आवश्यकता है। आपका पुराना कॉन्फ़िगरेशन"
+" मिटा<br> दिया गया है और डिफ़ॉल्ट का एक नया सेट आरंभ किया गया है।"
+"यह विकास<br> के दौरान नियमित रूप से होगा, इसलिए बग की रिपोर्ट न करें।"
+"इसका<br> सीधा सा मतलब है कि मॉड्यूल को डिफ़ॉल्ट रूप से नए कॉन्फ़िगरेशन<br> डेटा की आवश्यकता है ताकि "
+"उपयोग योग्य कार्यक्षमता हो जो<br> आपके पुराने कॉन्फ़िगरेशन में नहीं है। डिफ़ॉल्ट का यह नया सेट इसे "
+"जोड़कर<br> इसे ठीक कर देगा। अब आप अपनी पसंद के अनुसार चीजों<br> को फिर से कॉन्फ़िगर कर सकते हैं। असुविधा के लिए खेद है। "
 
 #: src/e_mod_main.c:174
 msgid ""
@@ -92,20 +97,24 @@ msgid ""
 "the module was running. This is bad and<br>as a precaution your "
 "configuration has been now restored to<br>defaults. Sorry for the "
 "inconvenience.<br>"
-msgstr ""
+msgstr """आपका स्टिकीनोट्स मॉड्यूल कॉन्फ़िगरेशन मॉड्यूल संस्करण से नया है।<br> यह बहुत अजीब है।"
+" ऐसा तब तक नहीं होना चाहिए जब तक कि आपने<br> मॉड्यूल को डाउनग्रेड न कर दिया हो या"
+"कॉन्फ़िगरेशन को ऐसी जगह से कॉपी<br> न कर लिया हो जहाँ मॉड्यूल का नया संस्करण"
+"चल रहा हो।<br> यह बुरा है और सावधानी के तौर पर आपके कॉन्फ़िगरेशन को अब "
+"डिफ़ॉल्ट<br> पर बहाल कर दिया गया है। असुविधा के लिए खेद है।"
 
 #: src/e_mod_main.c:349
 msgid "StickyNotes"
-msgstr ""
+msgstr "स्टिकीनोट"
 
 #: src/e_mod_main.c:408 src/e_mod_main.c:517
 msgid "Sticky note"
-msgstr ""
+msgstr "स्टिकी नोट"
 
 #: src/e_mod_main.c:466
 msgid "StickyNotes Configuration Updated"
-msgstr ""
+msgstr "स्टिकीनोट्स कॉन्फ़िगरेशन अपडेट किया गया"
 
 #: src/e_mod_main.c:551
 msgid "Settings"
-msgstr ""
+msgstr "सेटिंग्स"
