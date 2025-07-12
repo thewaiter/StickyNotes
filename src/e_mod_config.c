@@ -10,13 +10,13 @@ struct _E_Config_Dialog_Data
    int   header_switch, multiply_switch, notif_switch;
    char *header_text, *command, *notif_text;
    char *area_text_1;
-   char *area_text_2; 
-   char *area_text_3; 
-   char *area_text_4; 
-   char *area_text_5; 
+   char *area_text_2;
+   char *area_text_3;
+   char *area_text_4;
+   char *area_text_5;
    int font_size;
    double interval;
-   E_Color color[3]; 
+   E_Color color[3];
    struct
    {
       int r, g, b, a;
@@ -230,15 +230,18 @@ static void
 _cb_check_changed(void *data, Evas_Object *obj __UNUSED__)
 {
    E_Config_Dialog_Data *cfdata;
-   if (!(cfdata = data)) return;
 
-   if(cfdata->header_switch) {
-     e_widget_disabled_set(cfdata->ui.header_label, EINA_TRUE);
-     e_widget_disabled_set(cfdata->ui.header_text, EINA_TRUE);
-   } else {
-     e_widget_disabled_set(cfdata->ui.header_label, EINA_FALSE);
-     e_widget_disabled_set(cfdata->ui.header_text, EINA_FALSE);
-   }
+   if (!(cfdata = data)) return;
+   if (cfdata->header_switch)
+     {
+       e_widget_disabled_set(cfdata->ui.header_label, EINA_TRUE);
+       e_widget_disabled_set(cfdata->ui.header_text, EINA_TRUE);
+     }
+   else
+     {
+       e_widget_disabled_set(cfdata->ui.header_label, EINA_FALSE);
+       e_widget_disabled_set(cfdata->ui.header_text, EINA_FALSE);
+     }
 }
 
 static void  
@@ -246,7 +249,7 @@ _cb_check_changed_notif(void *data, Evas_Object *obj __UNUSED__)
 {
    E_Config_Dialog_Data *cfdata;
    if (!(cfdata = data)) return;
-   if(cfdata->notif_switch)
+   if (cfdata->notif_switch)
      e_widget_disabled_set(cfdata->ui.notif_entry, EINA_FALSE);
    else
      e_widget_disabled_set(cfdata->ui.notif_entry, EINA_TRUE);

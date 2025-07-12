@@ -52,7 +52,7 @@ struct _Instance
    /* Timer for each gadget*/
    Ecore_Timer *timer;
 
-   /* Text buffer for each gadget*/   
+   /* Text buffer for each gadget*/
    Eina_Strbuf *eina_buf;
    Eina_Strbuf *eina_temp;
    Eina_Strbuf *eina_compare;
@@ -207,7 +207,7 @@ e_modapi_init(E_Module *m)
 EAPI int 
 e_modapi_shutdown(E_Module *m __UNUSED__)
 {
-    /* Kill the config dialog */
+   /* Kill the config dialog */
    if (sticky_notes_conf->cfd) e_object_del(E_OBJECT(sticky_notes_conf->cfd));
    //~ sticky_notes_conf->cfd = NULL;
 
@@ -215,7 +215,7 @@ e_modapi_shutdown(E_Module *m __UNUSED__)
    e_configure_registry_item_del("advanced/sticky_notes");
 
    /* Remove the config panel category if we can. E will tell us.
-    category stays if other items using it */
+      category stays if other items using it */
    e_configure_registry_category_del("advanced");
 
    /* Tell E the module is now unloaded. Gets removed from shelves, etc. */
@@ -478,7 +478,7 @@ _sticky_notes_conf_item_get(const char *id)
 
    if (!id)
      {
-       int  num = 0;
+       int num = 0;
 
        /* Create id */
        if (sticky_notes_conf->conf_items)
@@ -589,10 +589,10 @@ _sticky_notes_config_updated(Config_Item *ci)
 
         inst = l->data;
         if (inst->ci != ci) continue;
-        
+
         ecore_timer_del(inst->timer);
         multi = inst->ci->multiply_switch ? 60 : 1;
-        
+
         if (inst->ci->interval>0)
            inst->timer = ecore_timer_add(inst->ci->interval * multi, _sticky_notes_cb_check, inst);
             
@@ -629,9 +629,9 @@ _sticky_notes_cb_check(void *data)
 
         //~ snprintf(buf, sizeof(buf),"R:%d,G:%d,B:%d,A:%d",inst->ci->val.r, inst->ci->val.g, inst->ci->val.b, inst->ci->val.a);
         //~ e_util_dialog_internal("RGBA", buf);
-        edje_object_color_class_set
-        (inst->o_sticky_notes, "color",
-        inst->ci->val.r, inst->ci->val.g, inst->ci->val.b, inst->ci->val.a,
+        edje_object_color_class_set(inst->o_sticky_notes, "color",
+                                    inst->ci->val.r, inst->ci->val.g,
+                                    inst->ci->val.b, inst->ci->val.a,
         0, 0, 0, 255, 0, 0, 0, 255);
 
      //~ }
@@ -834,7 +834,8 @@ show_command_output(void *data, Eina_Bool header_clicked)
 static Eina_Bool
 _change_cb(void *data, int type __UNUSED__, void *event __UNUSED__)
 {
-    Instance *inst = data;
+   Instance *inst = data;
+
    _sticky_header_text_activated_cb(inst, NULL, NULL, NULL);
    return ECORE_CALLBACK_PASS_ON;
 }

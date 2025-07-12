@@ -80,7 +80,7 @@ struct _Config_Item
    double interval;
    struct
    {
-      int       r, g, b, a;
+      int r, g, b, a;
    } val;
 };
 
