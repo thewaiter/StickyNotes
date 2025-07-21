@@ -395,7 +395,7 @@ _sticky_notes_conf_new(void)
    IFMODCFG(0x008d);
    sticky_notes_conf->switch1 = 1;
 
-   //~ ci->id = eina_stringshare_add(id);
+   ci->id = eina_stringshare_add(id);
    ci->header_switch = 0;
    ci->multiply_switch = 0;
    ci->notif_switch = 0;
@@ -632,7 +632,7 @@ _sticky_notes_cb_check(void *data)
         edje_object_color_class_set(inst->o_sticky_notes, "color",
                                     inst->ci->val.r, inst->ci->val.g,
                                     inst->ci->val.b, inst->ci->val.a,
-        0, 0, 0, 255, 0, 0, 0, 255);
+                                    0, 0, 0, 255, 0, 0, 0, 255);
 
      //~ }
 
